@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<!-- 扫描加载注解 -->
+	<context:component-scan base-package="com.xjf.wemall.web" />
+	
+	<!-- WEB类项目不停机发包设置
+    <bean name="/background-healthcheck" class="org.springframework.web.servlet.mvc.ServletForwardingController">
+        <property name="servletName" value="healthcheck"/>
+    </bean> -->
+	
+	<!-- 加载配置文件
+	<bean id="propertyConfigurer" class="com.gagu.ucm.agent.venus.placeholder.VenusPropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>           
+                <value>classpath:application.properties</value> 
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean> -->
+	
+	<!-- Spring MVC自动 -->
+	<mvc:annotation-driven>
+    	<mvc:message-converters register-defaults="true">  
+			<!-- 	<bean class="com.ibm.framework.web.escape.StringEscapeHttpMessageConverterr"/> 
+			<bean name="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+                    <property name="supportedMediaTypes" >
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                            <value>text/json;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+	 		</bean> -->  
+        	<bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+            	<property name="supportedMediaTypes">  
+                	<list>  
+                    	<value>text/html;charset=UTF-8</value>  
+                	</list>  
+            	</property>  
+        	</bean>
+            <!--json转换器   -->  
+        	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  
+            	<property name="supportedMediaTypes">  
+                	<list>  
+                    	<value>text/html;charset=UTF-8</value>
+                    	<value>application/json;charset=UTF-8</value>  
+                	</list>  
+            	</property>
+        	</bean>
+    	</mvc:message-converters>  
+   	</mvc:annotation-driven>
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<!-- JSP视图 -->
+	<bean id="JSPViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/JSP/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+	
+	<!-- 异常处理 -->
+	<!-- <bean id="exceptionHandler" class="com.acz.exception.ExceptionHandler"/> -->
+	
+	<!-- 定义国际化消息    -->
+	<!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages"/>
+        <property name="fileEncodings" value="utf-8"/>
+        <property name="cacheSeconds" value="120"/>
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="defaultEncoding" value="UTF-8"></property>
+    </bean> -->
+</beans>

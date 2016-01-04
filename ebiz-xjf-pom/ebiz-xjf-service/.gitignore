@@ -1,0 +1,6 @@
+/target/
+/LOG_HOME_IS_UNDEFINED/
+
+/.settings
+.classpath
+.project

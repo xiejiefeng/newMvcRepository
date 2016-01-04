@@ -33,16 +33,7 @@
 	<!-- Spring MVC自动 -->
 	<mvc:annotation-driven>
     	<mvc:message-converters register-defaults="true">  
-			<!-- 	<bean class="com.ibm.framework.web.escape.StringEscapeHttpMessageConverterr"/> 
-			<bean name="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
-                    <property name="supportedMediaTypes" >
-                        <list>
-                            <value>text/html;charset=UTF-8</value>
-                            <value>text/json;charset=UTF-8</value>
-							<value>application/json;charset=UTF-8</value>
-                        </list>
-                    </property>
-	 		</bean> -->  
+			<!--<bean class="com.ibm.framework.web.escape.StringEscapeHttpMessageConverterr"/>  -->
         	<bean class="org.springframework.http.converter.StringHttpMessageConverter">  
             	<property name="supportedMediaTypes">  
                 	<list>  
@@ -50,7 +41,16 @@
                 	</list>  
             	</property>  
         	</bean>
-            <!--json转换器   -->  
+        	<bean name="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+                    <property name="supportedMediaTypes" >
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                            <value>text/json;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+	 		</bean>
+            <!--json转换器 
         	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  
             	<property name="supportedMediaTypes">  
                 	<list>  
@@ -58,7 +58,7 @@
                     	<value>application/json;charset=UTF-8</value>  
                 	</list>  
             	</property>
-        	</bean>
+        	</bean> -->  
     	</mvc:message-converters>  
    	</mvc:annotation-driven>
 	

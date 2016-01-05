@@ -72,7 +72,7 @@
 	<!-- Filter -->
     <filter>
         <filter-name>userLoginFilter</filter-name>
-        <filter-class>com.xjf.wemall.web.controller.filter.UserLoginFilter</filter-class>
+        <filter-class>com.xjf.wemall.web.filter.UserLoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>userLoginFilter</filter-name>

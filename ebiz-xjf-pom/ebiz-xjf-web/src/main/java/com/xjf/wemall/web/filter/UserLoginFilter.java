@@ -8,7 +8,7 @@
  * <author>      <time>      <version>    <desc>
  * 修改人姓名             修改时间            版本号                  描述
  */
-package com.xjf.wemall.web.controller.filter;
+package com.xjf.wemall.web.filter;
 
 import java.io.IOException;
 

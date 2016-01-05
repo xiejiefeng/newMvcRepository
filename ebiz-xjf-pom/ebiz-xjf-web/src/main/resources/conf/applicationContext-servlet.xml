@@ -215,12 +215,12 @@
 		<property name="configLocation">
 			<value>classpath:freemarker/freemarker.properties</value>
 		</property>
-		<!--全局变量部分
+		<!--全局变量部分 -->
 		<property name="freemarkerVariables">
 			<map>
-				<entry key="jscssUrl" value-ref="fmJsscssUrl" />
+				<entry key="jscssUrl" value="http://192.168.70.78:8080/resources" />
 			</map>
-		</property> -->
+		</property>
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>
 <!--

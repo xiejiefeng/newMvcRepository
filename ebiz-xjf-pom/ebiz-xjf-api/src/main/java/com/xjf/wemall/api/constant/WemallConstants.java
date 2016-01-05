@@ -422,6 +422,11 @@ public class WemallConstants {
 	 * 系统明细参数CODE(订单来源--其他)
 	 */
 	public static final String REFERENCE_DETAIL_CODE_TYPE_OTHER = "OTHER";
+	
+	/**
+	 * 系统明细参数CODE(订单来源--百度)
+	 */
+	public static final String REFERENCE_DETAIL_CODE_TYPE_BAIDU = "BAIDU";
 
 	/**
 	 * 系统参数CODE(保养里程)

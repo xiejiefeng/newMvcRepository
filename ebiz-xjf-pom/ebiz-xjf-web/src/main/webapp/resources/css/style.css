@@ -1,0 +1,677 @@
+/* common begin */
+.btn2 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.6rem 0 1.8rem 0; }
+  .btn2 a {
+    overflow: hidden;
+    display: block; }
+    .btn2 a button {
+      width: 90%;
+      margin: 0 auto;
+      background: #ff6702;
+      display: block;
+      height: 3.4rem;
+      line-height: 3.4rem;
+      color: #fff;
+      border-radius: 0.5rem;
+      font-size: 1.4rem; }
+
+.mask02 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); }
+
+.bar {
+  height: 4.6rem;
+  line-height: 4.6rem;
+  background: #fff;
+  border-bottom: 0.1rem solid #e7e7e7;
+  padding-left: 1rem;
+  position: relative;
+  background: #fff; }
+  .bar a {
+    height: 4.6rem;
+    line-height: 4.6rem;
+    display: block;
+    color: #333; }
+    .bar a .bar-left span:nth-of-type(1) {
+      padding-right: 1rem; }
+    .bar a .arrow {
+      position: absolute;
+      right: 1rem;
+      top: 0;
+      color: #c6c6cc; }
+
+.bar-first {
+  border-top: 0.1rem solid #e7e7e7; }
+
+/* prefix */
+/* reserveSuccess begin */
+.reserveSuccess .section-title {
+  background: #fff; }
+  .reserveSuccess .section-title .icon {
+    width: 100%;
+    overflow: hidden; }
+    .reserveSuccess .section-title .icon i {
+      display: block;
+      width: 12.7rem;
+      height: 12.7rem;
+      padding-top: 1rem;
+      margin: 2rem auto;
+      font-size: 12.7rem;
+      color: #17a3eb;
+      border: 6px solid #17a3eb;
+      border-radius: 12.7rem;
+      font-size: 6rem;
+      text-align: center;
+      font-weight: bold; }
+  .reserveSuccess .section-title p {
+    text-align: center;
+    font-size: 1.4rem;
+    padding-bottom: 2.1rem;
+    color: #17a3eb; }
+
+.reserveSuccess .infor-title {
+  font-size: 1rem;
+  border-bottom: 0.1rem solid #eeeeee;
+  background: #fff;
+  color: #666666;
+  padding-left: 1rem;
+  height: 4.6rem;
+  line-height: 4.6rem;
+  position: relative; }
+  .reserveSuccess .infor-title a {
+    display: block;
+    color: #333; }
+    .reserveSuccess .infor-title a dl {
+      height: 4.6rem;
+      font-size: 1rem;
+      padding-left: 3rem; }
+      .reserveSuccess .infor-title a dl dt {
+        line-height: 1.6rem;
+        font-size: 1.4rem;
+        color: #333;
+        padding-top: 0.6rem; }
+      .reserveSuccess .infor-title a dl dd {
+        width: 24rem;
+        height: 1.6rem;
+        line-height: 1.6rem;
+        font-size: 1.2rem;
+        display: block; }
+  .reserveSuccess .infor-title span {
+    position: absolute;
+    right: 0.5rem;
+    top: 0rem;
+    color: #c6c6cc; }
+    .reserveSuccess .infor-title span i {
+      color: #c6c6cc; }
+  .reserveSuccess .infor-title p {
+    font-size: 1.4rem;
+    text-align: right;
+    padding-right: 3rem;
+    color: #17a3eb; }
+    .reserveSuccess .infor-title p a {
+      color: #17a3eb; }
+  .reserveSuccess .infor-title:nth-of-type(2) {
+    border-top: 0.1rem solid #eeeeee; }
+
+.reserveSuccess .pro-car b {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  overflow: hidden;
+  top: 1.5rem;
+  left: 1.3rem;
+  font-weight: 100; }
+
+.reserveSuccess .pro-time input {
+  font-size: 1.4rem;
+  color: #333;
+  width: 100%;
+  margin: 1.4rem 0;
+  padding-left: 2.5rem; }
+
+.reserveSuccess .pro-time b {
+  font-size: 1.5rem;
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  top: 1.8rem;
+  left: 1.3rem; }
+
+.reserveSuccess footer {
+  width: 32rem;
+  position: fixed;
+  bottom: 0;
+  background: #efeff4;
+  padding-bottom: 1rem; }
+  .reserveSuccess footer p {
+    text-align: center;
+    font-size: 1.2rem;
+    height: 2.2rem;
+    line-height: 2.2rem; }
+    .reserveSuccess footer p:nth-of-type(1) {
+      color: #7f7f7f; }
+    .reserveSuccess footer p:nth-of-type(2) {
+      color: #17a3eb; }
+      .reserveSuccess footer p:nth-of-type(2) i {
+        font-size: 1.2rem;
+        color: #17a3eb;
+        padding-right: 0.5rem; }
+      .reserveSuccess footer p:nth-of-type(2) a {
+        color: #17a3eb; }
+
+/* myCarEmpty  begin */
+.carEmpty .section-title .icon {
+  width: 100%;
+  overflow: hidden; }
+  .carEmpty .section-title .icon i {
+    display: block;
+    width: 12.7rem;
+    height: 12.7rem;
+    background: url(../images/carEmptyBtn.png) no-repeat;
+    background-size: cover;
+    margin: 10.7rem auto 1rem auto; }
+
+.carEmpty .section-title p {
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 2.8rem;
+  color: #7f7f7f; }
+
+/* carFul  begin */
+.carFul {
+  background: #efeff4; }
+  .carFul h3 {
+    font-size: 1.4rem;
+    height: 4rem;
+    line-height: 4rem;
+    font-weight: normal;
+    padding: 0 4.6875%;
+    color: #b4b4b4; }
+  .carFul .carStyle {
+    background-color: #fff;
+    padding: 0 0 0 1rem;
+    position: relative;
+    /*30px*/
+    font-size: 1.4rem;
+    border-bottom: 1px solid #dcdcdc;
+    overflow: hidden; }
+    .carFul .carStyle p {
+      display: block;
+      float: left;
+      line-height: 4.6rem;
+      height: 4.6rem; }
+      .carFul .carStyle p .logo {
+        display: block;
+        float: left;
+        width: 3rem;
+        height: 4.6rem;
+        margin-right: 1rem; }
+        .carFul .carStyle p .logo img {
+          display: block;
+          margin-top: 1rem;
+          width: 2.4rem;
+          height: 2.4rem; }
+      .carFul .carStyle p .chooseCar {
+        position: absolute;
+        right: 1rem;
+        top: 0.2rem;
+        color: #bfbfbf; }
+        .carFul .carStyle p .chooseCar i {
+          background: url("../images/chooseIcon.png") no-repeat;
+          background-size: 1.4rem 1.4rem;
+          font-size: 1.4rem;
+          color: #fff;
+          display: inline-block;
+          width: 1.4rem;
+          height: 1.4rem; }
+
+/*userCenter*/
+.userCenter {
+  font-size: 1.4rem; }
+  .userCenter .userImage {
+    overflow: hidden;
+    text-align: center;
+    padding-top: 3.8rem;
+    color: #666;
+    padding-bottom: 2rem;
+    background: #fff; }
+    .userCenter .userImage img {
+      width: 9.4rem;
+      height: 9.4rem;
+      border-radius: 50%; }
+    .userCenter .userImage p {
+      line-height: 2.2rem; }
+  .userCenter .chelogo {
+    position: fixed;
+    bottom: 2.5rem;
+    text-align: center;
+    width: 32rem;
+    overflow: hidden; }
+    .userCenter .chelogo img {
+      width: 6rem; }
+
+/*aboutus*/
+.aboutus {
+  background: #fff;
+  color: #333333; }
+  .aboutus img {
+    display: block; }
+  .aboutus .logo {
+    height: 4.6rem;
+    line-height: 4.6rem; }
+    .aboutus .logo img {
+      display: block; }
+      .aboutus .logo img:nth-of-type(1) {
+        width: 6.5rem;
+        height: 1.9rem;
+        margin-left: 1.1rem;
+        margin-top: 1.4rem;
+        float: left; }
+      .aboutus .logo img:nth-of-type(2) {
+        width: 8.5rem;
+        height: 1.4rem;
+        margin-left: 1.4rem;
+        margin-top: 1.8rem;
+        float: left; }
+  .aboutus .ad img:nth-of-type(2) {
+    margin-top: 0.5rem; }
+  .aboutus .content div {
+    margin: 0 0.5rem;
+    padding: 0.8rem 0.5rem;
+    border: 1px solid #e8e8e8;
+    background: #f5f5f5;
+    font-size: 1rem; }
+  .aboutus .title {
+    display: block;
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: normal; }
+  .aboutus .service {
+    background: #f5f5f5;
+    overflow: hidden; }
+    .aboutus .service .title {
+      background: #f5f5f5; }
+    .aboutus .service ul li {
+      width: 6.6rem;
+      height: 7.5rem;
+      background: #fff;
+      text-align: center;
+      float: left; }
+      .aboutus .service ul li img {
+        width: 3rem;
+        display: inline; }
+  .aboutus .step .con {
+    background: #ffc790;
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem; }
+    .aboutus .step .con div {
+      width: 14rem;
+      height: 18.4rem;
+      overflow: hidden;
+      background: #fff; }
+    .aboutus .step .con .left {
+      float: left;
+      text-align: center; }
+      .aboutus .step .con .left img {
+        display: inline;
+        width: 6.5rem;
+        height: 6.5rem;
+        margin-top: 2.1rem; }
+      .aboutus .step .con .left p {
+        line-height: 2.6rem;
+        font-size: 1.4rem; }
+        .aboutus .step .con .left p:nth-of-type(2) {
+          font-size: 1.3rem; }
+        .aboutus .step .con .left p:nth-of-type(3) {
+          font-size: 1.1rem; }
+          .aboutus .step .con .left p:nth-of-type(3) b {
+            font-weight: normal;
+            color: #2a5caa; }
+    .aboutus .step .con .right {
+      float: right;
+      text-align: center; }
+      .aboutus .step .con .right img {
+        display: inline; }
+        .aboutus .step .con .right img:nth-of-type(1) {
+          width: 7.8rem;
+          height: 6.5rem;
+          margin-top: 1.1rem; }
+        .aboutus .step .con .right img:nth-of-type(2),
+        .aboutus .step .con .right img:nth-of-type(3) {
+          width: 7.8rem;
+          height: 2.5rem; }
+      .aboutus .step .con .right p {
+        line-height: 2.6rem;
+        font-size: 1.6rem; }
+
+.tire-list {
+  color: #666;
+  font-size: 1.2rem;
+  background: #fff;
+  position: static; }
+  .tire-list .box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -ms-flex-direction: column;
+    box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column; }
+  .tire-list .tit {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    color: #ff6600;
+    background: #fffbeb;
+    text-align: center; }
+  .tire-list .nav {
+    height: 3.6rem;
+    line-height: 3.6rem;
+    color: #333;
+    font-size: 1.2rem;
+    padding-left: 1.5rem;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e7e7e7; }
+    .tire-list .nav a {
+      display: block;
+      color: #333; }
+    .tire-list .nav i {
+      line-height: 2.8rem; }
+    .tire-list .nav i:before {
+      font-size: 1rem;
+      padding-left: 1.2rem; }
+  .tire-list .list {
+    flex: -webkit-1;
+    flex: -moz-1;
+    flex: -ms-1;
+    flex: 1;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; }
+    .tire-list .list ul li {
+      height: 8rem;
+      line-height: 8rem;
+      background: #fff;
+      padding: 1rem 0 0 1.5rem;
+      position: relative;
+      border-bottom: 1px solid #e7e7e7; }
+      .tire-list .list ul li div {
+        float: left;
+        color: #666;
+        font-size: 1.2rem; }
+      .tire-list .list ul li .title-img {
+        width: 6rem;
+        height: 6rem;
+        border: 1px solid #e7e7e7; }
+      .tire-list .list ul li .content {
+        width: 21.3rem;
+        line-height: 1.8rem;
+        padding-left: 1rem;
+        position: relative; }
+        .tire-list .list ul li .content .price {
+          position: absolute;
+          color: #ff6600;
+          padding-top: 0.6rem;
+          left: 1rem;
+          top: 3rem;
+          line-height: 3rem; }
+      .tire-list .list ul li .sale-num {
+        position: absolute;
+        right: 1.5rem;
+        line-height: 1.4rem;
+        top: 5.4rem;
+        font-size: 1.1rem;
+        color: #999; }
+
+.tire-norms {
+  font-size: 1.2rem;
+  color: #333333; }
+  .tire-norms a {
+    display: block;
+    overflow: hidden;
+    color: #333; }
+  .tire-norms .list ul {
+    background: #fff; }
+    .tire-norms .list ul li {
+      height: 4rem;
+      line-height: 4rem;
+      border-bottom: 1px solid #e7e7e7;
+      padding-left: 13.2rem; }
+      .tire-norms .list ul li span:nth-of-type(1) {
+        font-size: 1.2rem;
+        color: #333333; }
+      .tire-norms .list ul li .qian {
+        padding: 0.4rem 0.6rem;
+        background: #ffede1;
+        color: #ff6600;
+        margin-left: 0.3rem;
+        border-radius: 0.3rem; }
+    .tire-norms .list ul .other-list {
+      text-align: center;
+      padding: 0; }
+  .tire-norms .other {
+    height: 4rem;
+    line-height: 4rem;
+    border-bottom: 1px solid #e7e7e7;
+    background: #fff;
+    padding-left: 13.2rem; }
+    .tire-norms .other i {
+      font-size: 1.2rem;
+      padding-left: 0.5rem; }
+
+.tips {
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 1.2rem;
+  color: #999;
+  padding-left: 1.5rem; }
+
+.tip-content {
+  background: #fff;
+  padding: 1.5rem; }
+  .tip-content div:nth-of-type(2) {
+    border-bottom: 1px dashed #e7e7e7;
+    padding-bottom: 1.5rem; }
+  .tip-content div {
+    line-height: 2.4rem; }
+    .tip-content div span:nth-of-type(1) {
+      font-size: 1rem;
+      padding: 0.2rem;
+      border-radius: 0.4rem;
+      color: #fff;
+      margin: 0 0.5rem; }
+    .tip-content div .wen {
+      background: #ef7b3d; }
+    .tip-content div .da {
+      background: #47ac14; }
+
+.tire-detail .slide {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  height: 19.1rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid #e7e7e7; }
+
+.tire-detail .head {
+  padding: 0 1.5rem;
+  padding-bottom: 0.5rem;
+  background: #fff;
+  border-bottom: 1px solid #e7e7e7; }
+  .tire-detail .head .title {
+    font-size: 1.3rem;
+    color: #666;
+    padding-top: 1rem; }
+  .tire-detail .head .price {
+    line-height: 3rem;
+    overflow: hidden; }
+    .tire-detail .head .price span {
+      color: #666;
+      font-size: 1.5rem;
+      display: block;
+      float: left; }
+    .tire-detail .head .price span:nth-of-type(1) {
+      color: #ff6600; }
+    .tire-detail .head .price span:nth-of-type(2) {
+      font-size: 1.3rem;
+      padding-left: 2rem; }
+    .tire-detail .head .price span:nth-of-type(3) {
+      padding-left: 0.7rem; }
+    .tire-detail .head .price span:nth-of-type(4) {
+      font-size: 1.3rem;
+      font-weight: normal; }
+    .tire-detail .head .price span:nth-of-type(5) {
+      font-size: 1.1rem;
+      color: #999;
+      padding-left: 6rem;
+      float: right; }
+
+.tire-detail .content {
+  font-size: 1.2rem;
+  color: #999;
+  margin-top: 0.8rem;
+  border-top: 1px solid #e7e7e7; }
+  .tire-detail .content ul {
+    background: #fff; }
+    .tire-detail .content ul li {
+      height: 3.6rem;
+      line-height: 3.6rem;
+      padding: 0 1.5rem;
+      border-bottom: 1px solid #e7e7e7; }
+      .tire-detail .content ul li span:nth-of-type(1) {
+        padding-right: 1.5rem; }
+      .tire-detail .content ul li span:nth-of-type(2) {
+        color: #333; }
+      .tire-detail .content ul li span.sale {
+        font-size: 1rem;
+        color: #ff6600;
+        background: #fff2ea;
+        padding: 0.5rem 0.7rem;
+        border-radius: 0.5rem; }
+
+.tire-detail .des-title {
+  height: 3.6rem;
+  line-height: 3.6rem;
+  color: #333;
+  font-size: 1.2rem;
+  padding-left: 1.5rem; }
+
+.tire-detail .descripe {
+  background: #fff;
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.8rem;
+  padding: 1.5rem 1.5rem;
+  margin-bottom: 5rem;
+  border-top: 1px solid #e7e7e7; }
+
+.tire-detail .pop {
+  background: #fff;
+  width: 100%; }
+  .tire-detail .pop .title {
+    height: 3.8rem;
+    line-height: 3.8rem;
+    font-size: 1.4rem;
+    color: #333;
+    padding: 0 1.5rem; }
+  .tire-detail .pop ul {
+    padding: 0 1.5rem; }
+    .tire-detail .pop ul li {
+      font-size: 1.2rem;
+      color: #666;
+      height: 3.6rem;
+      line-height: 3.6rem;
+      border: 1px solid #e7e7e7;
+      padding: 0 1.5rem;
+      margin-bottom: 1rem; }
+    .tire-detail .pop ul li.active {
+      color: #ff6600;
+      border-color: #ff6600; }
+  .tire-detail .pop .pay {
+    height: 4.6rem;
+    line-height: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    background: #333;
+    color: #ccc;
+    font-size: 1.1rem;
+    position: relative; }
+    .tire-detail .pop .pay div:nth-of-type(1) {
+      margin-bottom: 0.8rem; }
+      .tire-detail .pop .pay div:nth-of-type(1) span:nth-of-type(2) {
+        color: #ff6600; }
+    .tire-detail .pop .pay div span:nth-of-type(1) {
+      padding-right: 0.8rem; }
+    .tire-detail .pop .pay div:nth-of-type(2) {
+      color: #888888; }
+    .tire-detail .pop .pay .btn {
+      position: absolute;
+      width: 9rem;
+      height: 3rem;
+      line-height: 3rem;
+      text-align: center;
+      background: #ff6600;
+      color: #fff;
+      font-size: 1.3rem;
+      border-radius: 0.5rem;
+      right: 1.6rem;
+      top: 0.8rem; }
+
+.tire-detail .payBtn {
+  background: #333;
+  padding: 0.8rem 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+  .tire-detail .payBtn div {
+    width: 100%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    background: #ff6600;
+    color: #fff;
+    font-size: 1.3rem;
+    text-align: center;
+    border-radius: 0.5rem; }
+
+/*pop*/
+.pop-content-ct {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  -webkit-transition: 1s;
+  background: #fff; }
+
+.pop-content-ct .pop-content {
+  background-color: #fff; }
+
+.pop-content-ct .pop-layer-close-ct {
+  position: absolute;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  text-align: right; }
+
+.pop-content-ct .pop-layer-close-ct .pop-layer-close {
+  display: inline-block;
+  color: #666666;
+  width: 32px;
+  background-color: white;
+  text-align: center;
+  font-size: 20px;
+  height: 32px; }

@@ -1,0 +1,686 @@
+body {
+  background: #fff; }
+
+/*common*/
+.price-r {
+  color: #e30109 !important;
+  font-weight: bold !important; }
+
+.price-b {
+  color: #50a200 !important;
+  font-weight: bold !important; }
+
+.price-b-n {
+  color: #50a200 !important; }
+
+/*tab*/
+.tabBox .hd {
+  width: 37.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.8rem;
+  overflow: hidden;
+  background: #fff;
+  border-bottom: 1px solid #ccc; }
+  .tabBox .hd ul {
+    width: 100%; }
+    .tabBox .hd ul li {
+      float: left;
+      text-align: center;
+      width: 33%;
+      height: 4.5rem;
+      line-height: 4.5rem;
+      border-right: 1px solid #e7e7e7; }
+    .tabBox .hd ul li.on {
+      display: block;
+      border-bottom: 4px solid #e7483a; }
+    .tabBox .hd ul li:last-child {
+      border-right: none; }
+
+.tabBox .tempWrap {
+  height: auto !important; }
+
+/*my order*/
+.work-order {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e7e7e7;
+  color: #333333; }
+  .work-order div {
+    overflow: hidden; }
+    .work-order div span {
+      display: block;
+      font-size: 1.3rem; }
+      .work-order div span i {
+        background: #ededed;
+        padding: 0 1.5rem;
+        color: #666;
+        font-size: 1.1rem; }
+      .work-order div span b {
+        color: red; }
+    .work-order div span:nth-of-type(1) {
+      float: left;
+      width: 9.2rem;
+      color: #999999; }
+    .work-order div span:nth-of-type(2) {
+      float: left; }
+    .work-order div span:nth-of-type(3) {
+      float: right;
+      font-size: 1.2rem;
+      color: #999999; }
+      .work-order div span:nth-of-type(3) .open {
+        background: #fff7ef;
+        color: #ff7417;
+        padding: 0.85rem 0.5rem;
+        border-radius: 1.25rem; }
+      .work-order div span:nth-of-type(3) .do {
+        background: #f1fbff;
+        color: #03a9f4;
+        padding: 0.85rem 0.5rem;
+        border-radius: 1.25rem; }
+  .work-order .order-title {
+    background: #dfdfdf;
+    height: 4rem;
+    line-height: 4rem;
+    padding: 0 1.5rem;
+    border-top: 1px solid #e7e7e7; }
+    .work-order .order-title span:nth-of-type(1) {
+      float: left;
+      width: 10rem;
+      color: #333333;
+      font-size: 1.8rem;
+      font-weight: bold; }
+    .work-order .order-title span:nth-of-type(2) i {
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem; }
+  .work-order .order-content {
+    padding: 0 1.5rem; }
+    .work-order .order-content .order-con:nth-of-type(1) {
+      border-bottom: 1px solid #e7e7e7; }
+    .work-order .order-content .order-con {
+      height: 4rem;
+      line-height: 4rem; }
+      .work-order .order-content .order-con .phone {
+        border: 1px solid #ff8a17;
+        border-radius: 1.5rem;
+        color: #ff8a17;
+        padding: 0.15rem 0.8rem;
+        font-size: 1.3rem; }
+        .work-order .order-content .order-con .phone i {
+          color: #ff8a17;
+          font-size: 1.4rem;
+          background: none;
+          padding: 0; }
+    .work-order .order-content .order-con-first span:nth-of-type(1) {
+      color: #333333; }
+    .work-order .order-content .carStyle span:nth-of-type(1) {
+      width: 2.55rem !important;
+      height: 2.55rem; }
+      .work-order .order-content .carStyle span:nth-of-type(1) img {
+        display: block;
+        width: 2.55rem;
+        height: 2.55rem;
+        margin-top: 0.8rem; }
+    .work-order .order-content .order-ct {
+      position: relative; }
+      .work-order .order-content .order-ct .order-con:nth-of-type(1) {
+        border-bottom: none; }
+      .work-order .order-content .order-ct .arrow {
+        position: absolute;
+        right: 0rem;
+        top: 0rem;
+        height: 100%;
+        line-height: 100%;
+        width: 2.5rem;
+        color: #cccccc; }
+        .work-order .order-content .order-ct .arrow div {
+          position: absolute;
+          top: 50%;
+          margin-top: -1.2rem;
+          width: 2.5rem;
+          height: 2.5rem;
+          -webkit-transform-origin: 20% center;
+          -webkit-transform: rotate(-90deg); }
+  .work-order .eval i {
+    background: #fff;
+    font-size: 1.6rem;
+    padding: 0; }
+
+section.work-order:last-child {
+  margin: 0; }
+
+/*order-detail*/
+.order-detail {
+  font-size: 1.3rem; }
+  .order-detail .work-order-detail {
+    border-bottom: none;
+    margin: 0; }
+    .order-detail .work-order-detail .order-content span:nth-of-type(1) {
+      width: 7.65rem; }
+    .order-detail .work-order-detail .order-title {
+      border: 1px solid #e7e7e7; }
+    .order-detail .work-order-detail .order-content {
+      padding: 0; }
+      .order-detail .work-order-detail .order-content .order-con {
+        padding: 0 1.5rem;
+        border-bottom: 1px solid #e7e7e7; }
+      .order-detail .work-order-detail .order-content .shigong-person {
+        height: auto; }
+      .order-detail .work-order-detail .order-content .price span:nth-of-type(2) {
+        float: left;
+        color: #50a200; }
+      .order-detail .work-order-detail .order-content .price span:nth-of-type(3) {
+        float: right;
+        color: #e30109;
+        margin-left: 2.6rem; }
+      .order-detail .work-order-detail .order-content .price span:nth-of-type(4) {
+        float: right; }
+      .order-detail .work-order-detail .order-content .eval {
+        height: auto; }
+        .order-detail .work-order-detail .order-content .eval span div {
+          clear: both; }
+        .order-detail .work-order-detail .order-content .eval span i {
+          padding-right: 1rem; }
+        .order-detail .work-order-detail .order-content .eval span:nth-of-type(2) {
+          width: 26rem; }
+          .order-detail .work-order-detail .order-content .eval span:nth-of-type(2) div:nth-of-type(2) {
+            padding: 1.1rem 1rem;
+            line-height: 1.8rem;
+            background: #f8f8f8;
+            margin-bottom: 1.4rem;
+            margin-top: 3.5rem; }
+  .order-detail .category .title {
+    height: 4.5rem;
+    background: #dfdfdf;
+    line-height: 4.5rem;
+    color: #333333;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 0 1.5rem; }
+    .order-detail .category .title span:nth-of-type(1) {
+      display: block;
+      float: left;
+      font-size: 1.5rem;
+      color: #333; }
+    .order-detail .category .title span:nth-of-type(2) {
+      display: block;
+      float: right;
+      color: #c6c6c6; }
+  .order-detail .category .category-content table {
+    clear: both;
+    width: 100%;
+    border-bottom: 1px solid #e7e7e7; }
+    .order-detail .category .category-content table thead th {
+      text-align: left;
+      height: 4rem;
+      padding-left: 1.3rem; }
+    .order-detail .category .category-content table tbody tr {
+      height: 4rem;
+      color: #999999; }
+      .order-detail .category .category-content table tbody tr td:nth-of-type(1) {
+        width: 7.7rem;
+        text-align: center; }
+      .order-detail .category .category-content table tbody tr td:nth-of-type(2) {
+        width: 13.8rem;
+        padding-left: 1.5rem;
+        color: #333333; }
+        .order-detail .category .category-content table tbody tr td:nth-of-type(2) .star {
+          margin: 0; }
+    .order-detail .category .category-content table tbody tr:nth-of-type(1) td:nth-of-type(2) {
+      color: #333333; }
+
+/*staff-index*/
+.staff-index header {
+  height: 18.35rem;
+  background: url(../images/workBg.jpg) no-repeat;
+  background-size: cover;
+  padding: 0 2rem;
+  color: #666;
+  border-bottom: 1px solid #e7e7e7; }
+  .staff-index header .user-logo {
+    padding-top: 3.75rem;
+    text-align: center; }
+    .staff-index header .user-logo i {
+      font-size: 3.5rem;
+      border-radius: 4rem;
+      color: #666;
+      background: #fff;
+      padding: 1rem 1.25rem; }
+    .staff-index header .user-logo img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 4rem;
+      text-align: center; }
+  .staff-index header .user-infor {
+    text-align: center;
+    font-size: 1.8rem;
+    padding-top: 0.5rem;
+    color: #fff; }
+
+.staff-index nav {
+  font-size: 1.8rem; }
+  .staff-index nav a {
+    display: block;
+    overflow: hidden;
+    width: 50%;
+    float: left; }
+    .staff-index nav a .nav-item {
+      text-align: center;
+      height: 100%;
+      line-height: 7.5rem;
+      background: #fff;
+      color: #333;
+      padding-top: 1.5rem; }
+      .staff-index nav a .nav-item i {
+        text-align: center;
+        padding: 1rem 1.2rem;
+        font-size: 2.85rem;
+        line-height: 5.25rem;
+        border-radius: 5.25rem;
+        margin-top: 3rem;
+        color: #fff; }
+      .staff-index nav a .nav-item img {
+        display: block;
+        width: 5.25rem;
+        height: 5.25rem;
+        line-height: 5.25rem;
+        border-radius: 5.25rem;
+        margin-top: 3rem;
+        margin-left: 6.5rem; }
+      .staff-index nav a .nav-item span {
+        display: block;
+        height: 4rem;
+        line-height: 4rem;
+        font-size: 1.5rem; }
+  .staff-index nav a:nth-of-type(2n+1) {
+    border-right: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf; }
+  .staff-index nav a:nth-of-type(2n) {
+    border-bottom: 1px solid #dfdfdf; }
+  .staff-index nav a:active {
+    transform: scale(0.95);
+    -webkit-transform: scale(0.95); }
+  .staff-index nav a:nth-of-type(1) i {
+    background: #ff9607; }
+  .staff-index nav a:nth-of-type(2) i {
+    background: #f86168; }
+  .staff-index nav a:nth-of-type(3) i {
+    background: #58abff; }
+  .staff-index nav a:nth-of-type(4) i {
+    background: #18cf8d; }
+
+/*common*/
+.salary section {
+  clear: both; }
+  .salary section .title {
+    background: #dfdfdf;
+    height: 4.2rem;
+    line-height: 4.2rem;
+    color: #333333;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #e7e7e7;
+    border-top: 1px solid #e7e7e7;
+    padding-left: 1.4rem; }
+  .salary section .content {
+    padding-top: 3rem;
+    padding-left: 3rem; }
+    .salary section .content li a {
+      display: block;
+      width: 7.75rem;
+      height: 3.4rem;
+      line-height: 3.4rem;
+      border: 1px solid #ff8a17;
+      float: left;
+      margin-right: 3.75rem;
+      margin-bottom: 4rem;
+      text-align: center;
+      color: #ff8a17;
+      font-size: 1.5rem;
+      border-radius: 0.5rem; }
+
+/*salary-detail*/
+.salary-detail .title {
+  padding: 0 1.4rem; }
+  .salary-detail .title div {
+    height: 4.3rem;
+    line-height: 4.3rem;
+    color: #333333;
+    font-size: 1.5rem; }
+  .salary-detail .title div:nth-of-type(1) {
+    float: left;
+    font-weight: bold; }
+  .salary-detail .title div:nth-of-type(2) {
+    float: right;
+    font-size: 1.3rem; }
+
+.salary-detail .salary-content {
+  padding: 1.25rem 5rem;
+  background: #fff7ef;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  overflow: hidden; }
+  .salary-detail .salary-content .left {
+    float: left; }
+  .salary-detail .salary-content .right {
+    float: right; }
+  .salary-detail .salary-content div {
+    text-align: center;
+    font-weight: bold; }
+    .salary-detail .salary-content div div:nth-of-type(1) {
+      font-size: 1.4rem; }
+    .salary-detail .salary-content div div:nth-of-type(2) {
+      font-size: 2.4rem; }
+      .salary-detail .salary-content div div:nth-of-type(2) span {
+        font-size: 1.8rem; }
+
+.salary-detail .salary-d table {
+  width: 100%;
+  border-top: 1px solid #e7e7e7;
+  margin-top: 1rem;
+  font-size: 1.3rem; }
+  .salary-detail .salary-d table tr td {
+    border-right: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    text-align: center;
+    height: 3.5rem; }
+  .salary-detail .salary-d table tr td:nth-of-type(1) {
+    text-align: left;
+    padding-left: 4rem;
+    width: 13.4rem; }
+  .salary-detail .salary-d table tr td:nth-of-type(2) {
+    text-align: right;
+    padding-right: 9.75rem; }
+  .salary-detail .salary-d table tr:nth-child(odd) {
+    background: #dfdfdf; }
+
+/*my-order*/
+.my-order {
+  background: #dfdfdf; }
+  .my-order .work-order {
+    margin: 1rem;
+    background: #fff; }
+    .my-order .work-order .order-title {
+      border: none;
+      border-bottom: 1px solid #e7e7e7;
+      background: #fff; }
+    .my-order .work-order .order-content {
+      border-bottom: 1px solid #e7e7e7;
+      height: auto;
+      overflow: auto; }
+      .my-order .work-order .order-content .car-style span {
+        height: 4rem;
+        line-height: 4rem; }
+        .my-order .work-order .order-content .car-style span img {
+          display: block;
+          float: left;
+          width: 2.4rem;
+          height: 2.4rem;
+          margin-top: 1rem;
+          margin-right: 0.5rem; }
+        .my-order .work-order .order-content .car-style span b {
+          display: block;
+          float: left;
+          color: #999999;
+          font-weight: normal;
+          color: #333333;
+          width: 20rem; }
+      .my-order .work-order .order-content .order-con {
+        border: none; }
+      .my-order .work-order .order-content .service {
+        height: auto;
+        overflow: auto;
+        line-height: 2.4rem; }
+        .my-order .work-order .order-content .service span:nth-of-type(2) ul {
+          max-height: 7rem;
+          overflow: hidden; }
+        .my-order .work-order .order-content .service span:nth-of-type(2) .active {
+          height: auto;
+          max-height: inherit; }
+        .my-order .work-order .order-content .service span:nth-of-type(2) .more-btn {
+          color: #999999; }
+          .my-order .work-order .order-content .service span:nth-of-type(2) .more-btn i {
+            background: #fff;
+            color: #999999;
+            padding: 0;
+            padding-left: 0.5rem; }
+  .my-order .work-order:last-child {
+    margin: 1rem; }
+
+.my-order .tabBox .hd ul li {
+  position: relative; }
+  .my-order .tabBox .hd ul li .num {
+    position: absolute;
+    top: 0.9rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    color: #e7483a;
+    border-radius: 1.6rem;
+    border: 1px solid #e7483a; }
+
+.error {
+  position: relative; }
+  .error div {
+    text-align: center;
+    color: #999; }
+  .error div:nth-of-type(1) {
+    line-height: 6.4rem;
+    padding-top: 17.2rem;
+    font-size: 1.8rem; }
+    .error div:nth-of-type(1) i {
+      font-size: 6.4rem;
+      color: #cccccc; }
+  .error div:nth-of-type(3) {
+    width: 18rem;
+    height: 4rem;
+    line-height: 4rem;
+    background: #ff8a17;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 4rem; }
+
+/*star*/
+.star {
+  position: relative;
+  width: 6.8rem;
+  float: left;
+  margin-top: 1.2rem; }
+  .star p {
+    width: 6.8rem;
+    height: 1.35rem;
+    position: relative;
+    overflow: hidden;
+    float: left; }
+    .star p b {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 6.8rem;
+      height: 1.35rem;
+      background-image: url("../images/icons-score.png?v=2");
+      background-size: 6.8rem 2.5rem;
+      background-position: 0 -1.25rem;
+      background-repeat: no-repeat;
+      overflow: hidden; }
+      .star p b.score {
+        z-index: 1;
+        background-image: url("../images/icons-score.png?v=2");
+        background-size: 6.8rem 2.5rem;
+        background-position: 0 0.15rem;
+        background-repeat: no-repeat; }
+
+/*bonus*/
+.bonus {
+  background: #dfdfdf; }
+  .bonus .title {
+    background: #fff; }
+    .bonus .title .title-head {
+      position: relative;
+      height: 4rem;
+      line-height: 4rem;
+      font-size: 1.4rem;
+      color: #333;
+      text-align: center; }
+      .bonus .title .title-head div i {
+        font-size: 1rem; }
+      .bonus .title .title-head div:nth-of-type(1) {
+        position: absolute;
+        top: 0;
+        left: 1.5rem;
+        height: 4rem;
+        font-size: 1.3rem;
+        color: #666;
+        margin-left: 0.5rem; }
+      .bonus .title .title-head div:nth-of-type(2) {
+        font-weight: bold;
+        font-size: 1.5rem; }
+      .bonus .title .title-head div:nth-of-type(3) {
+        position: absolute;
+        top: 0;
+        right: 1.5rem;
+        height: 4rem;
+        font-size: 1.3rem;
+        color: #666;
+        margin-right: 0.5rem; }
+  .bonus .title-con {
+    color: #00b4ff;
+    text-align: center;
+    padding: 1.5rem 0 3rem 0;
+    position: relative;
+    background: #fff; }
+    .bonus .title-con .biIcon {
+      position: relative; }
+      .bonus .title-con .biIcon b {
+        position: absolute;
+        font-size: 1.65rem;
+        color: #fff;
+        background: #03b3ff;
+        border-radius: 5rem;
+        padding: 0.5rem 0.9rem;
+        bottom: 0;
+        left: -2.5rem;
+        font-weight: normal; }
+    .bonus .title-con span:nth-of-type(2) {
+      font-size: 5.8rem; }
+    .bonus .title-con span:nth-of-type(3) {
+      font-size: 2.05rem; }
+  .bonus .detail {
+    margin-top: 0.8rem;
+    background: #fff; }
+    .bonus .detail .nav {
+      height: 4rem;
+      line-height: 4rem;
+      background: #fff;
+      font-size: 1.3rem;
+      padding: 0 1.5rem;
+      border-top: 1px solid #e7e7e7;
+      border-bottom: 2px solid #e7e7e7; }
+      .bonus .detail .nav div:nth-of-type(1) {
+        color: #00b4ff;
+        float: left; }
+        .bonus .detail .nav div:nth-of-type(1) i {
+          font-size: 1.3rem;
+          margin-left: 0.5rem; }
+      .bonus .detail .nav div:nth-of-type(2) {
+        float: right; }
+  .bonus .detail-content .item {
+    padding: 1.5rem 1.5rem;
+    border-bottom: 1px solid #e7e7e7; }
+    .bonus .detail-content .item dl {
+      position: relative; }
+      .bonus .detail-content .item dl dt {
+        font-size: 1.2rem;
+        color: #999; }
+        .bonus .detail-content .item dl dt .shigong {
+          font-size: 1.1rem;
+          border-radius: 2.5rem;
+          background: #f1fbff;
+          color: #00b4ff;
+          padding: 0.5rem; }
+        .bonus .detail-content .item dl dt .kaidan {
+          font-size: 1.1rem;
+          border-radius: 2.5rem;
+          background: #fff7ef;
+          color: #ff8a17;
+          padding: 0.5rem; }
+      .bonus .detail-content .item dl dd {
+        font-size: 1.3rem;
+        color: #333;
+        padding-top: 1.5rem; }
+      .bonus .detail-content .item dl dd:nth-of-type(1) {
+        width: 21.5rem; }
+      .bonus .detail-content .item dl dd:nth-of-type(2) {
+        color: #ccc;
+        font-size: 1rem; }
+      .bonus .detail-content .item dl dd:nth-of-type(3) {
+        position: absolute;
+        right: 0;
+        top: 0.5rem;
+        font-size: 1.8rem;
+        color: #e30109; }
+      .bonus .detail-content .item dl dd:nth-of-type(4) {
+        position: absolute;
+        right: 0;
+        top: 2.5rem; }
+  .bonus .detail-content .kong {
+    font-size: 5rem;
+    color: #ccc;
+    text-align: center;
+    padding-top: 22.5rem;
+    background: #f5f5f5;
+    position: absolute;
+    width: 100%;
+    top: -17.5rem; }
+  .bonus .pop-content-ct {
+    bottom: 0; }
+    .bonus .pop-content-ct .pop-layer-close-ct {
+      width: 4.4rem;
+      height: 4.4rem;
+      line-height: 4.4rem;
+      right: 0; }
+      .bonus .pop-content-ct .pop-layer-close-ct .pop-layer-close {
+        width: 4.4rem;
+        height: 4.4rem;
+        line-height: 4.4rem; }
+    .bonus .pop-content-ct .pop-content {
+      color: #333;
+      font-size: 1.4rem; }
+      .bonus .pop-content-ct .pop-content div {
+        height: 4.5rem;
+        line-height: 4.5rem;
+        border-bottom: 1px solid #e7e7e7;
+        padding-left: 1.5rem; }
+      .bonus .pop-content-ct .pop-content ul li {
+        text-align: center;
+        height: 4.5rem;
+        line-height: 4.5rem;
+        border-bottom: 1px solid #e7e7e7; }
+      .bonus .pop-content-ct .pop-content ul .active {
+        color: #00b4ff; }
+
+/*pop*/
+.pop-content-ct {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  -webkit-transition: 1s;
+  background: #fff; }
+  .pop-content-ct .pop-content {
+    background-color: #fff; }
+  .pop-content-ct .pop-layer-close-ct {
+    position: absolute;
+    right: 1rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    text-align: right; }
+    .pop-content-ct .pop-layer-close-ct .pop-layer-close {
+      display: inline-block;
+      color: #666666;
+      width: 3.2rem;
+      background-color: white;
+      text-align: center;
+      font-size: 2rem;
+      height: 3.2rem; }
+      .pop-content-ct .pop-layer-close-ct .pop-layer-close .icon-guanbi {
+        font-size: 2rem; }

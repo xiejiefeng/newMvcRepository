@@ -1,0 +1,223 @@
+@charset "UTF-8";
+html * {
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+}
+
+body,
+div,
+span,
+small,
+p,
+em,
+i,
+b,
+th,
+td,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+textarea {
+    padding: 0;
+    margin: 0;
+}
+
+body,
+input,
+button,
+textarea {
+    font-size: 1rem;
+    font-family: "微软雅黑", "Microsoft Yahei", STHeiti, Arial, Helvetica, SimHei, Sans-Serif;
+    -webkit-text-size-adjust: none;
+    color: #333;
+}
+
+body {
+    min-width: 320px;
+    max-width: 640px;
+    min-height: 500px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+a,
+i,
+img {
+    -webkit-touch-callout: none;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a img {
+    border: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+i {
+    font-style: normal;
+}
+
+s {
+    text-decoration: none;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+select:hover,
+button {
+    margin: 0;
+    outline: none;
+}
+
+input,
+button {
+    background-image: none;
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    -ms-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="button"],
+input[type="email"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: none;
+}
+/* color */
+/* text-align */
+
+.al {
+    text-align: left;
+}
+
+.ac {
+    text-align: center;
+}
+
+.ar {
+    text-align: right;
+}
+/* margin and padding */
+
+.mauto {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* other */
+
+.dbx {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+}
+
+.bpc {
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-box-pack: center;
+    box-pack: center;
+}
+
+.bpe {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -ms-box-pack: end;
+    box-pack: end;
+}
+
+.bac {
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-box-align: center;
+    box-align: center;
+}
+
+.cfx {
+    *zoom: 1;
+}
+
+.cfx:before,
+.cfx:after {
+    content: "";
+    display: table;
+}
+
+.cfx:after {
+    clear: both;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+/*iconfont begin*/
+
+
+@font-face {font-family: "iconfont";
+  src: url('font/iconfont.eot'); /* IE9*/
+  src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('font/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:1rem;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-dianhua:before { content: "\e600"; }
+.icon-service1:before { content: "\e601"; }
+.icon-service2:before { content: "\e602"; }
+.icon-service3:before { content: "\e603"; }
+.icon-service4:before { content: "\e604"; }
+.icon-service5:before { content: "\e605"; }
+.icon-date:before { content: "\e606"; }
+.icon-error:before { content: "\e607"; }
+.icon-money:before { content: "\e608"; }
+.icon-null:before { content: "\e609"; }
+.icon-order:before { content: "\e60a"; }
+.icon-search:before { content: "\e60b"; }
+.icon-arrow:before { content: "\e60c"; }
+.icon-username:before { content: "\e60e"; }

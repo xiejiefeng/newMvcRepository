@@ -1,0 +1,13 @@
+%hover-scale{
+    @include transition(transform .3);
+    @include transform(scale(.8));
+}
+%hover-opcity{
+    @include transition(transform .3);
+    opacity:.8;
+}
+%box-center{
+    display: -webkit-box;
+    -webkit-box-align:center;
+    height: 100%;
+}

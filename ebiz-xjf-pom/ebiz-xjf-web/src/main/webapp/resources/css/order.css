@@ -1,0 +1,1797 @@
+/*-------------common----------*/
+
+.btn-bottom {
+    width: 90%;
+    margin-left: 5%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #d9d9d9;
+    background: #fff;
+    margin-top: 0.6rem;
+    position: fixed;
+    bottom: 0;
+}
+
+
+/*-------------服务类别----------*/
+
+.service {
+    width: 90%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 12px;
+    border: 0.1rem solid #c1c1c1;
+    border-radius: 5px;
+    background: #fdfdfd;
+}
+
+.service header ul {
+    width: 94%;
+    margin: 0.75rem 0 1.4rem 0;
+    padding: 0 3%;
+    overflow: hidden;
+}
+
+.service header ul li {
+    display: inline-block;
+    width: 47%;
+    border: 0.1rem solid transparent;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.service header ul li.li-title {
+    float: right;
+    margin-top: 1.4rem;
+}
+
+.service header ul li img {
+    max-height: 78px;
+}
+
+.service header h2 {
+    height: 2.5rem;
+    border-left: 0.1rem solid #bfbfbf;
+}
+
+.service header span {
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.45rem;
+    background: #347fe9;
+    border-top: 2px solid #f28b02;
+    border-bottom: 2px solid #f28b02;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.service header span i {
+    padding-right: 7%;
+}
+
+.service ul.service-ul {
+    width: 94%;
+    margin-bottom: -12px;
+    padding: 0 3%;
+    overflow: hidden;
+    text-align: justify;
+}
+
+.service ul.service-ul:after {
+    content: "";
+    height: 0;
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.service ul.service-ul li {
+    display: inline-block;
+    width: 47%;
+    height: 3rem;
+    margin-bottom: 0.75rem;
+    border: 0.1rem solid #c0c0c0;
+    border-radius: 5px;
+    color: #2b323a;
+    font-weight: bolder;
+    font-size: 0.75rem;
+    text-align: center;
+    line-height: 3rem;
+    vertical-align: middle;
+    background: -moz-linear-gradient(top, #fff, #f5f5f5);
+    background: -webkit-gradient(linear, top, from(#fff), to(#f5f5f5));
+    background: -webkit-linear-gradient(top, #fff, #f5f5f5);
+    background: -o-linear-gradient(top, #fff, #f5f5f5);
+}
+
+.service ul.service-ul li a {
+    display: block;
+    color: #616161;
+    text-decoration: none;
+}
+
+
+/*----------选择服务项目---------*/
+
+nav.project-nav {
+    height: 2rem;
+    padding: 0.56rem 5%;
+    border-bottom: 0.1rem solid #dcdcdc;
+    background: #fff;
+    color: #4f4f4f;
+    font-weight: bolder;
+    line-height: 2rem;
+}
+
+nav.project-nav .first {
+    float: left;
+    margin-right: 4%;
+    padding-right: 4%;
+    border-right: 0.1rem solid #aaa;
+    font-size: 1.4rem;
+}
+
+nav.project-nav .second {
+    font-size: 1rem;
+}
+
+.pro-list {
+    border: 0.1rem solid #f0f0f0;
+    background: #fff;
+}
+
+.pro-list .tabContent {
+    display: none;
+    position: relative;
+}
+
+.down-list .tabContent {
+    position: relative;
+    overflow: hidden;
+}
+
+.pro-list>div:nth-child(2) {
+    display: block;
+}
+
+.pro-list .tabContent .more {
+    position: absolute;
+    right: 1rem;
+    top: 6rem;
+    color: #c6c6cc;
+}
+
+.pro-list .tabContent .more i {
+    color: #c6c6cc;
+}
+
+.pro-list a.block-link {
+    color: #4f4f4f;
+}
+
+.pro-list dl {
+    overflow: hidden;
+    padding: 0 0.5rem 1.5rem 3.5rem;
+    clear: both;
+}
+
+.pro-list dt {
+    float: left;
+    border: 0.1rem solid #d2d2d2;
+    width: 7rem;
+    height: 7rem;
+}
+
+.pro-list dt img {
+    vertical-align: top;
+}
+
+.pro-list dd {
+    float: left;
+    width: 17rem;
+    padding-left: 1rem;
+}
+
+.pro-list p {
+    display: block;
+    float: left;
+    height: 5rem;
+    line-height: 5rem;
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 1.4rem;
+    padding-left: 3.5rem;
+}
+
+.pro-list span {
+    color: #ff6702;
+    display: block;
+    float: right;
+    height: 5rem;
+    line-height: 5rem;
+    padding-right: 3rem;
+    text-align: right;
+    font-size: 1.5rem;
+}
+
+.pro-list span b {
+    background-color: #ff6702;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.pro-list ul li {
+    list-style: inside disc;
+    font-size: 1.2rem;
+}
+
+.pro-section dd.dd-first {
+    width: 53%;
+}
+
+.pro-section dd.dd-second {
+    float: right;
+    width: auto;
+    padding-top: 10px;
+    padding-left: 0;
+    text-align:
+}
+
+.pro-section dd.dd-second p {
+    height: 2.4rem;
+    vertical-align: middle;
+}
+
+.pro-section dd.dd-second a {
+    padding: 8px 10px;
+    border-radius: 2px;
+    background: #347fe9;
+    color: #fff;
+    font-size: 0.75rem;
+}
+
+.h2-service {
+    position: relative;
+    padding: 10px 0 10px 5%;
+    background: #f7f7f7;
+    color: #b4b4b4;
+    font-size: 1.4rem;
+}
+
+.h2-service span.error {
+    display: none;
+    float: right;
+    padding-top: 2px;
+    padding-right: 5%;
+    color: #fc5c67;
+    font-size: 1rem;
+}
+
+.h3-service {
+    margin-top: -0.1rem;
+    border-top: 0.1rem solid #f0f0f0;
+}
+
+.dl-list {
+    padding: 0 5%;
+    border-top: 0.1rem solid #f0f0f0;
+    background: #fff;
+    color: #7b7b7b;
+}
+
+.dl-list dl {
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.dl-list .sev-list {
+    width: 100%;
+    padding: 1.062rem 0;
+    border-bottom: 0.1rem solid #f0f0f0;
+}
+
+.dl-list .sev-list div:first-child {
+    display: inline-block;
+    width: 90%;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.dl-list .sev-list div:first-child strong {
+    color: #232323;
+    font-size: 1.142rem;
+    line-height: 1.8rem;
+    font-weight: normal;
+}
+
+.dl-list .sev-list span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 0.1rem solid #b4b4b4;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 18px;
+}
+
+.dl-list .sev-list span.bg {
+    border: 0.1rem solid #f83a5c;
+    background: #f83a5c;
+    color: #fff;
+}
+
+.dl-list .sev-list span i {
+    display: inline;
+    opacity: 0;
+}
+
+.dl-list .sev-list span.bg i {
+    opacity: 1;
+}
+
+.click-more {
+    height: 40px;
+    margin: 20px 0;
+    background: #fff;
+    border: 0.1rem solid #f0f0f0;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/*----------点击展开项目详细----------*/
+
+.click-detail {
+    position: relative;
+    background: #fff;
+    z-index: 13;
+}
+
+.click-position {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 51;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.toggle-btn {
+    height: 40px;
+    border: 0.1rem solid #f0f0f0;
+    border-left: 0;
+    border-right: 0;
+    color: #232323;
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.toggle-content {
+    display: none;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.yuyue-btn {
+    width: 100%;
+    height: 44px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 5px;
+    background: #347fe9;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 1.12rem;
+    line-height: 44px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+
+.yuyue-btn a {
+    color: #fff;
+}
+
+
+/*----------商品完善信息---------*/
+
+.form-pro {
+    display: none;
+}
+
+.form-pro input {
+    border: 0;
+}
+
+.pro-pay {
+    margin-top: 10px;
+}
+
+.pro-car {
+    border-left: 0;
+    border-right: 0;
+    background: #fff;
+}
+
+.pro-car div {
+    height: 3rem;
+    padding-left: 1rem;
+    background: #fff;
+    font-size: 1.4rem;
+    line-height: 3rem;
+}
+
+.pro-car div input {
+    float: left;
+    width: 100%;
+}
+
+.pro-car div input.carDoor {
+    padding-left: 0;
+}
+
+.pro-car div span {
+    float: right;
+    width: 35%;
+    height: 4.6rem;
+    padding-right: 1.2rem;
+    color: #69cafe;
+    font-size: 1.4rem;
+    line-height: 4.6rem;
+    text-align: right;
+}
+
+.pro-car div a {
+    color: #666;
+    text-decoration: none;
+}
+
+.pro-line {
+    clear: both;
+    height: 0.1rem;
+    overflow: hidden;
+    padding-left: 5%;
+    background: #f5f5f5;
+}
+
+.pro-car div.license-number span {
+    float: left;
+    width: 20%;
+    color: #666666;
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: bolder;
+}
+
+.pro-car div.license-number input {
+    float: left;
+    width: 75%;
+}
+
+.pro-time {
+    border-top: 0.1rem solid #e7e7e7;
+    background: #fff;
+    padding-left: 8.5rem;
+}
+
+.pro-time .pro-date-0 {
+    float: left;
+    width: 45%;
+    height: 3rem;
+    padding-left: 5%;
+    border-right: 0.1rem solid #e5e5e5;
+    line-height: 3rem;
+    position: relative;
+    color: #303030;
+}
+
+.pro-time .pro-date-0 input {
+    width: 100%;
+    border: 0;
+    background: none;
+    color: #737373;
+}
+
+.pro-time .pro-date-1 {
+    position: relative;
+    float: right;
+    width: 35%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: right;
+    color: #737373;
+}
+
+.pro-time .pro-date-1 input,
+i.drop-down-1 {
+    display: none;
+}
+
+.pro-time .ios-device input {
+    display: block;
+    width: 80%;
+    height: 3rem;
+    padding-right: 20%;
+    color: #7f7f7f;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    text-align: left;
+}
+
+.pro-time .ios-device i.drop-down-1 {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 12%;
+    z-index: 16;
+    color: #bfbfbf;
+    font-size: 10px;
+}
+
+.pro-time .pro-date-1 select {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    width: auto;
+    height: 3rem;
+    opacity: 1;
+    border: 0;
+    color: #7f7f7f;
+}
+
+.pro-time i {
+    color: #666;
+}
+
+.pro-time .ios-device select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    width: 0.1rem;
+    height: 0.1rem;
+    opacity: 0;
+}
+
+.switch-btn {
+    clear: both;
+    height: 3rem;
+    padding-left: 5%;
+    border-bottom: 0.1rem solid #f5f5f5;
+    color: #666666;
+    line-height: 3rem;
+}
+
+.switch-btn span {
+    float: left;
+    width: 74%;
+}
+
+.switch-btn-content {
+    position: relative;
+    float: right;
+    width: 44px;
+    height: 22px;
+    margin: 1.4rem 5% 0 0;
+    border-radius: 10.1rem;
+    background: #c9c8c8;
+}
+
+.switch-btn-contentbg {
+    background: #347fe9;
+}
+
+.pro-time .switch-btn-content i {
+    display: block;
+    position: absolute;
+    top: 0.1rem;
+    left: 0.1rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 10.1rem;
+    background: #fff;
+}
+
+.pro-time .switch-btn-contentbg i {
+    display: block;
+    left: 22px;
+}
+
+.pro-detail {
+    border: 0.1rem solid #e7e7e7;
+    border-left: 0;
+    border-right: 0;
+    background: #fff;
+}
+
+.pro-detail div {
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.4rem;
+}
+
+.pro-detail span {
+    float: left;
+    width: 20%;
+    height: 3rem;
+    padding: 0 3% 0 5%;
+}
+
+.pro-detail input {
+    float: left;
+    width: 66%;
+    height: 3rem;
+}
+
+.pro-detail input[name="pay"] {
+    color: #737373;
+}
+
+.yuyuebtn {
+    display: block;
+    width: 90%;
+    margin: 16px auto;
+}
+
+.select-car-div {
+    position: fixed;
+    left: 1500px;
+    top: 0;
+    z-index: 14;
+    width: 100%;
+    height: 100%;
+    background: #f7f7f7;
+}
+
+.select-car-div ul {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.select-car-div ul li {
+    position: relative;
+    width: 91%;
+    height: 3rem;
+    margin-top: 2rem;
+    padding: 0 5% 0 4%;
+    border: 0.1rem solid #aaa;
+    border-radius: 5px;
+    background: #ffffff;
+    font-size: 1.4rem;
+    line-height: 3rem;
+}
+
+.select-car-div ul li.selected {
+    border: 0.1rem solid #ffb451;
+    background: #ffdcad;
+}
+
+.select-car-div ul li span,
+.select-car-div ul li strong {
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+}
+
+.select-car-div ul li strong {
+    display: none;
+}
+
+.select-car-div ul li.selected strong {
+    display: inline-block;
+}
+
+.select-car-div ul li span {
+    width: 80%;
+    text-align: left;
+}
+
+.select-car-div ul li i {
+    position: absolute;
+    top: -20px;
+    right: -16px;
+    width: 30px;
+    height: 30px;
+    color: #f83a5c;
+    font-size: 24px;
+    vertical-align: top;
+}
+
+.select-car-unbtn {
+    width: 90%;
+    height: 3rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    border-radius: 5px;
+    background: #c1c1c1;
+    color: #fff;
+    text-align: center;
+    line-height: 3rem;
+    font-weight: bolder;
+}
+
+.select-car-btn {
+    background: #347fe9;
+}
+
+.select-car-div p {
+    width: 90%;
+    margin: 0 auto;
+    color: #969ba0;
+    font-size: 0.75rem;
+}
+
+.selectprovince {
+    display: none;
+    height: 3rem;
+    padding-left: 5%;
+    font-size: 1.4rem;
+    line-height: 3rem;
+}
+
+.selectprovince div {
+    position: relative;
+    float: left;
+    width: 30%;
+    border: 0;
+    border-right: 0.1rem solid #e5e5e5;
+    text-align: center;
+    overflow: hidden;
+}
+
+.selectprovince div:last-child {
+    border-right: 0;
+}
+
+.selectprovince div input {
+    width: 70%;
+    overflow: hidden;
+    color: #d2d2d2;
+    text-align: left;
+}
+
+.selectprovince div i {
+    position: absolute;
+    top: 2px;
+    right: 6%;
+    z-index: 17;
+    color: #bfbfbf;
+    font-size: 10px;
+    vertical-align: top;
+}
+
+.selectprovince div select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    width: 0.1rem;
+    height: 0.1rem;
+    opacity: 0;
+}
+
+.selectprovince div select.show {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    width: auto;
+    height: 2.8rem;
+    opacity: 1;
+    border: 0;
+    text-align: center;
+}
+
+.address {
+    display: none;
+    height: 3rem;
+    border: 0.1rem solid #f5f5f5;
+    border-top: 0;
+    background: #fff;
+    line-height: 3rem;
+}
+
+.address span {
+    float: left;
+    width: 23%;
+    height: 2.5rem;
+    padding-left: 5%;
+}
+
+.address input {
+    float: left;
+    width: 66%;
+    height: 3rem;
+}
+
+
+/*add by  dyy*/
+
+.toggle-btn .drop-down,
+.toggle-btn .drop-up {
+    display: none;
+    margin-left: 2%;
+    color: #bfbfbf;
+}
+
+.pro-car .pro-location {
+    margin-left: 2%;
+    color: #bfbfbf;
+}
+
+
+/*--------选择车型弹窗--------*/
+
+.mask {
+    z-index: 20;
+}
+
+
+/*add 08-27*/
+
+.subsuc {
+    color: #347fe9;
+    font-size: 3.6rem;
+    line-height: 1.4rem;
+}
+
+
+/*add by 20140828**/
+
+.service header .newtits {
+    margin-top: 8px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.service header .newtits i {
+    margin-right: 5px;
+    color: #347fe9;
+    line-height: 1.4rem;
+    font-size: 2rem;
+}
+
+.service header .newtits strong {
+    color: #232323;
+    font-size: 1.2rem;
+    font-weight: normal;
+    vertical-align: top;
+    line-height: 1.8rem;
+}
+
+@media screen and (max-width:480px) {
+    .st-right i {
+        display: block;
+    }
+}
+
+i.red {
+    color: red;
+}
+
+
+/*--------完善信息修改---------*/
+
+.improve {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: auto;
+    overflow: hidden;
+}
+
+.buy div.plr-30:first-child {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.full-info-btn {
+    width: 100%;
+    height: 44px;
+    background-color: #0071ff;
+    color: #fff;
+    font-size: 1.12rem;
+    line-height: 44px;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 4px;
+}
+
+.full-info-btn .iconfont {
+    font-size: 1rem;
+    vertical-align: top;
+}
+
+.full-info-btn i:last-child {
+    display: none;
+}
+
+.tits-left {
+    width: 68%;
+    margin-bottom: 0.6rem;
+    font-size: 1.142rem;
+}
+
+.tit-rig {
+    padding-top: 2px;
+}
+
+.tit-rig i {
+    margin-left: 12px;
+    font-size: 2rem;
+    color: #f83a5c;
+    vertical-align: top;
+    cursor: pointer;
+    line-height: 22px;
+}
+
+.buy-title {
+    clear: both;
+    padding-top: 8px;
+    border-top: 0.1rem dashed #969ba0;
+    color: #969ba0;
+}
+
+.addpro-btn {
+    color: #05a7fe;
+    font-size: 1.4rem;
+    text-align: center;
+    text-decoration: underline;
+    line-height: 3rem;
+}
+
+.addpro-btn a {
+    color: #05a7fe;
+}
+
+.money-total .tits-left {
+    margin-bottom: 0;
+}
+
+.sale-title {
+    color: #b4b4b4;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    text-align: center;
+    letter-spacing: -0.1rem;
+}
+
+.sale-title-ticket {
+    margin: 10px 0;
+    border-top: 0.1rem solid #f0f0f0;
+    border-bottom: 0.1rem solid #f0f0f0;
+    background: #fff;
+    color: #232323;
+    font-size: 1.2rem;
+}
+
+
+/*顶部城市选择*/
+
+#headSelect {
+    background: #333c40;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    padding-left: 5%;
+}
+
+#headSelect span {
+    color: #fff;
+    display: block;
+    float: left;
+}
+
+#headSelect select {
+    font-size: 16px;
+    background: #CCC;
+    width: 40px;
+    border: 0.1rem solid #ccc;
+    float: left;
+    width: 75px;
+}
+
+#headSelect select option {
+    font-size: 1.4rem;
+}
+
+.topMargin {
+    margin-top: 36px;
+}
+
+#headSelect .choose-store {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    width: 30%
+}
+
+#headSelect .choose-store a {
+    color: #347fe9;
+    font-size: 15px;
+    display: block;
+    height: 26px;
+    line-height: 36px;
+    width: 90px;
+}
+
+#headSelect .choose-store a:hover {
+    text-decoration: none;
+}
+
+#headSelect .choose-store a span {
+    display: block;
+    float: left;
+}
+
+#headSelect .choose-store a img {
+    padding-top: 7px;
+}
+
+#headSelect select {
+    display: none;
+}
+
+#headSelect .select_box {
+    font-size: 1.6rem;
+    color: #fff;
+    width: 120px;
+    line-height: 36px;
+    display: block;
+    float: left;
+}
+
+#headSelect .select_show {
+    height: 36px;
+    padding-left: 10px;
+    background: url(../images/maintenance/cityChooseIcon.jpg) no-repeat 0px 8px;
+    background-size: 105px 20px;
+    opacity: 1;
+    font-size: 16px;
+    text-indent: 6px;
+}
+
+#headSelect .select_option {
+    border: 0.1rem solid #b0a296;
+    border-top: none;
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: #e0e0e0;
+    left: 0;
+    top: -15px;
+    margin: 15px 0;
+}
+
+#headSelect .select_option li {
+    color: #232323;
+    text-align: center;
+    margin: 5px 20px;
+    background: #fff;
+    border: 0.1rem solid #bbbbbb;
+    height: 46px;
+    line-height: 46px
+}
+
+#headSelect .select_option p {
+    text-align: center;
+    color: #666666;
+    font-size: 12px;
+}
+
+#headSelect .select_option li.selected {
+    border: 0.1rem solid #0080ff;
+    color: #232323;
+}
+
+
+/*切换门店弹出框*/
+
+.popup-2 {
+    left: 50%;
+    width: 88%;
+    margin-left: -46%;
+    padding: 10px 2% 0 2%;
+    border-radius: 0px;
+}
+
+.popup-2 .carPopupPara {
+    line-height: 2rem;
+    text-align: left;
+    border-radius: 0px;
+    border-bottom: 0.1rem solid #ccc;
+}
+
+.popup-2 .carSelPopup span {
+    color: #1a1f21;
+    border-radius: 0px;
+    background: none;
+}
+
+.popup-2 .carSelPopup span.cancel {
+    background: none;
+    border-right: 0.1rem solid #ccc;
+}
+
+.pro-list dd span.no-service {
+    height: 46px;
+    text-align: center;
+    background: #347fe9;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: normal;
+    padding: 3px 4.5rem;
+    border-radius: 3px;
+}
+
+
+/*服务列表*/
+
+.servListTitle {
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: normal;
+    padding-left: 1.2rem;
+    border-top: .1rem solid #e7e7e7;
+}
+
+.car-style-choose {
+    background: #fff;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.car-style-choose a,
+.car-style-choose a input {
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: 4.5rem;
+    color: #b2b2b2;
+    text-indent: 10px;
+}
+
+.car-style-choose a {
+    color: #b2b2b2;
+}
+
+.car-style-choose img {
+    display: block;
+    float: left;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 1rem 0 0 1rem;
+}
+
+.car-style-choose a span {
+    position: absolute;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    color: #2d2d2d;
+    right: 1rem;
+    top: 0;
+}
+
+.car-style-choose a span i {
+    color: #c6c6cc;
+    padding-left: 1rem;
+}
+
+.pro-list p {
+    display: block;
+}
+
+.pro-list .current,
+.down-list .current {
+    border: 2px solid #ff8903;
+}
+
+.pro-list a {
+    position: relative;
+    clear: both;
+    display: block;
+}
+
+.pro-list .recommend {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: url(../images/servelist-icon.png);
+    background-size: 45px 250px;
+}
+
+.pro-list .current .serviceChooseBtn {}
+
+.pro-list a ul {
+    margin: 0.43rem 0;
+    font-size: 1.2rem;
+    color: #707070;
+}
+
+.pro-list dd span {
+    color: #ff0000;
+}
+
+.pro-list .tabBtn ul {
+    overflow: hidden;
+}
+
+.pro-list .tabBtn li {
+    width: 50%;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #e0e0e0;
+    float: left;
+    list-style: none;
+}
+
+.pro-list .tabBtn .currentBtn {
+    border-color: #17a3eb;
+    color: #17a3eb;
+}
+
+.down-list {
+    background: #fff;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 70px;
+    width: 100%;
+}
+
+.down-list a {
+    position: relative;
+    border-bottom: 0.1rem solid #ccc;
+    text-indent: 10px;
+}
+
+.down-list a,
+.down-list a dl {
+    width: 100%;
+    height: auto;
+}
+
+.down-list a,
+.down-list dt,
+.down-list dd {
+    float: left;
+    color: #666666;
+    height: 4.5rem;
+    line-height: 4.5rem;
+}
+
+.down-list dt {
+    padding-left: 3rem;
+}
+
+.down-list dl dd {
+    float: right;
+    margin-right: 0.8rem;
+}
+
+.down-list dl dd p {
+    color: #ff6702;
+    font-size: 1.5rem;
+}
+
+.down-list dl dd p i {
+    color: #c6c6cc;
+    padding-left: 0.8rem;
+}
+
+.down-list dl dd p b {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.down-list [id^="checkbox-1-"] + label {
+    top: 1.4rem;
+}
+
+.serviceChooseBtn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5rem;
+    height: 4.6rem;
+}
+
+.origPrice {
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+    font-size: 1.2rem;
+    text-decoration: line-through;
+    color: #707070;
+}
+
+.morecareIcon {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+    width: 117px;
+    height: 28px;
+    background: url(../images/maintenance/morecareIcon.png) no-repeat;
+    background-size: 117px 28px;
+}
+
+.car-style-choose a input {
+    display: block;
+    float: left;
+    width: 22rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    left: 0;
+    color: #2d2d2d;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+[id^="checkbox-1-"] + label {
+    background: url(../images/servelist-icon.png) no-repeat 0 bottom;
+    background-size: cover;
+    display: inline-block;
+    position: absolute;
+    top: 1.8rem;
+    left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+[id^="checkbox-1-"]:checked + label {
+    background: url(../images/servelist-icon.png) no-repeat 0 top;
+    background-size: cover;
+}
+
+.listNextStep {
+    width: 100%;
+    background: #d7d7db;
+    font-size: 1.7rem;
+    color: #fff;
+    margin-top: 0.6rem;
+    position: fixed;
+    bottom: 0;
+    height: 5.3rem;
+    line-height: 5.3rem;
+}
+
+.listNextStep button {
+    width: 90%;
+    border-radius: 0.3rem;
+    margin-left: 5%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    text-align: center;
+    background: #fff;
+}
+
+.listNextStep2 {
+    width: 32rem;
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 1.7rem;
+    color: #fff;
+    margin-top: 0.6rem;
+    position: fixed;
+    bottom: 0;
+    height: 5.3rem;
+    line-height: 5.3rem;
+}
+
+.listNextStep2 button {
+    width: 90%;
+    border-radius: 0.3rem;
+    margin-left: 5%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    text-align: center;
+    background: #ff6702;
+    color: #fff;
+}
+
+
+/*完善信息*/
+
+.pro-car div input {
+    border: 0;
+}
+
+.pro-car dl {
+    height: 4.6rem;
+    font-size: 1rem;
+    padding-right: 2rem;
+}
+
+.pro-car dt {
+    height: 2.7rem;
+    line-height: 2.7rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.pro-car dd {
+    width: 22rem;
+    display: block;
+    line-height: 1.1rem;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.pro-car div span {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    color: #bfbfbf;
+}
+
+.pro-car div span i {
+    color: #bfbfbf;
+}
+
+.infor-title {
+    font-size: 1rem;
+    border-top: 0.1rem solid #e7e7e7;
+    background: #fff;
+    color: #666666;
+    padding-left: 1rem;
+    height: 3.3rem;
+    line-height: 3.3rem;
+    position: relative;
+}
+
+.infor-title label {
+    font-size: 1.2rem;
+    position: absolute;
+    left: 1.2rem;
+    top: 0px;
+    display: inline-block;
+    width: 7.5rem;
+    text-align: left;
+    height: 3.3rem;
+    line-height: 3.3rem;
+    color: #999;
+}
+
+.pro-car label {
+    width: 7.5rem;
+}
+
+input {
+    color: #2d2d2d;
+    font-size: 1.4rem;
+    width: 100%;
+    display: block;
+    line-height: normal;
+}
+
+.pro-time span {
+    position: absolute;
+    right: 1.2rem;
+    top: 0px;
+    color: #bfbfbf;
+    opacity: 0.4;
+}
+
+.last-section {
+    margin-bottom: 70px;
+    padding-left: 0;
+}
+
+.last-section ul li {
+    padding-left: 1rem;
+    font-size: 1.2rem;
+    line-height: 2.8rem;
+    height: 2.8rem;
+    background: #fff;
+}
+
+.last-section ul li div:nth-child(1) {
+    float: left;
+    width: 1.5rem;
+    font-weight: 200%;
+    color: #d2d2d2;
+}
+
+.last-section ul li div:nth-child(2) {
+    float: left;
+}
+
+.last-section ul li div:nth-child(3) {
+    float: right;
+    padding-right: 1.3rem;
+    color: #ff6600
+}
+
+
+/*沪牌下拉列表*/
+
+select {
+    display: none;
+}
+
+.select_box {
+    color: #999999;
+    width: 17.8rem;
+    line-height: 2rem;
+}
+
+.select_showbox {
+    height: 20px;
+    padding-left: 5px;
+    background: url(icon.png) no-repeat 156px 0;
+}
+
+.select_option {
+    border: 0.1rem solid #b0a296;
+    border-top: none;
+    display: none;
+}
+
+.select_option li {
+    padding-left: 5px;
+}
+
+.select_option li.selected {
+    background-color: #F3F3F3;
+    color: #999;
+    border: 0.1rem solid #fff;
+}
+
+.select_option li.hover {
+    background: #7b6959;
+    color: #fff;
+}
+
+.pro-carStyle {
+    height: 3.3rem;
+    position: relative;
+    background: #fff;
+}
+
+.pro-carStyle .select_box {
+    width: 100%;
+}
+
+.pro-carStyle .select_box li {
+    width: 6.6rem;
+    font-size: 1.2rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin-left: 1rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    border: 0.1rem solid #70adf0;
+    float: left;
+    background: #fff;
+    color: #17a3eb;
+    border: 0.1rem solid #17a3eb;
+    box-sizing: border-box;
+}
+
+.pro-carStyle .select_option li.selected {
+    background: #17a3eb;
+    border: 0.1rem solid #17a3eb;
+    color: #fff;
+}
+
+.pro-carStyle .select_option {
+    overflow: hidden;
+    text-indent: 0;
+    background: #fff;
+    padding-top: 6px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.pro-carStyle .select_option i {
+    position: absolute;
+    top: 40.1rem;
+    left: 82px;
+    width: 9px;
+    height: 9px;
+    background: url(../images/servelist-icon.png) no-repeat 0 -105px;
+    background-size: 45px 24.6rem;
+    background-position: right top;
+}
+
+.pro-carStyle .select_showbox {
+    font-size: 1.2rem;
+    color: #2d2d2d;
+    background: url(../images/jiantou-s03.jpg) no-repeat 2.2rem 1rem;
+    background-size: 1.5rem 1.5rem;
+    width: 5rem;
+    height: 3.3rem;
+    line-height: 3.3rem;
+    position: absolute;
+    left: 6.5rem;
+}
+
+.pro-carStyle input {
+    width: auto;
+    height: 3.3rem;
+    position: absolute;
+    left: 11rem;
+    top: 0;
+    text-transform: Uppercase;
+    padding-left: 0!important;
+}
+
+.pro-car b {
+    background: #fff url(../images/maintenance/serveFormIcon.jpg) no-repeat 0 0;
+    background-size: 15px 54px;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    top: 16px;
+    left: 13px;
+}
+
+.pro-car.infor-title,
+.pro-car.infor-title label{
+    height: 4.5rem;
+    line-height: 4.5rem;
+}
+.pro-time b {
+    background: #fff url(../images/maintenance/serveFormIcon.jpg) no-repeat 0 -18px;
+    background-size: 15px 54px;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    top: 13px;
+    left: 13px;
+}
+
+
+/*选择其他车型*/
+
+.chooseOtherCar {
+    height: 4.6rem;
+    line-height: 4.6rem;
+    background: #fff;
+}
+
+.chooseOtherCar a {
+    display: block;
+    height: 4.6rem;
+    width: 100%;
+    text-align: center;
+    color: #0f7ee9;
+    font-size: 16px;
+}
+
+.infor-title input {
+    line-height: 3.2rem;
+    padding-left: 5.9rem;
+    font-size: 1.2rem;
+}
+
+#mobilePhone {
+    color: #999;
+}
+
+.carStyleCoo {
+    height: auto;
+    line-height: 2rem;
+    text-indent: 0;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.pro-car {
+    position: relative;
+    padding-left: 6rem;
+}
+
+.pro-time input {
+    font-size: 1.2rem;
+    color: #333;
+    width: 100%;
+}
+
+.en {
+    display: inline-block;
+    width: 6.6rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin-left: 1rem;
+    text-align: left;
+    text-indent: 3rem;
+    border: 0.1rem solid #70adf0;
+    float: left;
+    background: #e5e7ea url(../images/maintenance/carStyleBtn.png) no-repeat 0 -0.2rem;
+    background-size: 3rem 3.3rem;
+    color: #a4a9ae;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    border: 0.1rem solid #e5e7ea;
+}
+
+input[type="checkbox"] + label {
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+[id^="checkbox-1-"] + label {
+    display: inline-block;
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+}
+
+[id^="checkbox-1-"] + label i {
+    display: block;
+}
+
+[id^="checkbox-1-"] + label i:before {
+    content: "";
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    display: block;
+    margin: 1.5rem 0 0 1rem;
+}
+
+[id^="checkbox-1-"]:checked + label i:before {
+    content: "\e608";
+    font-size: 1.5rem;
+    background: #17a3eb;
+    color: #fff;
+    border: 1px solid #17a3eb;
+}
+
+.pro-list [id^="checkbox-1-"] + label i:before {
+    margin-top: 1.7rem;
+}

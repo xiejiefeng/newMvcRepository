@@ -1,0 +1,10 @@
+      .table-fixed{
+       table-layout: fixed;
+      }
+      .text-ellipsis  td{
+        overflow: hidden;
+       text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+     .table  thead tr th{text-align:center}

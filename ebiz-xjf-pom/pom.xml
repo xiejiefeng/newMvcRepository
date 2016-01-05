@@ -11,6 +11,7 @@
   <modules>
     <module>ebiz-xjf-web</module>
     <module>ebiz-xjf-service</module>
+    <module>ebiz-xjf-api</module>
   </modules>
   
   <properties>
@@ -436,6 +437,12 @@
 				<artifactId>jackson-mapper-asl</artifactId>
 				<version>1.9.13</version>
 			</dependency> -->
+			
+			<dependency>
+			    <groupId>commons-beanutils</groupId>
+			    <artifactId>commons-beanutils-core</artifactId>
+			    <version>1.8.3</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -553,7 +560,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<execute></execute>
+										<execute/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>

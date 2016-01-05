@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
  * @author baowenzhou
  * @see com.saic.ebiz.cxj.service.IBaseService
  */
+@Service
 public class BaseServiceImpl implements ApplicationContextAware {
 //public class BaseServiceImpl<P extends BasePo, Dal extends BaseDal<P>> 
 	//extends AbstractRedisService 

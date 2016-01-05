@@ -19,7 +19,7 @@
     </bean> -->
 	
 	<!-- 加载配置文件
-	<bean id="propertyConfigurer" class="com.gagu.ucm.agent.venus.placeholder.VenusPropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.VenusPropertyPlaceholderConfigurer">
         <property name="locations">
             <list>           
                 <value>classpath:application.properties</value> 
@@ -29,6 +29,19 @@
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean> -->
+    
+    <!-- 加载配置文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>           
+                <value>classpath:application.properties</value> 
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+    
 	
 	<!-- Spring MVC自动 -->
 	<mvc:annotation-driven>
@@ -50,7 +63,7 @@
                         </list>
                     </property>
 	 		</bean>
-            <!--json转换器 
+            <!--json转换器  org.codehaus.jackson
         	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  
             	<property name="supportedMediaTypes">  
                 	<list>  
@@ -62,13 +75,198 @@
     	</mvc:message-converters>  
    	</mvc:annotation-driven>
 	
+	<!-- 拦截对象1
+	<bean id="interceptorList1" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>/service/toConfirm.htm</value>预约2
+				<value>/personalInfo/toPersonInfo.htm</value>用户中心
+				<value>/card/list.htm</value>我的卡券
+				<value>/order/list.htm</value>我的订单
+			</list>
+    	</constructor-arg>
+    </bean> -->
+    <!-- 拦截对象2
+	<bean id="interceptorList2" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>/service/index.htm</value>预约1
+				<value>/service/toConfirm.htm</value>预约2
+				<value>/tyre/index.htm</value>轮胎预约
+				<value>/personalInfo/toPersonInfo.htm</value>用户中心
+				<value>/card/list.htm</value>我的卡券
+				<value>/order/list.htm</value>我的订单
+				<value>/maintenance/index.htm</value>保养手册
+			</list>
+    	</constructor-arg>
+    </bean> -->
+    
+    <!-- openType
+    <util:constant id="openTypeCxj" 
+    	static-field="com.saic.wemall.api.constant.WemallConstants.REFERENCE_DETAIL_CODE_TYPE_CXJ" />
+    <util:constant id="openTypeCxb" 
+    	static-field="com.saic.wemall.api.constant.WemallConstants.REFERENCE_DETAIL_CODE_TYPE_CXB" />
+    <util:constant id="openTypeCxh" 
+    	static-field="com.saic.wemall.api.constant.WemallConstants.REFERENCE_DETAIL_CODE_TYPE_CXH" />
+    <util:constant id="openTypeMz" 
+    	static-field="com.saic.wemall.api.constant.WemallConstants.REFERENCE_DETAIL_CODE_TYPE_MZ" />
+   	<util:constant id="openTypeOther" 
+    	static-field="com.saic.wemall.api.constant.WemallConstants.REFERENCE_DETAIL_CODE_TYPE_OTHER" /> -->
+		    
+	<!-- 拦截器
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/home/**"/>
+			<mvc:mapping path="/personalInfo/**"/>
+			<mvc:mapping path="/user/**"/>
+			<mvc:mapping path="/order/**"/>
+			<mvc:mapping path="/service/**"/>
+			<mvc:mapping path="/about/**"/>
+			<mvc:mapping path="/store/**"/>
+			<mvc:mapping path="/selectCar/**"/>
+			<mvc:mapping path="/card/**"/>
+			<mvc:mapping path="/maintenance/**"/>
+			<mvc:mapping path="/tyre/**"/>
+			<bean class="com.saic.wemall.web.interceptor.OpenTypeInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/service/index.htm"/>
+			<mvc:mapping path="/service/toConfirm.htm"/>
+			<mvc:mapping path="/tyre/index.htm"/>
+			<mvc:mapping path="/personalInfo/toPersonInfo.htm"/>
+			<mvc:mapping path="/order/list.htm"/>
+			<mvc:mapping path="/card/list.htm"/>
+			<mvc:mapping path="/maintenance/index.htm"/>
+			<bean class="com.saic.wemall.web.interceptor.CxIdInterceptor">
+				入口资源
+				<property name="entryUrls">
+					<map>
+						<entry key-ref="openTypeCxb" value-ref="interceptorList2" /> 车享宝预约
+						<entry key-ref="openTypeCxh" value-ref="interceptorList2" />车享汇预约
+						<entry key-ref="openTypeOther" value-ref="interceptorList1" />M站预约  车享家预约
+		    		</map>
+ 				</property>
+ 				跳转验证页面
+				<property name="loginUrl" value="/user/login-fast.htm" />
+			</bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.saic.wemall.web.interceptor.CacheInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/active/**"/>
+			<bean class="com.saic.wemall.web.interceptor.ActiveInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/tyre/**"/>
+			<bean class="com.saic.wemall.web.interceptor.TyreInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<!-- JSP视图 -->
+	
+	<!-- hibernate validator 资源配置 -->
+    <bean name="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource"  ref="messageSource"/>
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+    
+    <!-- 基于cookie的i18n -->
+    <bean id="localeResolver"
+        class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="clientlanguage" />
+        <property name="cookieMaxAge" value="94608000" />
+        <property name="defaultLocale" value="zh" />
+    </bean>
+     
+    <!-- 针对free marker的视图配置 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="cache" value="true" />
+		<property name="order" value="1" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="viewNames">
+			<array>
+				<value>*.ftl</value>
+			</array>
+		</property>
+		<property name="requestContextAttribute" value="request" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="allowSessionOverride" value="true" />
+		<property name="contentType" value="text/html;charset=utf-8" />
+	</bean>
+	
+	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<description>Required for Freemarker to work in web tier</description>
+		<property name="configuration" ref="freemarkerConfiguration" />
+	</bean>
+	<bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<description>Using the Config directly so we can use it outside the web tier</description>
+		<!-- 模板加载路径 -->
+		<property name="templateLoaderPaths">
+			<list>
+				<value>/WEB-INF/views</value>
+			</list>
+		</property>
+		<property name="configLocation">
+			<value>classpath:freemarker/freemarker.properties</value>
+		</property>
+		<!--全局变量部分
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="jscssUrl" value-ref="fmJsscssUrl" />
+			</map>
+		</property> -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+<!--
+    <bean id="fmJsscssUrl" class="com.ibm.framework.web.freemarker.MultiDomUrl">
+        <property name="host" value="${ebiz.wemall.web.jscssHost}" />
+        <property name="imgHostTag" value="${ebiz.wemall.web.jscssHostTag}" />
+        <property name="imgUrlStarNum" value="${ebiz.wemall.web.jscssUrlStarNum}" />
+        <property name="imgHostNumber" value="${ebiz.wemall.web.jscssHostNumber}" />
+    </bean> -->
+    
+	<!-- json解析 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="2" />
+	</bean>
+	
+	<!-- 统一异常处理 -->
+    <bean id="exceptionResolver"
+        class="com.xjf.wemall.web.excption.ErrorCodeMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+            	<prop key="com.xjf.wemall.api.exception.BaseException">common/errorpage.ftl</prop>
+                <prop key="java.lang.Throwable">common/errorpage.ftl</prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="common/errorpage.ftl" />
+        <property name="warnLogCategory" value="com.xjf.wemall.web.excption.ErrorCodeMappingExceptionResolver" />
+    </bean>
+    
+    <!-- 密码验证 -->
+	<bean id="shaPasswordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/>
+	
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<!-- 为了支持forward,redirect -->
+	<bean id="jsltViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="3" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- JSP视图
 	<bean id="JSPViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/JSP/" />
         <property name="suffix" value=".jsp" />
-    </bean>
+    </bean> -->
 	
 	<!-- 异常处理 -->
 	<!-- <bean id="exceptionHandler" class="com.acz.exception.ExceptionHandler"/> -->

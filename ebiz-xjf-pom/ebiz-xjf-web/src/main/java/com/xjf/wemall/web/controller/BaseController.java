@@ -82,13 +82,17 @@ public class BaseController {
 			, HttpServletResponse servletResponse
 			, Model model) throws Exception {
 		//redirectAttributes.addFlashAttribute("map", indexService.index());
-		redirectAttributes.addAttribute("map", "abc");
+//		redirectAttributes.addAttribute("map", "abc");
 		//model.addAttribute("map", "abc");
 		//servletRequest.setAttribute("cccc", "3");
 		//servletResponse.sendRedirect("/base/index2.json");
-		return this.redirect("/base/index3.json");
+//		return this.redirect("/base/index3.json");
 		//servletRequest.getRequestDispatcher("/base/index2.json").forward(servletRequest, servletResponse);
 		//servletRequest.getRequestDispatcher("https://www.baidu.com").forward(servletRequest, servletResponse);
+
+		// map
+		redirectAttributes.addFlashAttribute("map", indexService.index());
+		return this.redirect("/base/index2.json");
 	}
 	
 

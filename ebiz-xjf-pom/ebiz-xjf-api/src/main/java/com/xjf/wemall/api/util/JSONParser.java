@@ -3,6 +3,7 @@ package com.xjf.wemall.api.util;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import com.alibaba.fastjson.JSON;
@@ -107,7 +108,22 @@ public class JSONParser implements Serializable {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	public static <T> T  toStringObject(String jsonStr,Class<T> clazz){
+	public static <T> T toStringObject(String jsonStr,Class<T> clazz){
 	     return JSON.parseObject(jsonStr, clazz);
+	}
+	
+	/***
+	 * 
+	 * 功能描述:将jsonString字符串转换为对象List <br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param jsonStr
+	 * @param clazz
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static <T> List<T> toStringList(String jsonStr, Class<T> clazz){
+	     return JSON.parseArray(jsonStr, clazz);
 	}
 }

@@ -53,9 +53,9 @@ public class UserLoginFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse)response;
-        String requestURI = httpRequest.getRequestURI();
-        String requestURL = httpRequest.getRequestURL().toString();
-        httpRequest.setAttribute("d", "222222");
+//        String requestURI = httpRequest.getRequestURI();
+//        String requestURL = httpRequest.getRequestURL().toString();
+//        httpRequest.setAttribute("d", "222222");
         chain.doFilter(request, response);
         return;
     }

@@ -51,6 +51,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xjf.wemall.api.entity.common.CookieObject;
 import com.xjf.wemall.service.index.api.IndexService;
 
 //import com.saic.wemall.api.entity.common.CookieObject;
@@ -255,16 +256,16 @@ public class BaseController {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-//	protected CookieObject getCookie(HttpServletResponse response) {
-//		CookieObject cookie = new CookieObject();
-//		cookie.setOpenId(this.getOpenId());
-//		cookie.setOpenType(this.getOpenType());
-//		cookie.setCxId(this.getCxId());
-//		cookie.setLongitude(this.getLongitude());
-//		cookie.setLatitude(this.getLatitude());
-//		cookie.setKey(this.getUserKey());
-//		return cookie;
-//	}
+	protected CookieObject getCookie(HttpServletResponse response) {
+		CookieObject cookie = new CookieObject();
+		cookie.setOpenId(this.getOpenId());
+		cookie.setOpenType(this.getOpenType());
+		cookie.setCxId(this.getCxId());
+		cookie.setLongitude(this.getLongitude());
+		cookie.setLatitude(this.getLatitude());
+		cookie.setKey(this.getUserKey());
+		return cookie;
+	}
 	
 	/**
 	 * 页面跳转

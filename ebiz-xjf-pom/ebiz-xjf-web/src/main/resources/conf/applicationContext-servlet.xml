@@ -218,18 +218,19 @@
 		<!--全局变量部分 -->
 		<property name="freemarkerVariables">
 			<map>
-				<entry key="jscssUrl" value="http://192.168.70.78:8080/resources" />
+				<!-- <entry key="jscssUrl" value="http://localhost:9080/resources" /> -->
+				<entry key="jscssUrl" value-ref="fmJsscssUrl" />
 			</map>
 		</property>
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>
-<!--
-    <bean id="fmJsscssUrl" class="com.ibm.framework.web.freemarker.MultiDomUrl">
+	
+    <bean id="fmJsscssUrl" class="com.xjf.wemall.web.freemarker.MultiDomUrl">
         <property name="host" value="${ebiz.wemall.web.jscssHost}" />
-        <property name="imgHostTag" value="${ebiz.wemall.web.jscssHostTag}" />
+        <!-- <property name="imgHostTag" value="${ebiz.wemall.web.jscssHostTag}" />
         <property name="imgUrlStarNum" value="${ebiz.wemall.web.jscssUrlStarNum}" />
-        <property name="imgHostNumber" value="${ebiz.wemall.web.jscssHostNumber}" />
-    </bean> -->
+        <property name="imgHostNumber" value="${ebiz.wemall.web.jscssHostNumber}" /> -->
+    </bean>
     
 	<!-- json解析 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

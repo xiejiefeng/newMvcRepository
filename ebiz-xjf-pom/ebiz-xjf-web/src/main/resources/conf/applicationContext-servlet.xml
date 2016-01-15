@@ -222,10 +222,18 @@
 				<entry key="jscssUrl" value-ref="fmJsscssUrl" />
 				<entry key="name" value="xiejf" />
 				<entry key="testTime" value-ref="testTime" />
+				<entry key="time" value-ref="currentDatetime" />
 			</map>
 		</property>
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>
+	
+	<!-- 当前时间 -->
+	<bean id="currentDatetime" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.xjf.wemall.api.util.DateUtil" />
+		<property name="targetMethod" value="getCurrentDateTime" />
+	</bean>
+	
 	
     <bean id="fmJsscssUrl" class="com.xjf.wemall.web.freemarker.MultiDomUrl">
         <property name="host" value="${ebiz.wemall.web.jscssHost}" />

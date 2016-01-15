@@ -213,4 +213,16 @@ public class DateUtil {
         return cal.getTime();
     }
     
+    /**
+     * 
+     * 功能描述: 获取当前日时(YYYYMMDDHHMMSS)<br>
+     * 〈功能详细描述〉
+     *
+     * @return
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    public static String getCurrentDateTime() {
+        return formatDate(getCurrentDate(), FORMAT_DATETIME_YYYYMMDDHHMMSS);
+    }
 }

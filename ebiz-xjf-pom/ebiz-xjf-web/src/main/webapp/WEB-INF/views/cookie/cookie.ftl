@@ -17,7 +17,8 @@
 </div>
 
 <div class="clear"></div>
-
+${name}
+${testTime('')}
 <div class="head" style="width:240px">
 	(${wx}:微信;${cxb}:车享宝;${cxh}:车享汇;${mz}:M站)
 </div>

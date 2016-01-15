@@ -10,6 +10,8 @@
  */
 package com.xjf.wemall.api.constant;
 
+import com.xjf.wemall.api.util.DateUtil;
+
 /**
  * 系统公用常量定义
  *
@@ -891,5 +893,5 @@ public class WemallConstants {
 	 */
 	public static final String DISPLAY_ENABLED = "1";
 	
-	
+	public static final String TIME = DateUtil.formatDate(DateUtil.getCurrentDate(), DateUtil.FORMAT_DATETIME_YYYYMMDDHHMMSSSSS);
 }

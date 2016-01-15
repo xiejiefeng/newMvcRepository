@@ -220,6 +220,8 @@
 			<map>
 				<!-- <entry key="jscssUrl" value="http://localhost:9080/resources" /> -->
 				<entry key="jscssUrl" value-ref="fmJsscssUrl" />
+				<entry key="name" value="xiejf" />
+				<entry key="testTime" value-ref="testTime" />
 			</map>
 		</property>
 		<property name="defaultEncoding" value="utf-8" />
@@ -231,6 +233,8 @@
         <property name="imgUrlStarNum" value="${ebiz.wemall.web.jscssUrlStarNum}" />
         <property name="imgHostNumber" value="${ebiz.wemall.web.jscssHostNumber}" /> -->
     </bean>
+    
+    <bean id="testTime" class="com.xjf.wemall.web.freemarker.xiejfTest"/>
     
 	<!-- json解析 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

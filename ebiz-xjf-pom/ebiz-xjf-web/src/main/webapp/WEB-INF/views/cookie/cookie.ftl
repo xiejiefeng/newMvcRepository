@@ -6,6 +6,12 @@
 <title>设定OpenId</title>
 <#include "/common/header.ftl" encoding="UTF-8">
 <link rel="stylesheet" type="text/css" href="<@jci.domain url='/css/cookie/cookie.css'/>">
+<script>
+	<#if serviceDescJsParamString??>
+        ${serviceDescJsParamString}
+    </#if>
+</script>
+		
 </head>
 <body>
 <div class="head" style="width:120px">

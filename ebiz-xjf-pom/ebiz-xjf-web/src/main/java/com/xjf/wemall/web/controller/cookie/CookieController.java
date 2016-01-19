@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xjf.wemall.api.entity.common.CookieObject;
+import com.xjf.wemall.api.util.JavaScriptUtil;
 import com.xjf.wemall.web.controller.BaseController;
 
 /**
@@ -84,6 +85,16 @@ public class CookieController extends BaseController{
 //			}
 //    	});
 //    	model.addAttribute("openTypeList", list);
+    	
+    	StringBuffer jsParamString = new StringBuffer();
+
+		for (int i = 0; i< 1; i++) {
+			jsParamString.append("var ").append("a").append(" = \"")
+					.append(i).append("\" ;");
+		}
+		// 混淆的JS
+		model.addAttribute("serviceDescJsParamString", JavaScriptUtil.obfuscateScript(jsParamString.toString()));
+		
         return COOKIE_FTL;
     }
     

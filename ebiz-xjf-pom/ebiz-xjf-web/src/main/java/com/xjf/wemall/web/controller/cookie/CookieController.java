@@ -22,9 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xjf.wemall.api.entity.common.CookieObject;
@@ -62,7 +64,8 @@ public class CookieController extends BaseController{
      * @since [产品/模块版本](可选)
      */
     @RequestMapping("/menu")
-    public String index(HttpServletRequest request, Model model, HttpServletResponse response){
+    public String index(HttpServletRequest request, Model model, HttpServletResponse response,
+    		@MatrixVariable(required = false) String q1, @MatrixVariable(required = false) String q2){
     	
     	// 获取Cookie对象
     	CookieObject cookie = super.getCookie(response);
@@ -85,6 +88,42 @@ public class CookieController extends BaseController{
 //			}
 //    	});
 //    	model.addAttribute("openTypeList", list);
+    	
+    	StringBuffer jsParamString = new StringBuffer();
+
+		for (int i = 0; i< 1; i++) {
+			jsParamString.append("var ").append("a").append(" = \"")
+					.append(i).append("\" ;");
+		}
+		// 混淆的JS
+		model.addAttribute("serviceDescJsParamString", JavaScriptUtil.obfuscateScript(jsParamString.toString()));
+		
+        return COOKIE_FTL;
+    }
+    
+    /***
+     *     
+     * 功能描述:跳转关于我们 <br>
+     * 〈功能详细描述〉
+     *
+     * @return
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    @RequestMapping("/m/{menu2}")
+    public String index(HttpServletRequest request, Model model, HttpServletResponse response, @PathVariable(value = "menu2") String menu2,
+    		@MatrixVariable(required = false) String[] q1, @MatrixVariable(required = false) String q2){
+    	
+    	// 获取Cookie对象
+    	CookieObject cookie = super.getCookie(response);
+    	
+    	//判断cookie中是否有openid
+    	model.addAttribute("openId", cookie.getOpenId());
+    	model.addAttribute("openType", cookie.getOpenType());
+    	model.addAttribute("cxId", cookie.getCxId());
+    	model.addAttribute("x", cookie.getLongitude());
+    	model.addAttribute("y", cookie.getLatitude());
+    	model.addAttribute("key", cookie.getKey());
     	
     	StringBuffer jsParamString = new StringBuffer();
 

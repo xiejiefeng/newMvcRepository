@@ -12,6 +12,11 @@
 	
 	<!-- 扫描加载注解 -->
 	<context:component-scan base-package="com.xjf.wemall.web" />
+	<!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="removeSemicolonContent" value="false"></property>
+	</bean>
+	Spring3.1开始的注解 HandlerAdapter
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>   -->  
 	
 	<!-- WEB类项目不停机发包设置
     <bean name="/background-healthcheck" class="org.springframework.web.servlet.mvc.ServletForwardingController">
@@ -42,9 +47,8 @@
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean>
     
-	
 	<!-- Spring MVC自动 -->
-	<mvc:annotation-driven>
+	<mvc:annotation-driven enable-matrix-variables="true">
     	<mvc:message-converters register-defaults="true">  
 			<!--<bean class="com.ibm.framework.web.escape.StringEscapeHttpMessageConverterr"/>  -->
         	<bean class="org.springframework.http.converter.StringHttpMessageConverter">  

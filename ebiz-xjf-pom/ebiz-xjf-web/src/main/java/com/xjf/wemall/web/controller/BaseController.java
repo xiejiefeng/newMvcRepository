@@ -42,8 +42,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -75,7 +78,16 @@ public class BaseController {
 	
     @Autowired
     protected IndexService indexService;
-	
+    
+    @ModelAttribute
+    public void populateModel1(@RequestParam(required = false) String abc, Model model) {  
+       model.addAttribute("attributeName", abc);  
+    }
+    
+    @ModelAttribute  
+    public void populateModel2(@RequestParam(required = false) String cba, Model model) {  
+       model.addAttribute("attributeName", cba);  
+    }
 	
 	@RequestMapping(value="/index.htm")
 	public String index(RedirectAttributes redirectAttributes
@@ -107,10 +119,19 @@ public class BaseController {
 	}
 	
 	
-	@RequestMapping(value="/index3")
+	@RequestMapping(value="/{index1}/{index2}/{index3}")
 	@ResponseBody
-	public Vo index3(Vo v, HttpServletRequest servletRequest
-			, Model model){
+	public Vo index3(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
+			, @PathVariable("index2") String index2
+			, @PathVariable("index3") String index3){
+		return v;
+	}
+	
+	@RequestMapping(value="/{index1}/{index2}/{index3}.htm")
+	@ResponseBody
+	public Vo index4(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
+			, @PathVariable("index2") String index2
+			, @PathVariable("index3") String index3){
 		return v;
 	}
 	

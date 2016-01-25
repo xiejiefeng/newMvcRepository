@@ -12,6 +12,7 @@ package com.xjf.wemall.web.controller.cookie;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +25,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xjf.wemall.api.entity.common.CookieObject;
+import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.JavaScriptUtil;
 import com.xjf.wemall.web.controller.BaseController;
 
@@ -423,4 +426,30 @@ public class CookieController extends BaseController{
 //		
 //		return ajaxObject;
 //	}
+    
+   
+	@RequestMapping(value = "/querySysReferenceForRestFul", method = RequestMethod.POST)
+	public String querySysReferenceForRestFul(@RequestBody String sysReferenceDetailVo
+			, HttpServletResponse response) {
+		HashMap<String, Object> ajaxObject = new HashMap<String, Object>();
+	
+		if (StringUtils.isEmpty("")) {
+			ajaxObject.put("status", "error");
+			ajaxObject.put("message", "信息编码为空");
+		}
+        try {
+        	
+        	
+        	response.setContentType("text/html;charset=UTF-8");
+	        response.setHeader("Pragma", "No-cache");
+	        response.setHeader("Cache-Control", "no-cache");
+	        response.setDateHeader("Expires", 0);
+			response.getWriter().write(JSONParser.toJSONString(ajaxObject));
+			response.getWriter().flush();
+		} catch (Exception e) {
+			logger.info("querySysReferenceForRestFul error:{}", e.getMessage());
+		}
+        
+        return null;
+	}
 }

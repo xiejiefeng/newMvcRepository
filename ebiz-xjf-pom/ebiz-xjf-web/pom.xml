@@ -58,11 +58,11 @@
 		<artifactId>spring-webmvc</artifactId>
 	</dependency>
 	<!-- Servlet -->
-	<dependency>
+	<!-- <dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>servlet-api</artifactId>
 		<scope>provided</scope>
-	</dependency>
+	</dependency> -->
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>jsp-api</artifactId>
@@ -146,6 +146,16 @@
 		<groupId>org.codehaus.jackson</groupId>
 		<artifactId>jackson-mapper-asl</artifactId>
 	</dependency>-->
+	<!-- websocket -->
+	<!-- 为了使用WebSocket，将javax.servlet-api升级到3.1以上 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+	</dependency>
+	<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-websocket</artifactId>
+    </dependency>
   </dependencies>
   
   <build>

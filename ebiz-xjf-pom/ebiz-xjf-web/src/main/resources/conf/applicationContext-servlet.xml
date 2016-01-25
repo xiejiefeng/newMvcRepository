@@ -24,7 +24,7 @@
     </bean> -->
 	
 	<!-- 加载配置文件
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.VenusPropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="com.gagu.ucm.agent.venus.placeholder.VenusPropertyPlaceholderConfigurer">
         <property name="locations">
             <list>           
                 <value>classpath:application.properties</value> 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	
+		<!-- Service -->
+	<import resource="classpath:conf/applicationContext-service.xml"/>
+	<!-- Quartz -->
+<!-- 	<import resource="classpath:conf/applicationContext-quartz.xml"/> -->
+	
+	<!-- 加载配置文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>           
+                <value>classpath:application.properties</value> 
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+	
+	<!--websocket配置-->
+	<bean id="webSocketHandler" class="com.xjf.wemall.web.socket.handler.WebSocketHandler"/>
+	 
+	<websocket:handlers>
+	    <websocket:mapping path="/websck"  handler="webSocketHandler"/>
+	    <websocket:handshake-interceptors>
+	        <bean class="com.xjf.wemall.web.socket.interceptor.HandshakeInterceptor"/>
+	    </websocket:handshake-interceptors>
+	</websocket:handlers>
+	 
+	<bean class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">
+	    <property name="maxTextMessageBufferSize" value="8192"/>
+	    <property name="maxBinaryMessageBufferSize" value="8192"/>
+	    <property name="maxSessionIdleTimeout" value="900000"/>
+	    <property name="asyncSendTimeout" value="5000"/>
+	</bean>
+</beans>

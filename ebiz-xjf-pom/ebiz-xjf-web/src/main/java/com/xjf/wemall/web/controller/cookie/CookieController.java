@@ -112,7 +112,8 @@ public class CookieController extends BaseController{
      */
     @RequestMapping("/m/{menu2}")
     public String index(HttpServletRequest request, Model model, HttpServletResponse response, @PathVariable(value = "menu2") String menu2,
-    		@MatrixVariable(required = false) String[] q1, @MatrixVariable(required = false) String q2){
+    		@MatrixVariable(required = false) String[] q1, @MatrixVariable(required = false) String q2
+    		,@RequestParam(required=false) String q3){
     	
     	// 获取Cookie对象
     	CookieObject cookie = super.getCookie(response);

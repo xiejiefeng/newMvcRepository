@@ -118,12 +118,13 @@ public class BaseController {
 		return map;
 	}
 	
-	
+	// http://localhost:8080/base/1/2/3/?index4=11
 	@RequestMapping(value="/{index1}/{index2}/{index3}")
 	@ResponseBody
 	public Vo index3(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
 			, @PathVariable("index2") String index2
-			, @PathVariable("index3") String index3){
+			, @PathVariable("index3") String index3
+			, @RequestParam(value="index4",required=false) String index4){
 		return v;
 	}
 	
@@ -131,7 +132,7 @@ public class BaseController {
 	@ResponseBody
 	public Vo index4(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
 			, @PathVariable("index2") String index2
-			, @PathVariable("index3") String index3){
+			, @PathVariable("index3") String index3, @RequestParam(value="index4",required=false) String index4){
 		return v;
 	}
 	

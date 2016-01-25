@@ -17,7 +17,9 @@
 <div class="head" style="width:120px">
 	OpenType：
 </div>
-
+<div class="head" style="width:120px">
+	<a href="javascript:sendMessage()" class="btn">webSocket</a>
+</div>
 <div class="head" style="width:120px">
 	<a href="javascript:setOpenId()" class="btn">设定Cookie</a>
 </div>
@@ -328,7 +330,8 @@ ${time}
 <div class="head">
 	<textarea id="redisValue" name="redisValue" style="width:300px;height:200px" readonly></textarea>
 </div>
-
+<script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+<script type="text/javascript" src="<@jci.resources url='/js/socket.js'/>"></script>
 <!--
 <div class="line"></div>
 
@@ -339,6 +342,31 @@ ${time}
 <footer></footer>
 <#include "/common/footer.ftl" encoding="UTF-8">
 <script type="text/javascript">
+// websocket demo
+$(function(){
+	var param = {
+		successfnc : function(data) {
+			$("#loadImg").fadeOut();
+			if (data == "true") {
+				alertObj("重置成功！");
+			} else {
+				alertObj("创建失败！");
+			}
+		}
+	};
+	connect(param);
+});
+
+function sendMessage(){
+	$("#loadImg").fadeIn();
+	var message = {
+		action :'cookie',
+		value:'testValue'
+	};
+	echo(JSON.stringify(message));
+}
+
+
 function setOpenId() {
 	
 	var url=$.context+"/cookie/setCookie.htm";

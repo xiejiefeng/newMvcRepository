@@ -67,10 +67,26 @@
 		<!-- <url-pattern>*.htm</url-pattern>
 		<url-pattern>*.json</url-pattern> -->
 		<url-pattern>/</url-pattern>
+		<!-- <url-pattern>/*</url-pattern> -->
 		<!-- @MatrixVariable(<url-pattern>/</url-pattern> -->
 	</servlet-mapping>
 	<!-- Servlet End -->
+	<!-- Socket Servlet Start -->
+	<servlet>
+		<servlet-name>dispatcherServletSocket</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:conf/applicationContext-socket.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcherServletSocket</servlet-name>
+		<url-pattern>/websck</url-pattern>
+	</servlet-mapping>
 	
+	<!-- Socket Servlet End -->
 	<!-- Filter -->
     <filter>
         <filter-name>userLoginFilter</filter-name>

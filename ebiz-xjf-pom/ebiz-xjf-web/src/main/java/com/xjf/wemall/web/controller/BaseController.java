@@ -54,6 +54,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xjf.wemall.adapter.service.entity.alibabamap.MapInfoResult;
 import com.xjf.wemall.api.entity.common.CookieObject;
 import com.xjf.wemall.service.index.api.IndexService;
 
@@ -135,6 +136,14 @@ public class BaseController {
 			, @PathVariable("index3") String index3, @RequestParam(value="index4",required=false) String index4){
 		return v;
 	}
+	
+	
+	@RequestMapping(value="/map")
+	@ResponseBody
+	public MapInfoResult index4(HttpServletRequest servletRequest){
+		return indexService.mapInfo();
+	}
+	
 	
 	/***
 	 * 

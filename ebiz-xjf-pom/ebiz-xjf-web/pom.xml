@@ -24,6 +24,11 @@
 		<artifactId>ebiz-xjf-api</artifactId>
 		<version>${ebiz.xjf.version}</version>
 	</dependency>
+	<dependency>
+		<groupId>com.xjf.ebiz</groupId>
+		<artifactId>ebiz-xjf-adapter</artifactId>
+		<version>${ebiz.xjf.version}</version>
+	</dependency>
 	<!-- ebiz xjf end -->
 	
     <dependency>

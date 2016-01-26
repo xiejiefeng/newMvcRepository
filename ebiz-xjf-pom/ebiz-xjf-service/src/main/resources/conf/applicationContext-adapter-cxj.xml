@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+	<!-- ************************************************** 业务系统连接器 Start ************************************************** -->
+	<!-- 业务系统-连接器 -->
+	<bean id="cxjConnector" abstract="true"
+		class="com.xjf.wemall.adapter.connector.impl.alibabamap.MapConnector">
+		<property name="adapterHttpHandler" ref="adapterHttpHandler" />
+		<property name="host" value="${ebiz.wemall.adapter.cxj.host}" />
+		<property name="address" value="${ebiz.wemall.adapter.cxj.address}" />
+	</bean>
+
+	<!-- 业务系统-客户注册接口-连接器 -->
+	<bean id="adapterMap" class="com.xjf.wemall.adapter.service.impl.AdapterServiceImpl">
+		<property name="connector">
+			<bean parent="cxjConnector">
+				<property name="method" value="geocoding" />
+			</bean>
+		</property>
+	</bean>
+	<!-- ************************************************** 业务系统连接器 End ************************************************** -->
+</beans>

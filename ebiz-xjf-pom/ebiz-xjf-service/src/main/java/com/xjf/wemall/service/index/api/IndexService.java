@@ -2,6 +2,7 @@ package com.xjf.wemall.service.index.api;
 
 import java.util.Map;
 
+import com.xjf.wemall.adapter.service.entity.alibabamap.MapInfoResult;
 import com.xjf.wemall.service.base.api.BaseService;
 
 /**
@@ -11,4 +12,6 @@ import com.xjf.wemall.service.base.api.BaseService;
  */
 public interface IndexService extends BaseService{
 	public Map<String, String> index();
+	
+	public MapInfoResult mapInfo();
 }

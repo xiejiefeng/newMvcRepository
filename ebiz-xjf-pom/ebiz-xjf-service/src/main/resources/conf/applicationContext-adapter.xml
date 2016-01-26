@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+	
+	<task:annotation-driven />
+		
+	<!-- HTTP 连接适配 -->
+	<bean id="adapterHttpHandler" class="com.xjf.wemall.adapter.http.impl.AdapterHttpHandlerImpl">
+		<!-- 连接超时时间  -->
+		<property name="connectionTimeout"  value="${ebiz.wemall.httpclient.connectionTimeout}"/>
+		<!-- 回应超时时间 -->
+		<property name="connectionRequestTimeout"  value="${ebiz.wemall.httpclient.connectionRequestTimeout}"/>
+		<!-- 闲置连接超时时间 -->
+		<property name="socketTimeOut" value="${ebiz.wemall.httpclient.socketTimeOut}"/>
+		<!-- 每个路由最大连接数  -->		
+		<property name="maxRouteConnection" value="${ebiz.wemall.httpclient.maxRouteConnection}"/>
+		<!-- 每台主机的最连接数 -->
+		<property name="maxTotal" value="${ebiz.wemall.httpclient.maxTotal}"/>
+		<!-- 连接空闲的时间 -->
+		<property name="idleTimeout" value="${ebiz.wemall.httpclient.idleTimeout}"/>
+	</bean>
+	
+	<import resource="classpath:conf/applicationContext-adapter-cxj.xml"/>
+</beans>

@@ -10,8 +10,8 @@
 	
 	<!-- 缓存Redis
 	<import resource="classpath:conf/applicationContext-redis-config.xml"/> -->
-	<!-- 接口适配器
-	<import resource="classpath:conf/applicationContext-adapter.xml"/> -->
+	<!-- 接口适配器 -->
+	<import resource="classpath:conf/applicationContext-adapter.xml"/>
 	<!-- dal
 	<import resource="classpath:conf/applicationContext-dal.xml"/> -->
 	<!-- Service -->
@@ -30,5 +30,16 @@
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean> -->
+    <!-- 加载配置文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>           
+                <value>classpath:application.properties</value> 
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
     
 </beans>

@@ -7,48 +7,23 @@
     <artifactId>ebiz-xjf-pom</artifactId>
     <version>${ebiz.xjf.version}</version>
   </parent>
-  
-  <artifactId>ebiz-xjf-service</artifactId>
-  <name>ebiz-xjf-service</name>
-  
+  <artifactId>ebiz-xjf-adapter</artifactId>
+  <name>ebiz-xjf-adapter</name>
+
   <dependencies>
   	<dependency>
-		<groupId>com.xjf.ebiz</groupId>
-		<artifactId>ebiz-xjf-adapter</artifactId>
-		<version>${ebiz.xjf.version}</version>
-	</dependency>
-	<dependency>
 		<groupId>com.xjf.ebiz</groupId>
 		<artifactId>ebiz-xjf-api</artifactId>
 		<version>${ebiz.xjf.version}</version>
 	</dependency>
-  	<dependency>
+	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>
 		<scope>test</scope>
 	</dependency>
 	<dependency>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-lang3</artifactId>
-	</dependency>
-	<dependency>
-		<groupId>com.alibaba</groupId>
-		<artifactId>fastjson</artifactId>
-	</dependency>
-	<!--Spring Security Start -->
-	<dependency>
-		<groupId>org.springframework.security</groupId>
-		<artifactId>spring-security-core</artifactId>
-	</dependency>
-	<!-- -Spring Security Start -->
-	<dependency>  
-	     <groupId>org.jboss.netty</groupId>     
-	     <artifactId>netty</artifactId>  
-    </dependency>
-    <!-- Logger Start -->
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-api</artifactId>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
@@ -62,10 +37,23 @@
 		<groupId>ch.qos.logback</groupId>
 		<artifactId>logback-classic</artifactId>
 	</dependency>
+	<!-- Spring Start -->
 	<dependency>
-		<groupId>org.logback-extensions</groupId>
-		<artifactId>logback-ext-spring</artifactId>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
 	</dependency>
-	<!-- Logger End -->	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+	</dependency>
+	<!-- Spring End -->
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpcore</artifactId>
+	</dependency>
   </dependencies>
 </project>

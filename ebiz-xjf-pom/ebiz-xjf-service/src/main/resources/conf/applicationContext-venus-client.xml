@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<venus-client xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="venus-client.xsd">
+    <remotes>
+        <remote name="commonVenusBus" >
+            <!-- 与远程连接的socket相关的配置 -->
+            <factory>
+                <!-- 支持多节点负责均衡的高可用配置，默认采用轮询 10.35.5.92-->
+                <property name="ipAddressList">${service.venus.bus.ipAddressList}</property>
+                <!--  socket的sendBuffer缓冲区大小，单位:K-->
+                <property name="sendBufferSize">${component.venus.remote.sendBufferSize}</property>
+                <!--  socket的receiveBuffer缓冲区大小，单位:K -->
+                <property name="receiveBufferSize">${component.venus.remote.receiveBufferSize}</property>
+            </factory>
+            <!-- 与每个远程节点的连接池配置，与apache的commons-pool配置一致 -->
+            <pool>
+                <property name="maxActive">${component.venus.pool.maxActive}</property>
+                <property name="maxIdle">${component.venus.pool.maxIdle}</property>
+                <property name="minIdle">${component.venus.pool.minIdle}</property>
+                <property name="minEvictableIdleTimeMillis">${component.venus.pool.minEvictableIdleTimeMillis}</property>
+                <property name="timeBetweenEvictionRunsMillis">${component.venus.pool.timeBetweenEvictionRunsMillis}</property>
+                <property name="testOnBorrow">${component.venus.pool.testOnBorrow}</property>
+                <property name="testWhileIdle">${component.venus.pool.testWhileIdle}</property>
+            </pool>
+            <!-- 用户名、密码认证方式  -->
+            <authenticator class="com.meidusa.venus.client.authenticate.UserPasswordAuthenticator">
+                <property name="username">${component.venus.authentication.username}</property>
+                <property name="password">${component.venus.authentication.password}</property>
+                <!-- 对象系列化方式，目前支持3种 ： 0:json ,1：bson , 2: java对象系列化 -->
+                <property name="serializeType">${component.venus.pool.serializeType}</property>
+            </authenticator>
+        </remote>
+
+    </remotes>
+
+    <!-- 定义服务以及指定该服务提供方的远程相关配置 -->
+    <services>
+    	<!-- 服务商店铺接口 -->
+        <service beanName="serviceProviderService" type="com.saic.ebiz.dop.service.service.api.IServiceProviderService" remote="commonVenusBus"/>
+        
+		<!-- 车型字典级联菜单接口 -->
+        <service beanName="aftersalesCarReferenceService" type="com.saic.ebiz.carlib.aftersales.api.MDMAftersalesCarReferenceService" remote="commonVenusBus"/>
+        
+        <!-- 车享家短信接口 -->
+        <service beanName="smsService" type="com.ebiz.cxj.api.sms.SmsServiceApi" remote="commonVenusBus"/>
+        
+        <!-- 资产接口 -->
+        <service beanName="mmsAssetService" type="com.saic.ebiz.mms.service.api.MmsAssetService" remote="commonVenusBus"/>
+        
+    </services>
+</venus-client>

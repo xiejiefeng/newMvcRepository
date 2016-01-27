@@ -6,6 +6,7 @@
 	<!-- Spring context-param -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
+		<!-- classpath:conf/applicationContext-venus-spring.xml -->
 		<param-value>
 			classpath:conf/applicationContext.xml
 		</param-value>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+	http://cxf.apache.org/jaxws
+	http://cxf.apache.org/schemas/jaxws.xsd
+	http://cxf.apache.org/transports/http/configuration
+	http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+	<!-- ========================= Quartz beginning ========================= -->
+	<!-- 线程执行器配置，用于任务注册 -->
+    <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10" />
+        <property name="maxPoolSize" value="100" />
+        <property name="queueCapacity" value="500" />
+    </bean>
+    
+	<!-- 刷新缓存 - 定义工作 -->
+	<bean id="redisJob" class="com.xjf.wemall.web.job.RedisJob" />
+	
+	<!-- 刷新缓存 - 定义任务 -->
+	<bean id="redisTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject" ref="redisJob" />
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<!-- 刷新缓存 - 定义触发时间 -->
+	<bean id="redisTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="redisTask" />
+		<!-- cron表达式每天4点执行一次 -->
+	    <property name="cronExpression" value="0 0 4 * * ?" />
+	</bean>
+
+	<!-- *********************************************************************** -->
+
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="redisTime" />
+			</list>
+		</property>
+		
+		<property name="taskExecutor" ref="executor" />
+	</bean>
+
+	<!-- ========================= Quartz ending ========================= -->
+</beans>

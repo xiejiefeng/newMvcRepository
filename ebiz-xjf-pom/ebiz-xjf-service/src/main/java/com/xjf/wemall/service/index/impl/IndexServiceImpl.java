@@ -59,7 +59,4 @@ public class IndexServiceImpl extends BaseServiceImpl implements IndexService {
 		
 		return mapInfo;
 	}
-
-	
-
 }

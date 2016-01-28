@@ -15,6 +15,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+import com.xjf.wemall.service.redis.AbstractRedisService;
+
 /**
  * Sevice基类处理
  *
@@ -22,7 +24,7 @@ import org.springframework.stereotype.Service;
  * @see com.saic.ebiz.cxj.service.IBaseService
  */
 @Service
-public class BaseServiceImpl implements ApplicationContextAware {
+public class BaseServiceImpl extends AbstractRedisService implements ApplicationContextAware {
 //public class BaseServiceImpl<P extends BasePo, Dal extends BaseDal<P>> 
 	//extends AbstractRedisService 
 	//implements BaseService<P, Dal>,

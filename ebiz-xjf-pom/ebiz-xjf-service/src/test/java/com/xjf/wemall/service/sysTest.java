@@ -12,6 +12,7 @@ import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.index.api.IndexService;
 
+
 /**
  * Unit test for simple App.
  */
@@ -42,10 +43,17 @@ public class sysTest extends AllServiceTest {
 			
 			list.add(vo);
 		}
-		
-		
 		// 排序
 		Collections.sort(list, new sampleComparator());
+		
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(JSONParser.toJSONString(list.get(i)));
+		}
+	}
+	
+	@Test
+	public void redis() {
+		List<String> list = indexService.getRedis();
 		
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(JSONParser.toJSONString(list.get(i)));

@@ -11,6 +11,7 @@
 package com.xjf.wemall.service.index.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,13 @@ public class IndexServiceImpl extends BaseServiceImpl implements IndexService {
 				.getData(MapInfoResult.class, requestStr);
 		
 		return mapInfo;
+	}
+	@Override
+	public List<String> getRedis() {
+		// 获取全数据
+		List<String> list = super.getRedisByKeys(SYS_REFERENCE_MAP_KEY + ":XSFW:*", 
+				String.class);
+		
+		return list;
 	}
 }

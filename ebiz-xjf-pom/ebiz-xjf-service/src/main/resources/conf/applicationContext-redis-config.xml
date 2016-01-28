@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    <context:component-scan base-package="com.xjf.wemall.redis" />
+	<!-- 配置redis连接池信息 -->
+	<bean id="poolConfig" class="com.xjf.wemall.redis.config.spring.PoolConfig">
+		<property name="maxIdle" value="${ebiz.wemall.redis.maxIdle}" />
+		<property name="minIdle" value="${ebiz.wemall.redis.minIdle}" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+	</bean>
+	<!-- 配置server信息 -->
+	<bean id="server1" class="com.xjf.wemall.redis.shard.NodeInfo4Jedis">
+		<property name="ip" value="${ebiz.wemall.redis.serverOne.ip}" />
+		<property name="port" value="${ebiz.wemall.redis.serverOne.port}" />
+		<property name="password" value="" />
+		<property name="timeOut" value="${ebiz.wemall.redis.serverOne.timeout}" />
+		<property name="dbIndex" value="${ebiz.wemall.redis.serverOne.dbIndex}" />
+	</bean>
+	<!-- 配置server信息 -->
+	<bean id="server2" class="com.xjf.wemall.redis.shard.NodeInfo4Jedis">
+		<property name="ip" value="${ebiz.wemall.redis.serverTwo.ip}" />
+		<property name="port" value="${ebiz.wemall.redis.serverTwo.port}" />
+		<property name="password" value="" />
+		<property name="timeOut" value="${ebiz.wemall.redis.serverTwo.timeout}" />
+		<property name="dbIndex" value="${ebiz.wemall.redis.serverTwo.dbIndex}" />
+	</bean>
+	<!-- 配置shard信息 -->
+	<bean id="shard1" class="com.xjf.wemall.redis.shard.ShardInfo4Jedis">
+		<property name="shardName" value="shard1" />
+		<property name="nodes">
+			<set>
+				<ref bean="server1" />
+				<ref bean="server2" />
+			</set>
+		</property>
+	</bean>
+	<!-- 配置shard组合信息 -->
+	<bean id="shardConfig" class="com.xjf.wemall.redis.config.spring.ShardConfig">
+		<property name="shardConfigName" value="config1" />
+		<property name="shards">
+			<list>
+				<ref bean="shard1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="configManager4Spring"
+		class="com.xjf.wemall.redis.config.spring.ConfigManager4Spring">
+		<property name="poolConfig" ref="poolConfig" />
+		<property name="shardConfig" ref="shardConfig" />
+	</bean>
+<!-- 	<bean id="springRedisClient" -->
+<!-- 		class="com.xjf.wemall.redis.client.impl.spring.SpringRedisClientImpl" -->
+<!-- 		init-method="init"> -->
+<!-- 		<property name="configManager4Spring" ref="configManager4Spring" /> -->
+<!-- 	</bean> -->
+	<bean id="springBinaryRedisClient"
+		class="com.xjf.wemall.redis.client.impl.spring.SpringBinaryRedisClientImpl"
+		init-method="init">
+		<property name="configManager4Spring" ref="configManager4Spring" />
+	</bean>
+	<bean id="redisClient"
+		class="com.xjf.wemall.service.redis.impl.RedisClientServiceImpl"
+		init-method="init">
+		<property name="configManager4Spring" ref="configManager4Spring" />
+	</bean>
+	<!-- 缓存方法拦截器 -->
+<!-- 	<bean id="methodCacheInterceptor" class="com.saic.redis.cache.interceptor.RedisMethodCacheInterceptor" /> -->
+<!-- 	<aop:config proxy-target-class="true"> -->
+<!--  		<aop:pointcut id="cacheService" expression="execution(* com.saic.wemall..*Service..*(..))"/> -->
+<!-- 	 	<aop:advisor id="methodCache" advice-ref="methodCacheInterceptor" order="0" pointcut-ref="cacheService"/> -->
+<!--  	</aop:config> -->
+</beans>

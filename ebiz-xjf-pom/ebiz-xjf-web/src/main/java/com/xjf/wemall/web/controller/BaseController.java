@@ -105,7 +105,7 @@ public class BaseController {
 		//servletRequest.getRequestDispatcher("https://www.baidu.com").forward(servletRequest, servletResponse);
 
 		// map
-		redirectAttributes.addFlashAttribute("map", indexService.index());
+//		redirectAttributes.addFlashAttribute("map", indexService.index());
 		return this.redirect("/base/index2.json");
 	}
 	

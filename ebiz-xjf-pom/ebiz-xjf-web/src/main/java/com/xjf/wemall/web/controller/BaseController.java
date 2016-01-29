@@ -57,6 +57,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.xjf.wemall.adapter.service.entity.alibabamap.MapInfoResult;
 import com.xjf.wemall.api.entity.common.CookieObject;
 import com.xjf.wemall.service.index.api.IndexService;
+import com.xjf.wemall.web.util.CookieUtil;
 
 //import com.saic.wemall.api.entity.common.CookieObject;
 //import com.saic.wemall.service.sysreference.api.SysRefFieldService;
@@ -186,11 +187,11 @@ public class BaseController {
 	 * @since [产品/模块版本](可选)
 	 */
 	private String getOpenId(){
-//		String openId = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.OPENID);
-//		if(StringUtils.isNotEmpty(openId)){
-//			return openId;
-//		}
-		return StringUtils.EMPTY;
+		String openId = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.OPENID);
+		if(StringUtils.isNotEmpty(openId)){
+			return openId;
+		}
+		return openId;
 	}
 	
 	/***
@@ -203,11 +204,11 @@ public class BaseController {
 	 * @since [产品/模块版本](可选)
 	 */
 	private String getOpenType(){
-//		String openType = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.OPEN_TYPE);
-//		if(StringUtils.isNotEmpty(openType)){
-//			return openType;
-//		}
-		return StringUtils.EMPTY;
+		String openType = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.OPEN_TYPE);
+		if(StringUtils.isNotEmpty(openType)){
+			return openType;
+		}
+		return openType;
 	}
 	
 	/***
@@ -220,11 +221,11 @@ public class BaseController {
 	 * @since [产品/模块版本](可选)
 	 */
 	private String getLongitude(){
-//		String longitude = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.LOCATION_LONGITUDE);
-//		if(StringUtils.isNotEmpty(longitude)){
-//			return longitude;
-//		}
-		return StringUtils.EMPTY;
+		String longitude = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.LOCATION_LONGITUDE);
+		if(StringUtils.isNotEmpty(longitude)){
+			return longitude;
+		}
+		return longitude;
 	}
 	
 	/***
@@ -237,11 +238,11 @@ public class BaseController {
 	 * @since [产品/模块版本](可选)
 	 */
 	private String getLatitude(){
-//		String latitude = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.LOCATION_LATITUDE);
-//		if(StringUtils.isNotEmpty(latitude)){
-//			return latitude;
-//		}
-		return StringUtils.EMPTY;
+		String latitude = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.LOCATION_LATITUDE);
+		if(StringUtils.isNotEmpty(latitude)){
+			return latitude;
+		}
+		return latitude;
 	}
 	
 	/***
@@ -254,11 +255,11 @@ public class BaseController {
 	 * @since [产品/模块版本](可选)
 	 */
 	private String getCxId(){
-//		String cxId = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.CXID);
-//		if(StringUtils.isNotEmpty(cxId)){
-//			return cxId;
-//		}
-		return StringUtils.EMPTY;
+		String cxId = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.CXID);
+		if(StringUtils.isNotEmpty(cxId)){
+			return cxId;
+		}
+		return cxId;
 	}
 	
 	/***
@@ -271,11 +272,11 @@ public class BaseController {
 	 * @since [产品/模块版本](可选)
 	 */
 	private String getUserKey(){
-//		String userKey = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.USER_KEY);
-//		if(StringUtils.isNotEmpty(userKey)){
-//			return userKey;
-//		}
-		return StringUtils.EMPTY;
+		String userKey = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.USER_KEY);
+		if(StringUtils.isNotEmpty(userKey)){
+			return userKey;
+		}
+		return userKey;
 	}
 	
 	/***

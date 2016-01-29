@@ -117,7 +117,7 @@
    	<util:constant id="openTypeOther" 
     	static-field="com.saic.wemall.api.constant.WemallConstants.REFERENCE_DETAIL_CODE_TYPE_OTHER" /> -->
 		    
-	<!-- 拦截器
+	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/home/**"/>
@@ -131,9 +131,9 @@
 			<mvc:mapping path="/card/**"/>
 			<mvc:mapping path="/maintenance/**"/>
 			<mvc:mapping path="/tyre/**"/>
-			<bean class="com.saic.wemall.web.interceptor.OpenTypeInterceptor" />
+			<bean class="com.xjf.wemall.web.interceptor.OpenTypeInterceptor" />
 		</mvc:interceptor>
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/service/index.htm"/>
 			<mvc:mapping path="/service/toConfirm.htm"/>
 			<mvc:mapping path="/tyre/index.htm"/>
@@ -165,8 +165,8 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/tyre/**"/>
 			<bean class="com.saic.wemall.web.interceptor.TyreInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+		</mvc:interceptor> -->
+	</mvc:interceptors>
 	
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->

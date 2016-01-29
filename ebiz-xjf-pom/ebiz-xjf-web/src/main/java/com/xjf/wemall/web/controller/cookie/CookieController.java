@@ -31,10 +31,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xjf.wemall.api.entity.common.AjaxObject;
 import com.xjf.wemall.api.entity.common.CookieObject;
+import com.xjf.wemall.api.entity.user.PointVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.JavaScriptUtil;
 import com.xjf.wemall.web.controller.BaseController;
+import com.xjf.wemall.web.util.CookieUtil;
 
 /**
  * Cookie页面<br> 
@@ -171,41 +174,41 @@ public class CookieController extends BaseController{
 //	 * @see [相关类/方法](可选)
 //	 * @since [产品/模块版本](可选)
 //	 */
-//	@RequestMapping(value = "/setCookie", method = RequestMethod.GET)
-//	@ResponseBody
-//	public AjaxObject setCookie(String openId, String openType, String cxId, String x, String y, String key,
-//			HttpServletRequest request, HttpServletResponse response) {
-//
-//		AjaxObject ajaxObject = new AjaxObject();
-//		
-//		openId = openId.trim();
-//		openType = openType.trim();
-//		cxId = cxId.trim();
-//		x = x.trim();
-//		y = y.trim();
-//
-//		CookieUtil.addCookieMaxAge(response, CookieUtil.OPENID, openId);
-//		CookieUtil.addCookieMaxAge(response, CookieUtil.OPEN_TYPE, openType);
-//		CookieUtil.addCookieMaxAge(response, CookieUtil.CXID, cxId);
-//		CookieUtil.addCookieMaxAge(response, CookieUtil.LOCATION_LONGITUDE, x);
-//		CookieUtil.addCookieMaxAge(response, CookieUtil.LOCATION_LATITUDE, y);
-//		CookieUtil.addCookieMaxAge(response, CookieUtil.USER_KEY, key);
-//		
-//		if (StringUtils.isNotEmpty(x) && StringUtils.isNotEmpty(y)) {
-//			PointVo point = new PointVo();
-//			if (sysRefFieldService.openTypeCxj().equals(openType)) {
-//				point.setUserId(openId);
-//			} else {
-//				point.setUserId(cxId);
-//			}
-//			
-//			point.setLongitude(Double.valueOf(x));
-//			point.setLatitude(Double.valueOf(y));
+	@RequestMapping(value = "/setCookie", method = RequestMethod.GET)
+	@ResponseBody
+	public AjaxObject setCookie(String openId, String openType, String cxId, String x, String y, String key,
+			HttpServletRequest request, HttpServletResponse response) {
+
+		AjaxObject ajaxObject = new AjaxObject();
+		
+		openId = openId.trim();
+		openType = openType.trim();
+		cxId = cxId.trim();
+		x = x.trim();
+		y = y.trim();
+
+		CookieUtil.addCookieMaxAge(response, CookieUtil.OPENID, openId);
+		CookieUtil.addCookieMaxAge(response, CookieUtil.OPEN_TYPE, openType);
+		CookieUtil.addCookieMaxAge(response, CookieUtil.CXID, cxId);
+		CookieUtil.addCookieMaxAge(response, CookieUtil.LOCATION_LONGITUDE, x);
+		CookieUtil.addCookieMaxAge(response, CookieUtil.LOCATION_LATITUDE, y);
+		CookieUtil.addCookieMaxAge(response, CookieUtil.USER_KEY, key);
+		
+		if (StringUtils.isNotEmpty(x) && StringUtils.isNotEmpty(y)) {
+			PointVo point = new PointVo();
+			if ("4".equals(openType)) {
+				point.setUserId(openId);
+			} else {
+				point.setUserId(cxId);
+			}
+			
+			point.setLongitude(Double.valueOf(x));
+			point.setLatitude(Double.valueOf(y));
 //			userInfoService.putLocationToCache(key, point);
-//		}
-//
-//		return ajaxObject;
-//	}
+		}
+
+		return ajaxObject;
+	}
 //	
 //	/***
 //	 * 

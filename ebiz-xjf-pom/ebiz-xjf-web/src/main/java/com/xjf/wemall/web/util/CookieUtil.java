@@ -156,6 +156,7 @@ public class CookieUtil {
             }
         }
         
+        // 原本就删除
 //        //String sessionId = request.getSession().getId();
 //        String requestUri = request.getRequestURI();
 //        int idx = requestUri.indexOf(JSESSIONID);

@@ -137,7 +137,8 @@ public abstract class AbstractService {
 	protected static final String MRK_AREA_KEY = "WEMALL:MRK:AREA:";
 	
 	/**缓存刷新锁的KEY(5分钟/30秒)*/
-	protected static final String COMMON_RESET_LOCK_KEY = "WEMALL:COMMON:RESET_LOCK";
+	protected static final String COMMON_RESET_LOCK_KEY = "WEMALL:COMMON:TEST_LOCK";
+	
 	/**配置界面验证缓存(30分钟/1天)*/
 	protected static final String COMMON_VERIFY_KEY = "WEMALL:COMMON:VERIFY:";
 	

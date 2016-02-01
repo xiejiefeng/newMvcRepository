@@ -53,6 +53,7 @@ public class RedisLockServiceImpl extends AbstractService implements RedisLockSe
 			return true;
 		}
 		else {
+			// 获得锁
 			RedisLockVo redisLock = this.getRedisLock(redisKey);
 			
 			if (redisLock != null) {

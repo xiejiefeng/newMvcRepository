@@ -67,8 +67,7 @@ import com.xjf.wemall.web.util.CookieUtil;
  * @author baowenzhou
  *
  */
-@Controller(value="baseController")
-@RequestMapping("/base")
+@Controller
 public class BaseController {
 	/**
 	 * 日志
@@ -81,69 +80,70 @@ public class BaseController {
     @Autowired
     protected IndexService indexService;
     
-    @ModelAttribute
-    public void populateModel1(@RequestParam(required = false) String abc, Model model) {  
-       model.addAttribute("attributeName", abc);  
-    }
-    
-    @ModelAttribute  
-    public void populateModel2(@RequestParam(required = false) String cba, Model model) {  
-       model.addAttribute("attributeName", cba);  
-    }
+    // 走到这个control都会走
+//    @ModelAttribute
+//    public void populateModel1(@RequestParam(required = false) String abc, Model model) {  
+//       model.addAttribute("attributeName", abc);  
+//    }
+//    // 走到这个control都会走
+//    @ModelAttribute  
+//    public void populateModel2(@RequestParam(required = false) String cba, Model model) {  
+//       model.addAttribute("attributeName", cba);  
+//    }
 	
-	@RequestMapping(value="/index.htm")
-	public String index(RedirectAttributes redirectAttributes
-			, HttpServletRequest servletRequest
-			, HttpServletResponse servletResponse
-			, Model model) throws Exception {
-		//redirectAttributes.addFlashAttribute("map", indexService.index());
-//		redirectAttributes.addAttribute("map", "abc");
-		//model.addAttribute("map", "abc");
-		//servletRequest.setAttribute("cccc", "3");
-		//servletResponse.sendRedirect("/base/index2.json");
-//		return this.redirect("/base/index3.json");
-		//servletRequest.getRequestDispatcher("/base/index2.json").forward(servletRequest, servletResponse);
-		//servletRequest.getRequestDispatcher("https://www.baidu.com").forward(servletRequest, servletResponse);
-
-		// map
+//	@RequestMapping(value="/index")
+//	public String index(RedirectAttributes redirectAttributes
+//			, HttpServletRequest servletRequest
+//			, HttpServletResponse servletResponse
+//			, Model model) throws Exception {
+//		//redirectAttributes.addFlashAttribute("map", indexService.index());
+////		redirectAttributes.addAttribute("map", "abc");
+//		//model.addAttribute("map", "abc");
+//		//servletRequest.setAttribute("cccc", "3");
+//		//servletResponse.sendRedirect("/base/index2.json");
+////		return this.redirect("/base/index3.json");
+//		//servletRequest.getRequestDispatcher("/base/index2.json").forward(servletRequest, servletResponse);
+//		//servletRequest.getRequestDispatcher("https://www.baidu.com").forward(servletRequest, servletResponse);
+//
+//		// map
 //		redirectAttributes.addFlashAttribute("map", indexService.index());
-		return this.redirect("/base/index2.json");
-	}
+//		return this.redirect("/base/index2.json");
+//	}
+//	
+//
+//	@RequestMapping(value="/index2")
+//	@ResponseBody
+//	public Map<String, String> index2(@ModelAttribute("map") Map<String, String> map, HttpServletRequest servletRequest){
+//		System.out.println(servletRequest.getAttribute("cccc"));
+//		System.out.println(servletRequest.getSession().getAttribute("cccc"));
+//		System.out.println(servletRequest.getAttribute("d"));
+//		return map;
+//	}
 	
-
-	@RequestMapping(value="/index2")
-	@ResponseBody
-	public Map<String, String> index2(@ModelAttribute("map") Map<String, String> map, HttpServletRequest servletRequest){
-		System.out.println(servletRequest.getAttribute("cccc"));
-		System.out.println(servletRequest.getSession().getAttribute("cccc"));
-		System.out.println(servletRequest.getAttribute("d"));
-		return map;
-	}
-	
-	// http://localhost:8080/base/1/2/3/?index4=11
-	@RequestMapping(value="/{index1}/{index2}/{index3}")
-	@ResponseBody
-	public Vo index3(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
-			, @PathVariable("index2") String index2
-			, @PathVariable("index3") String index3
-			, @RequestParam(value="index4",required=false) String index4){
-		return v;
-	}
-	
-	@RequestMapping(value="/{index1}/{index2}/{index3}.htm")
-	@ResponseBody
-	public Vo index4(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
-			, @PathVariable("index2") String index2
-			, @PathVariable("index3") String index3, @RequestParam(value="index4",required=false) String index4){
-		return v;
-	}
+//	// http://localhost:8080/base/1/2/3/?index4=11
+//	@RequestMapping(value="/{index1}/{index2}/{index3}")
+//	@ResponseBody
+//	public Vo index3(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
+//			, @PathVariable("index2") String index2
+//			, @PathVariable("index3") String index3
+//			, @RequestParam(value="index4",required=false) String index4){
+//		return v;
+//	}
+//	
+//	@RequestMapping(value="/{index1}/{index2}/{index3}.htm")
+//	@ResponseBody
+//	public Vo index4(Vo v, HttpServletRequest servletRequest, @PathVariable("index1") String index1
+//			, @PathVariable("index2") String index2
+//			, @PathVariable("index3") String index3, @RequestParam(value="index4",required=false) String index4){
+//		return v;
+//	}
 	
 	
-	@RequestMapping(value="/map")
-	@ResponseBody
-	public MapInfoResult index4(HttpServletRequest servletRequest){
-		return indexService.mapInfo();
-	}
+//	@RequestMapping(value="/map")
+//	@ResponseBody
+//	public MapInfoResult index4(HttpServletRequest servletRequest){
+//		return indexService.mapInfo();
+//	}
 	
 	
 	/***

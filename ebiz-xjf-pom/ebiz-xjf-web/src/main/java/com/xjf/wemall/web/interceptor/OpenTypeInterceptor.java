@@ -63,6 +63,7 @@ public class OpenTypeInterceptor extends BaseInterceptor {
 	/**
      * 处理Request之前执行
      */
+	@SuppressWarnings("unchecked")
 	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestUri = request.getRequestURI();
@@ -70,8 +71,35 @@ public class OpenTypeInterceptor extends BaseInterceptor {
 //        String url = requestUri.substring(contextPath.length());
         String query = request.getQueryString();
         String userAgent = request.getHeader(USER_AGENT);
+        
+        String xReqWith = request.getHeader("X-Requested-With");
         String userInfo = request.getParameter(USER_INFO);
         
+        
+        /*******************************获取所有传入参数START*************************************/
+        Map<String, Object> map= (Map<String, Object>) request.getParameterMap();
+    	
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+			String [] param = (String []) entry.getValue();  
+			System.out.println("key= " + entry.getKey() + " and value= "
+					+ param[0]);
+			
+//			if (this.sqlValidate(param[0])) {
+//				response.sendRedirect(ERROR_HTM);
+//				return false;
+//			}
+		}
+		/*******************************获取所有传入参数END*************************************/
+		
+		/*******************************AJAX请求头START*************************************/
+		if ("XMLHttpRequest".equals(xReqWith)) {
+			System.out.println("ajax");
+		} else {
+			System.out.println("not ajax");
+		}
+		/*******************************AJAX请求头END*************************************/
+		
+		
         // 有参数(第一次进入)
     	if (StringUtils.isNotEmpty(userInfo)) {
     		if (!this.fromByParam(request, response, userInfo, requestUri, query, userAgent)) {
@@ -96,6 +124,26 @@ public class OpenTypeInterceptor extends BaseInterceptor {
     	return true;
     }
 	
+	// 防止sql注入
+	//效验
+    protected static boolean sqlValidate(String str) {
+        str = str.toLowerCase();//统一转为小写
+        //过滤掉的sql关键字，可以手动添加
+//        String badStr = "'|and|exec|execute|insert|select|delete|update|count|drop|*|%|chr|mid|master|truncate|" +
+//                "char|declare|sitename|net user|xp_cmdshell|;|or|-|+|,|like'|and|exec|execute|insert|create|drop|" +
+//                "table|from|grant|use|group_concat|column_name|" +
+//                "information_schema.columns|table_schema|union|where|select|delete|update|order|by|count|*|" +
+//                "chr|mid|master|truncate|char|declare|or|;|-|--|+|,|like|//|/|%|#";
+        String badStr = "select";
+        String[] badStrs = badStr.split("\\|");
+        for (int i = 0; i < badStrs.length; i++) {
+            if (str.indexOf(badStrs[i]) >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 	/**
 	 * 有参数(第一次进入)
 	 * 

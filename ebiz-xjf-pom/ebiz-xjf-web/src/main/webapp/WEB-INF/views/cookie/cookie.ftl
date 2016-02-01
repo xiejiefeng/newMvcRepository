@@ -23,7 +23,9 @@
 <div class="head" style="width:120px">
 	<a href="javascript:setOpenId()" class="btn">设定Cookie</a>
 </div>
-
+<div class="head" style="width:120px">
+	<a href="javascript:poll('all')" class="btn">轮询</a>
+</div>
 <div class="clear"></div>
 ${name}
 ${testTime('')}
@@ -378,7 +380,8 @@ function setOpenId() {
 		"y":$("#y").val(),
 		"key":$("#userKey").val()
 	};		
-	$.getajax(url, param, function(data){
+	$.postajax(url, param, function(data){
+		alertObj("");
 		if (data.result == $.dataResult.SUCCESS) {
 			alertObj("设定成功！");
 		} else {
@@ -490,6 +493,63 @@ function getRedis(){
 		}
 	});
 }
+function poll(index) {
+	redis.reset(index);
+}
+// 缓存轮询处理
+var redis = {
+	reset : function(index) {
+		redis.show("重置中……");
+		var url=$.context+"/cookie/resetRedis.htm";
+		redis.ajax(url,index);
+	},
+	show : function(txt) {
+		$("#mask").show();
+		$("#alert").html(txt).show();
+	},
+	hide : function(txt) {
+		$("#alert").hide();
+	},
+	poll : function(index) {
+		setTimeout(function(){
+			var url=$.context+"/cookie/getRedisResponse.htm";
+			redis.ajax(url,index);
+		},1*1000);
+	},
+	ajax : function(url,index) {
+		var param = {
+			"index":index
+		};
+	
+		$.ajax({
+            url : url,               
+            async : true,
+            type : 'GET', 
+            data : param,
+            dataType : "json",
+        	timeout : 1*1000,
+        	error : function(xhr, textStatus, error) {
+				if (textStatus === "timeout") {
+					// 超时进行轮询
+					redis.poll(index);
+				} else if (textStatus == "error") {
+					comAlertObj("系统繁忙,请稍后再试", null);
+				}
+			},
+            success : function(data) {
+            	if (data.result == $.dataResult.SUCCESS) {
+					alertObj(data.msg,2000);
+				} else {
+					if(data.msg){
+						redis.show(data.msg);
+					}
+					// 进行轮询
+					redis.poll(index);
+				}
+            }
+        });
+	}
+};
 </script>
 </body>
 </html>

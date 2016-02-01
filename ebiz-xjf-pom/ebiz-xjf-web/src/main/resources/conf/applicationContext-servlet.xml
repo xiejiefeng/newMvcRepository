@@ -120,7 +120,7 @@
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/home/**"/>
+			<!-- <mvc:mapping path="/home/**"/>
 			<mvc:mapping path="/personalInfo/**"/>
 			<mvc:mapping path="/user/**"/>
 			<mvc:mapping path="/order/**"/>
@@ -130,7 +130,8 @@
 			<mvc:mapping path="/selectCar/**"/>
 			<mvc:mapping path="/card/**"/>
 			<mvc:mapping path="/maintenance/**"/>
-			<mvc:mapping path="/tyre/**"/>
+			<mvc:mapping path="/tyre/**"/> -->
+			<mvc:mapping path="/**"/>
 			<bean class="com.xjf.wemall.web.interceptor.OpenTypeInterceptor" />
 		</mvc:interceptor>
 		<!-- <mvc:interceptor>

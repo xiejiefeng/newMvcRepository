@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xjf.wemall.api.entity.common.AjaxObject;
 import com.xjf.wemall.api.entity.common.CookieObject;
+import com.xjf.wemall.api.entity.redis.RedisLockVo;
 import com.xjf.wemall.api.entity.user.PointVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.JavaScriptUtil;
+import com.xjf.wemall.service.redis.api.RedisJobService;
+import com.xjf.wemall.service.redis.api.RedisLockService;
 import com.xjf.wemall.web.controller.BaseController;
 import com.xjf.wemall.web.util.CookieUtil;
 
@@ -55,10 +60,17 @@ public class CookieController extends BaseController{
      */
     private static final String COOKIE_FTL="/cookie/cookie.ftl";
     
-    /***
-     * 更新缓存
-     */
-    private static final String RESET_FTL="/cookie/reset.ftl";
+//    /***
+//     * 更新缓存
+//     */
+//    private static final String RESET_FTL="/cookie/reset.ftl";
+    
+    
+    @Autowired
+    RedisLockService redisLockService;
+    
+    @Autowired
+    RedisJobService redisJobService;
     
     /***
      *     
@@ -174,11 +186,12 @@ public class CookieController extends BaseController{
 //	 * @see [相关类/方法](可选)
 //	 * @since [产品/模块版本](可选)
 //	 */
-	@RequestMapping(value = "/setCookie", method = RequestMethod.GET)
+	//@RequestMapping(value = "/setCookie", method = RequestMethod.GET)
+    @RequestMapping(value = "/setCookie")
 	@ResponseBody
 	public AjaxObject setCookie(String openId, String openType, String cxId, String x, String y, String key,
 			HttpServletRequest request, HttpServletResponse response) {
-
+    	
 		AjaxObject ajaxObject = new AjaxObject();
 		
 		openId = openId.trim();
@@ -209,6 +222,114 @@ public class CookieController extends BaseController{
 
 		return ajaxObject;
 	}
+    
+    
+    /***
+	 * 
+	 * 功能描述: 设定OpenId<br>
+	 * 〈功能详细描述〉
+	 * 
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@RequestMapping(value = "/resetRedis", method = RequestMethod.GET)
+	@ResponseBody
+	public AjaxObject resetRedis(String index, HttpServletResponse response) {
+
+		AjaxObject ajaxObject = new AjaxObject();
+		
+		// 获取Cookie对象
+    	CookieObject cookie = super.getCookie(response);
+//		String key = cookie.getKey();
+		
+		// 缓存锁
+		boolean lock = redisLockService.lock(index);
+		// 未获得锁
+		if (!lock) {
+			ajaxObject.setMsg("前次重置未结束，请稍后!");
+			return ajaxObject;
+		}
+		
+		String errMsg = "";
+		
+		if (StringUtils.isEmpty(index)) {
+			index = redisJobService.REDIS_ALL;
+		}
+		switch(index) {
+		case "shopping": // 刷新购物车缓存
+//			shoppingCartService.remove(key);
+			break;
+		case "mail": // 刷新邮件服务
+//			if (!mailService.init()) {
+//				errMsg = "邮件重置失败";
+//			}
+			break;
+		default:
+			errMsg = redisJobService.resetRedis(index);
+			break;
+		}
+		
+		if (StringUtils.isEmpty(errMsg)) {
+			redisLockService.complete(index);
+		} else {
+			redisLockService.error(index, errMsg);
+		}
+		
+		// 需要轮询
+		ajaxObject.setResult(AjaxObject.FAILD);
+		ajaxObject.setMsg(redisJobService.getInProgressMsg());
+		
+		return ajaxObject;
+	}
+	
+	/***
+	 * 
+	 * 功能描述: 设定OpenId<br>
+	 * 〈功能详细描述〉
+	 * 
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@RequestMapping(value = "/getRedisResponse", method = RequestMethod.GET)
+	@ResponseBody
+	public AjaxObject getRedisResponse(String index, HttpServletResponse response) {
+		AjaxObject ajaxObject = new AjaxObject();
+		
+		RedisLockVo redisLock = redisLockService.getStatus(index);
+		
+		if (redisLock == null) {
+			ajaxObject.setMsg("重置异常！");
+			return ajaxObject;
+		}
+		
+		long cost = 0;
+		
+		switch(redisLock.getStatus()) {
+		case RedisLockService.RESET_LOCK_STATUS_COMPLETE:
+			cost = redisLock.getEndTimeMillis() - redisLock.getStartTimeMillis();
+			redisLockService.delete(index);
+			ajaxObject.setMsg("重置成功！耗时"+(cost%1000==0?cost/1000:cost/1000+1)+"秒");
+			break;
+		case RedisLockService.RESET_LOCK_STATUS_ERROR:
+			cost = redisLock.getEndTimeMillis() - redisLock.getStartTimeMillis();
+			redisLockService.delete(index);
+			ajaxObject.setMsg("重置失败！耗时"+(cost%1000==0?cost/1000:cost/1000+1)+"秒;"
+					+StringUtils.trimToEmpty(redisLock.getErrMsg()));
+			break;
+		case RedisLockService.RESET_LOCK_STATUS_INPROGRESS:
+			// 需要轮询
+			ajaxObject.setResult(AjaxObject.FAILD);
+			ajaxObject.setMsg(redisJobService.getInProgressMsg());
+			break;
+		}
+				
+		return ajaxObject;
+	}
+	
+    
+    
 //	
 //	/***
 //	 * 

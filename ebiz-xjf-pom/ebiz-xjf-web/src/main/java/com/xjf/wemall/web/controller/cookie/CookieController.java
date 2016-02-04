@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,6 +42,7 @@ import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.JavaScriptUtil;
 import com.xjf.wemall.service.redis.api.RedisJobService;
 import com.xjf.wemall.service.redis.api.RedisLockService;
+import com.xjf.wemall.service.redis.impl.RedisLockServiceImpl;
 import com.xjf.wemall.web.controller.BaseController;
 import com.xjf.wemall.web.util.CookieUtil;
 
@@ -66,7 +68,8 @@ public class CookieController extends BaseController{
 //    private static final String RESET_FTL="/cookie/reset.ftl";
     
     
-    @Autowired
+//    @Autowired
+    @Resource(type=RedisLockServiceImpl.class)
     RedisLockService redisLockService;
     
     @Autowired

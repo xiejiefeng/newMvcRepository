@@ -2,7 +2,9 @@ package com.xjf.wemall.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +61,44 @@ public class sysTest extends AllServiceTest {
 			System.out.println(JSONParser.toJSONString(list.get(i)));
 		}
 	}
+	
+	@Test
+	public void json() {
+		Map<String, Map<String,String>> json = new HashMap<String, Map<String,String>>();
+		
+		Map<String,String> aa = new HashMap<String,String>();
+		
+		aa.put("a","1");
+		aa.put("b","2");
+		aa.put("c","3");
+		
+		json.put("json", aa);
+		
+		System.out.println(JSONParser.toJSONString(json));
+		
+		int[] a = new int[] {5,3,9,8,6};
+		sort(a);
+	}
+	
+	// 冒泡
+	public void sort(int[] a)
+    {
+        int temp = 0;
+        for (int i = a.length - 1; i > 0; --i)
+        {
+            for (int j = 0; j < i; ++j)
+            {
+                if (a[j + 1] < a[j])
+                {
+                    temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                    
+                }
+                
+                System.out.println(a[0] + " " + a[1]+ " " + a[2]+ " " + a[3]+ " " + a[4]);
+            }
+        }
+    }
 	
 }

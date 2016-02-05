@@ -77,9 +77,9 @@ public class OpenTypeInterceptor extends BaseInterceptor {
         
         
         /*******************************获取所有传入参数START*************************************/
-        Map<String, Object> map= (Map<String, Object>) request.getParameterMap();
+        Map<String, String[]> map= (Map<String, String[]>) request.getParameterMap();
     	
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
+		for (Map.Entry<String, String[]> entry : map.entrySet()) {
 			String [] param = (String []) entry.getValue();  
 			System.out.println("key= " + entry.getKey() + " and value= "
 					+ param[0]);

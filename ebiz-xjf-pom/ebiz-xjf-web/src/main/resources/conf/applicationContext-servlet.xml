@@ -167,6 +167,15 @@
 			<mvc:mapping path="/tyre/**"/>
 			<bean class="com.saic.wemall.web.interceptor.TyreInterceptor" />
 		</mvc:interceptor> -->
+		
+		<!--  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/cookie/menu.htm"/>
+			<bean class="com.xjf.wemall.web.interceptor.CookieMenuInterceptor" >
+				<property name="isCheck" value="true"/>
+			</bean>
+		</mvc:interceptor>
+		
 	</mvc:interceptors>
 	
 	

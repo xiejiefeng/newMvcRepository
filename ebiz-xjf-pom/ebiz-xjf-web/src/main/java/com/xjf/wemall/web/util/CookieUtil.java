@@ -57,8 +57,17 @@ public class CookieUtil {
     /**跳转页面*/
     public static final String TARGET_URL = "wemall_targeturl";
     
-    /**OPENID 有效时间*/
+    /**验证唯一键*/
+    public static final String VERIFY_UID = "wemall_verify_uid";
+    
+    /**验证码*/
+    public static final String VERIFY_CODE = "wemall_verify_code";
+    
+    /**OPENID 有效时间-一年*/
     public static final int OPENID_MAXAGE = 365*24*3600;
+    
+    /**有效时间-一天*/
+    public static final int MAXAGE_DAY = 1*24*3600;
     
 //    /** 二进制的redis. */
 //	@Autowired
@@ -88,7 +97,19 @@ public class CookieUtil {
     public static void addCookieMaxAge(HttpServletResponse response, String name, String value) {
     	CookieUtil.addCookie(null, response, name, value, OPENID_MAXAGE);
     }
-
+    
+    
+    /**
+     * 设置cookie
+     * 
+     * @param response
+     * @param name cookie名字
+     * @param value cookie值
+     * @param maxAge cookie生命周期 以秒为单位
+     */
+    public static void addCookieMaxAgeDay(HttpServletResponse response, String name, String value) {
+    	CookieUtil.addCookie(null, response, name, value, MAXAGE_DAY);
+    }
     /**
      * 设置cookie
      * 

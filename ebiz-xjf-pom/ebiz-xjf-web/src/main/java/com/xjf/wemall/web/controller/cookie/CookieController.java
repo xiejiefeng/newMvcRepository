@@ -15,6 +15,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -37,11 +38,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xjf.wemall.api.entity.common.AjaxObject;
 import com.xjf.wemall.api.entity.common.CookieObject;
 import com.xjf.wemall.api.entity.redis.RedisLockVo;
+import com.xjf.wemall.api.entity.redis.RedisVerifyVo;
 import com.xjf.wemall.api.entity.user.PointVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.JavaScriptUtil;
 import com.xjf.wemall.service.redis.api.RedisJobService;
 import com.xjf.wemall.service.redis.api.RedisLockService;
+import com.xjf.wemall.service.redis.api.RedisVerifyService;
 import com.xjf.wemall.service.redis.impl.RedisLockServiceImpl;
 import com.xjf.wemall.web.controller.BaseController;
 import com.xjf.wemall.web.util.CookieUtil;
@@ -67,6 +70,10 @@ public class CookieController extends BaseController{
 //     */
 //    private static final String RESET_FTL="/cookie/reset.ftl";
     
+    /***
+     * 验证页
+     */
+    private static final String VERIFY_FTL="/cookie/verify.ftl";
     
 //    @Autowired
     @Resource(type=RedisLockServiceImpl.class)
@@ -75,6 +82,9 @@ public class CookieController extends BaseController{
     @Autowired
     RedisJobService redisJobService;
     
+    /** 缓存验证 */
+	@Autowired
+	private RedisVerifyService redisVerifyService;
     /***
      *     
      * 功能描述:跳转关于我们 <br>
@@ -331,8 +341,66 @@ public class CookieController extends BaseController{
 		return ajaxObject;
 	}
 	
+
+	/***
+	 * 
+	 * 功能描述: 验证页<br>
+	 * 〈功能详细描述〉
+	 * 
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@RequestMapping(value = "/verify", method = RequestMethod.GET)
+	public String verify(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		String uid = CookieUtil.getCookieByName(request, CookieUtil.VERIFY_UID);
+		if (StringUtils.isEmpty(uid)) {
+			uid = UUID.randomUUID().toString();
+			CookieUtil.addCookieMaxAgeDay(response, CookieUtil.VERIFY_UID, uid);
+		}
+		
+		model.addAttribute("uid", uid);
+		
+		return VERIFY_FTL;
+	}
     
-    
+	/***
+	 * 
+	 * 功能描述: 获取Redis<br>
+	 * 〈功能详细描述〉
+	 * 
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@RequestMapping(value = "/verifySend", method = RequestMethod.GET)
+	@ResponseBody
+	public AjaxObject verifySend(HttpServletRequest request) {
+		
+		AjaxObject ajaxObject = new AjaxObject();
+		
+		// 判断是否有唯一键
+		String uid = CookieUtil.getCookieByName(request, CookieUtil.VERIFY_UID);
+		if (StringUtils.isEmpty(uid)) {
+			ajaxObject.setResult(AjaxObject.FAILD);
+			return ajaxObject;
+		}
+		
+		RedisVerifyVo redisVerify = new RedisVerifyVo();
+		redisVerify.setUid(uid);
+		redisVerify.setHost(request.getHeader("HOST"));
+		redisVerify.setIp(request.getRemoteAddr());
+		
+		// 创建验证码
+		boolean ret = redisVerifyService.create(redisVerify);
+		
+		if (!ret) {
+			ajaxObject.setResult(AjaxObject.FAILD);
+		}
+		
+		return ajaxObject;
+	}
 //	
 //	/***
 //	 * 

@@ -18,12 +18,13 @@ import org.springframework.stereotype.Service;
 import com.xjf.wemall.redis.client.IRedisClient;
 import com.xjf.wemall.api.constant.TimeToLive;
 import com.xjf.wemall.api.constant.WemallConstants;
-//import com.xjf.wemall.api.entity.mail.MailVo;
+import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.entity.redis.RedisVerifyVo;
 import com.xjf.wemall.api.util.DateUtil;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.StringUtil;
 import com.xjf.wemall.service.AbstractService;
+import com.xjf.wemall.service.mail.api.MailService;
 //import com.xjf.wemall.service.mail.api.MailService;
 import com.xjf.wemall.service.redis.api.RedisVerifyService;
 //import com.xjf.wemall.service.sysreference.api.SysReferenceService;
@@ -36,9 +37,9 @@ public class RedisVerifyServiceImpl extends AbstractService implements RedisVeri
     @Qualifier("redisClient")
     protected IRedisClient redisClient;
     
-//	/**邮件服务处理*/
-//	@Autowired
-//    private MailService mailService;
+	/**邮件服务处理*/
+	@Autowired
+    private MailService mailService;
 //	
 //	/** 参照信息 */
 //	@Autowired
@@ -83,45 +84,42 @@ public class RedisVerifyServiceImpl extends AbstractService implements RedisVeri
 	 * @since [产品/模块版本](可选)
 	 */
 	private boolean sendMail(RedisVerifyVo redisVerify) {
-		return false;
-//		MailVo mail = new MailVo();
-//		
-//		// 收件人
-//		String to = sysReferenceService.querySysReferenceValue(
-//				WemallConstants.REFERENCE_CODE_MAIL,
-//				WemallConstants.REFERENCE_DETAIL_CODE_MAIL_TO);
-//		
-//		mail.setTo(to);
-//		
-//		// 主题
-//		StringBuilder subject = new StringBuilder();
-//		subject.append("配置页面验证码-");
-//		subject.append("uid:");
-//		subject.append(redisVerify.getUid());
-//
-//		mail.setSubject(subject.toString());
-//		
-//		// 内容
-//		StringBuilder text = new StringBuilder();
-//		text.append("uid:");
-//		text.append(redisVerify.getUid());
-//		text.append("<br>");
-//		text.append("host:");
-//		text.append(redisVerify.getHost());
-//		text.append("<br>");
-//		text.append("ip:");
-//		text.append(redisVerify.getIp());
-//		text.append("<br>");
-//		text.append("code:");
-//		text.append(redisVerify.getCode());
-//		text.append("<br>");
-//		text.append("createTime:");
-//		text.append(redisVerify.getCreateTime());
-//		text.append("<br>");
-//		
-//		mail.setText(text.toString());
-//		
-//		return mailService.send(mail);
+		MailVo mail = new MailVo();
+		
+		// 收件人
+		String to = "165023030@qq.com";
+		
+		mail.setTo(to);
+		
+		// 主题
+		StringBuilder subject = new StringBuilder();
+		subject.append("配置页面验证码-");
+		subject.append("uid:");
+		subject.append(redisVerify.getUid());
+
+		mail.setSubject(subject.toString());
+		
+		// 内容
+		StringBuilder text = new StringBuilder();
+		text.append("uid:");
+		text.append(redisVerify.getUid());
+		text.append("<br>");
+		text.append("host:");
+		text.append(redisVerify.getHost());
+		text.append("<br>");
+		text.append("ip:");
+		text.append(redisVerify.getIp());
+		text.append("<br>");
+		text.append("code:");
+		text.append(redisVerify.getCode());
+		text.append("<br>");
+		text.append("createTime:");
+		text.append(redisVerify.getCreateTime());
+		text.append("<br>");
+		
+		mail.setText(text.toString());
+		
+		return mailService.send(mail);
 	}
 	
 	/**

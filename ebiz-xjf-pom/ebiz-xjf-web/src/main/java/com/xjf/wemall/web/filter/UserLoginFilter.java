@@ -61,6 +61,7 @@ public class UserLoginFilter implements Filter {
 //        httpRequest.setAttribute("d", "222222");
         chain.doFilter(request, response);
         
+        /***************************************** 获得所有请求参数***********************/
 //        HttpServletRequest req= (HttpServletRequest) request;
 //        HttpServletResponse res= (HttpServletResponse) response;
 //         //获得所有请求参数名

@@ -34,6 +34,13 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
 	public boolean beforeHandshake(ServerHttpRequest serverHttpRequest,
 			ServerHttpResponse serverHttpResponse, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
+		
+		// 解决The extension [x-webkit-deflate-frame] is not supported问题  
+		// 比如微信浏览器
+        if(serverHttpRequest.getHeaders().containsKey("Sec-WebSocket-Extensions")) {  
+        	serverHttpRequest.getHeaders().set("Sec-WebSocket-Extensions", "permessage-deflate");  
+        }  
+        
 		HttpSession session = getSession(serverHttpRequest);
 		if (session != null) {
 			attributes.put(SocketSessionUtils.SOCKET_ID, session.getId());

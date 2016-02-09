@@ -250,8 +250,9 @@ under the License.
 			<repositories>
 				<repository>
 					<id>nexus</id>
-					<!--<url>http://maven.dds.com/nexus/content/groups/public/</url> -->
-					<url>http://maven.dds.com/nexus/content/groups/public</url>
+					<!--<url>http://maven.dds.com/nexus/content/groups/public/</url>
+					<url>http://maven.dds.com/nexus/content/groups/public</url> -->
+					<url>http://localhost:8081/nexus/content/groups/public</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -263,8 +264,9 @@ under the License.
 			<pluginRepositories>
 				<pluginRepository>
 					<id>nexus</id>
-					<!--<url>http://maven.dds.com/nexus/content/groups/public</url> -->
-					<url>http://maven.dds.com/nexus/content/groups/public</url>
+					<!--<url>http://maven.dds.com/nexus/content/groups/public</url>
+					<url>http://maven.dds.com/nexus/content/groups/public</url> -->
+					<url>http://localhost:8081/nexus/content/groups/public</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>

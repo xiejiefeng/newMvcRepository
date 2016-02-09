@@ -12,8 +12,6 @@
     <module>ebiz-xjf-web</module>
     <module>ebiz-xjf-service</module>
     <module>ebiz-xjf-api</module>
-    
-    
     <module>ebiz-xjf-adapter</module>
     <module>ebiz-xjf-redis</module>
   </modules>

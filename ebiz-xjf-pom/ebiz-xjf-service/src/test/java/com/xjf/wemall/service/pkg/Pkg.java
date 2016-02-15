@@ -1,17 +1,8 @@
 package com.xjf.wemall.service.pkg;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
+import org.junit.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.xjf.wemall.api.entity.SampleVo;
-import com.xjf.wemall.api.util.JSONParser;
-import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.AllServiceTest;
 import com.xjf.wemall.service.index.api.IndexService;
 

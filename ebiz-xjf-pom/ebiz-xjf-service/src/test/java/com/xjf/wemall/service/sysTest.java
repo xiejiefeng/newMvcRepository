@@ -141,6 +141,10 @@ public class sysTest extends AllServiceTest {
 		
 		// default类
 		Cat cat = new Cat();
+		System.out.println(Cat.age);//10 
+		
+		Cat cat2 = new Cat("99");
+		System.out.println(Cat.age);//99 
 		
 	}
 	

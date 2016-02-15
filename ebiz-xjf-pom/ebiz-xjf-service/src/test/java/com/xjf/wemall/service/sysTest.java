@@ -102,4 +102,47 @@ public class sysTest extends AllServiceTest {
         }
     }
 	
+	@Test
+	public void testStack() {
+		// 以下两条语句创建了1个对象。"凤山"存储在字符串常量池中 
+		String str1 = "凤山"; 
+		String str2 = "凤山"; 
+		System.out.println(str1==str2);//true
+
+		// 以下两条语句创建了2个对象，存储在堆内存中 
+		String str3 = new String("天峨"); 
+		String str4 = new String("天峨"); 
+		System.out.println(str3==str4);//false 
+
+		// 以下两条语句创建了1个对象。9是存储在栈内存中 
+		int i = 9; 
+		int j = 9; 
+		System.out.println(i==j);//true 
+
+		// 以下两条语句创建了1个对象。1对象存储在栈内存中 
+		Integer l = 1;//装箱 
+		Integer k = 1;// 装箱 
+		System.out.println(l==k);//true 
+
+		//由于没有了装箱，以下两条语句创建了2个对象。两个1对象存储在堆内存中 
+		Integer l1 = new Integer(1); 
+		Integer k1 = new Integer(1); 
+		System.out.println(l1==k1);//false 内容来自17jquery 
+
+		// 以下两条语句创建了2个对象。i1,i2变量存储在栈内存中，两个256对象(因为占两个字节)存储在堆内存中 
+		Integer i1 = 256;
+		Integer i2 = 256;
+		System.out.println(i1==i2);//false
+
+		// 以下语句创建了一个对象，1个字节8位。在一个字节中，所以相等
+		Integer i3 = 127;
+		Integer i4 = 127;
+		System.out.println(i3==i4);//true 
+		
+		// default类
+		Cat cat = new Cat();
+		
+	}
+	
+	
 }

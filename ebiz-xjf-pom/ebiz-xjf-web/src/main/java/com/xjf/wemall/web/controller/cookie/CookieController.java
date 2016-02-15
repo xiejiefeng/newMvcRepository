@@ -85,6 +85,8 @@ public class CookieController extends BaseController{
     /** 缓存验证 */
 	@Autowired
 	private RedisVerifyService redisVerifyService;
+
+	
     /***
      *     
      * 功能描述:跳转关于我们 <br>

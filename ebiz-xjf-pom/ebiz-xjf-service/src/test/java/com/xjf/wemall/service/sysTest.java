@@ -84,6 +84,7 @@ public class sysTest extends AllServiceTest {
 	public void sort(int[] a)
     {
         int temp = 0;
+        // 第一轮把最大的移上去
         for (int i = a.length - 1; i > 0; --i)
         {
             for (int j = 0; j < i; ++j)

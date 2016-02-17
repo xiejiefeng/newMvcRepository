@@ -27,6 +27,8 @@ public enum TimeToLive implements CodeDesc{
     
 	/** 永久 */
     PERSISTENCE(-1, "永久"),
+    /** 5秒 */
+    FIVE(5, "5秒"),
     /** 30秒 */
     HALFMINUTE(30, "30秒"),
     /** 5分钟 */
@@ -43,6 +45,7 @@ public enum TimeToLive implements CodeDesc{
     DAY(24*60*60, "1天"),
     /** 30天 */
     MONTH(30*24*60*60, "30天");
+    
     
     /**
      * 构造函数.

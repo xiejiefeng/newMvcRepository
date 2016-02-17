@@ -28,6 +28,8 @@ public class RedisLockVo implements Serializable{
 	
 	// 关键字
 	private String key;
+	// 关键字
+	private String cxId;
 	// 状态
 	private int status;
 	// 执行开始时间
@@ -66,6 +68,12 @@ public class RedisLockVo implements Serializable{
 	}
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
+	}
+	public String getCxId() {
+		return cxId;
+	}
+	public void setCxId(String cxId) {
+		this.cxId = cxId;
 	}
 	
 }

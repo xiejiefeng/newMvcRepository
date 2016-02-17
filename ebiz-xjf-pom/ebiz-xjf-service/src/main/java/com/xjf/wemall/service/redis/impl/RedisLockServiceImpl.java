@@ -25,8 +25,11 @@ import com.xjf.wemall.service.redis.api.RedisLockService;
 @Service
 public class RedisLockServiceImpl extends AbstractService implements RedisLockService {
 
-	/**静默期(30秒)*/
-	private static final int expireSecond = 30 * 1000;
+	/**静默期(3秒)*/
+	private static final int expireSecond = 3 * 1000;
+	
+	/**等待100次*/
+	private static final int TIMES = 100;
 	
     /**  字符的redis. */
     @Autowired
@@ -42,39 +45,49 @@ public class RedisLockServiceImpl extends AbstractService implements RedisLockSe
 	 * @since [产品/模块版本](可选)
 	 */
 	@Override
-	public boolean lock(String redisType) {
+	public boolean lock(String redisType, String cxId) {
 		String redisKey = this.getRedisLockKey(redisType);
-		String redisValue = this.initRedisLock(redisType);
+		String redisValue = this.initRedisLock(redisType, cxId);
 		
-		// 获取刷新缓存锁
-		if (redisClient.setnx(redisKey, redisValue) == 1) {
-			// 超时时间默认5分钟
-			redisClient.expire(redisKey, TimeToLive.DEFAULT.code());
-			return true;
-		}
-		else {
-			// 获得锁
-			RedisLockVo redisLock = this.getRedisLock(redisKey);
-			
-			if (redisLock != null) {
-				Long endTimeMillis = redisLock.getEndTimeMillis();
-				// 尚未结束
-				if (redisLock.getEndTimeMillis() == null) {
-					return false;
-				}
-				
-				// 判断结束后超时时间
-				long currentTimeMillis = System.currentTimeMillis();
-				if (currentTimeMillis < endTimeMillis + expireSecond) {
-					return false;
-				}
+		// 循环200次
+		for (int i = 0; i < TIMES; i++) {
+			// 获取刷新缓存锁
+			if (redisClient.setnx(redisKey, redisValue) == 1) {
+				// 超时时间默认5分钟
+				redisClient.expire(redisKey, TimeToLive.DEFAULT.code());
+				return true;
 			}
-			
-			// 重新设定缓存锁,超时时间默认5分钟
-			redisClient.setex(redisKey, TimeToLive.DEFAULT.code(), redisValue);
-			
-			return true;
+			else {
+//				logger.info(cxId + ":"+currentTimeMillis);
+				// 获得锁
+				RedisLockVo redisLock = this.getRedisLock(redisKey);
+				if (redisLock != null) {
+					Long endTimeMillis = redisLock.getEndTimeMillis();
+					// 判断结束后超时时间
+					long currentTimeMillis = System.currentTimeMillis();
+					// 尚未结束/判断结束后超时时间
+					if (redisLock.getEndTimeMillis() == null || currentTimeMillis < endTimeMillis + expireSecond) {
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						continue;
+					} else {
+						// 删除已经锁的锁
+						redisClient.del(redisKey);
+					}
+				}
+//				// 重新设定缓存锁,超时时间默认5分钟
+//				redisClient.setex(redisKey, TimeToLive.DEFAULT.code(), redisValue);
+//				
+//				return true;
+			}
 		}
+//		long currentTimeMillis = System.currentTimeMillis();
+//		logger.info(cxId + ":"+currentTimeMillis);
+		// 没有抢到锁，失败
+		return false;
 	}
 
 	/**
@@ -87,9 +100,10 @@ public class RedisLockServiceImpl extends AbstractService implements RedisLockSe
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	private String initRedisLock(String redisType) {
+	private String initRedisLock(String redisType, String cxId) {
 		RedisLockVo redisLock = new RedisLockVo();
 		redisLock.setKey(redisType);
+		redisLock.setCxId(cxId);
 		redisLock.setStatus(RedisLockService.RESET_LOCK_STATUS_INPROGRESS);
 		redisLock.setStartTimeMillis(System.currentTimeMillis());
 		return JSONParser.toJSONString(redisLock);
@@ -221,4 +235,39 @@ public class RedisLockServiceImpl extends AbstractService implements RedisLockSe
 			redisClient.del(redisKey);
 		}
 	}
+
+	@Override
+	public void setErrorMsg(String cxId) {
+		String key = this.getRedisErrorLockKey(cxId);
+		if (redisClient.setnx(key, cxId) == 1) {
+			// 超时时间默认5分钟
+			redisClient.expire(key, TimeToLive.FIVE.code());
+		}
+	}
+	
+	@Override
+	public boolean getErrorMsg(String cxId) {
+		String key = this.getRedisErrorLockKey(cxId);
+		
+		return redisClient.exists(key);
+	}
+	/**
+	 * 
+	 * 功能描述: 返回锁关键字<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param key
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	private String getRedisErrorLockKey(String cxId) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(COMMON_RESET_LOCK_ERROR_KEY);
+		sb.append(":");
+		sb.append(cxId);
+		return sb.toString();
+	}
+
+	
 }

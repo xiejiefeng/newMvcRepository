@@ -42,6 +42,7 @@ import com.xjf.wemall.api.entity.redis.RedisVerifyVo;
 import com.xjf.wemall.api.entity.user.PointVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.api.util.JavaScriptUtil;
+import com.xjf.wemall.api.util.StringUtil;
 import com.xjf.wemall.service.redis.api.RedisJobService;
 import com.xjf.wemall.service.redis.api.RedisLockService;
 import com.xjf.wemall.service.redis.api.RedisVerifyService;
@@ -103,6 +104,12 @@ public class CookieController extends BaseController{
     	// 获取Cookie对象
     	CookieObject cookie = super.getCookie(response);
     	
+    	if (StringUtils.isEmpty(cookie.getCxId())) {
+    		String cxId = StringUtil.getRandomString(8, StringUtil.RANDOM_NUMBER);
+    		CookieUtil.addCookieMaxAge(response, CookieUtil.CXID, cxId);
+    		cookie.setCxId(cxId);
+    		
+    	}
     	//判断cookie中是否有openid
     	model.addAttribute("openId", cookie.getOpenId());
     	model.addAttribute("openType", cookie.getOpenType());
@@ -256,13 +263,16 @@ public class CookieController extends BaseController{
 		
 		// 获取Cookie对象
     	CookieObject cookie = super.getCookie(response);
-//		String key = cookie.getKey();
-		
+		String cxId = cookie.getCxId();
+    	
 		// 缓存锁
-		boolean lock = redisLockService.lock(index);
+		boolean lock = redisLockService.lock(index, cxId);
 		// 未获得锁
 		if (!lock) {
+			// 没有抢到锁
 			ajaxObject.setMsg("前次重置未结束，请稍后!");
+			redisLockService.setErrorMsg(cxId);
+			logger.info(cxId + ":" + "前次重置未结束，请稍后!");
 			return ajaxObject;
 		}
 		
@@ -312,10 +322,32 @@ public class CookieController extends BaseController{
 	public AjaxObject getRedisResponse(String index, HttpServletResponse response) {
 		AjaxObject ajaxObject = new AjaxObject();
 		
+		// 获取Cookie对象
+    	CookieObject cookie = super.getCookie(response);
+		String cxId = cookie.getCxId();
+		
+		// 如果存在错误消息
+		if (redisLockService.getErrorMsg(cxId)) {
+			ajaxObject.setMsg("前次重置未结束，请稍后!");
+			logger.info(cxId + ":" + "前次重置未结束，请稍后!轮询");
+			return ajaxObject;
+		}
+		
 		RedisLockVo redisLock = redisLockService.getStatus(index);
 		
+		// 如果cxid和锁里的内容不一致
+		if (redisLock != null && !cxId.equals(redisLock.getCxId())) {
+			// 需要轮询
+			ajaxObject.setResult(AjaxObject.FAILD);
+			return ajaxObject;
+		}
+			
+		// 锁没有，需要轮询
 		if (redisLock == null) {
-			ajaxObject.setMsg("重置异常！");
+//			ajaxObject.setMsg("重置异常！");
+//			return ajaxObject;
+			// 需要轮询
+			ajaxObject.setResult(AjaxObject.FAILD);
 			return ajaxObject;
 		}
 		
@@ -403,6 +435,53 @@ public class CookieController extends BaseController{
 		
 		return ajaxObject;
 	}
+	
+	/***
+	 * 
+	 * 功能描述: 获取Redis<br>
+	 * 〈功能详细描述〉
+	 * 
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@RequestMapping(value = "/verifyCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public AjaxObject verifySend(String code, HttpServletRequest request, HttpServletResponse response) {
+		
+		AjaxObject ajaxObject = new AjaxObject();
+		
+		// 判断是否有唯一键
+		String uid = CookieUtil.getCookieByName(request, CookieUtil.VERIFY_UID);
+		if (StringUtils.isEmpty(uid)) {
+			ajaxObject.setResult(AjaxObject.FAILD);
+			return ajaxObject;
+		}
+		
+		// 判断是否有验证码
+		code = StringUtils.trimToEmpty(code);
+		if (StringUtils.isEmpty(code)) {
+			ajaxObject.setResult(AjaxObject.FAILD);
+			return ajaxObject;
+		}
+		
+		RedisVerifyVo redisVerify = new RedisVerifyVo();
+		redisVerify.setUid(uid);
+		redisVerify.setIp(request.getRemoteAddr());
+		redisVerify.setCode(code);
+		
+		// 验证
+		boolean ret = redisVerifyService.verify(redisVerify);
+		
+		if (!ret) {
+			ajaxObject.setResult(AjaxObject.FAILD);
+		} else {
+			CookieUtil.addCookieMaxAgeDay(response, CookieUtil.VERIFY_CODE, code);
+		}
+		
+		return ajaxObject;
+	}
+	
 //	
 //	/***
 //	 * 

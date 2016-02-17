@@ -4,6 +4,10 @@ class Cat extends Animal {
 	
 	public static String age;
 	
+	{
+		System.out.println("Cat 初始模块");
+	}
+	
 	public Cat(String age) {
 		this.age = age;
 	}
@@ -15,5 +19,9 @@ class Cat extends Animal {
 	@Override
 	public String getName() {
 		return "Cat";
+	}
+	// 重写toString
+	public String toString() {
+		return "toString";
 	}
 }

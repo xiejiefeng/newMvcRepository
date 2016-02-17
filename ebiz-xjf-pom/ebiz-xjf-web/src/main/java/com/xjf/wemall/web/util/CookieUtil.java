@@ -55,13 +55,13 @@ public class CookieUtil {
     public static final String SHOPPINGCARTID = "wemall_shoppingcartid";
     
     /**跳转页面*/
-    public static final String TARGET_URL = "wemall_targeturl";
+    public static final String TARGET_URL = "wemall_xjf_targeturl";
     
     /**验证唯一键*/
-    public static final String VERIFY_UID = "wemall_verify_uid";
+    public static final String VERIFY_UID = "wemall_xjf_verify_uid";
     
     /**验证码*/
-    public static final String VERIFY_CODE = "wemall_verify_code";
+    public static final String VERIFY_CODE = "wemall_xjf_verify_code";
     
     /**OPENID 有效时间-一年*/
     public static final int OPENID_MAXAGE = 365*24*3600;

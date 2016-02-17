@@ -123,6 +123,8 @@ implements RedisJobService {
 //	}
 //
 	
+	// 维持时间毫秒
+	private static final int REMAIN_SECONG = 20000;
 	/**处理中信息*/
 	private String inProgressMsg;
 	
@@ -157,7 +159,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -176,7 +178,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -195,7 +197,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -214,7 +216,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -233,7 +235,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -252,7 +254,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -271,7 +273,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -290,7 +292,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}
@@ -309,7 +311,7 @@ implements RedisJobService {
 					Long cur = new Long(0);
 					while(true) {
 						cur = DateUtil.getCurrentDate().getTime();
-						if (cur.compareTo(now + 5000) >= 0) {
+						if (cur.compareTo(now + REMAIN_SECONG) >= 0) {
 							break;
 						}
 					}

@@ -172,7 +172,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/cookie/menu.htm"/>
 			<bean class="com.xjf.wemall.web.interceptor.CookieMenuInterceptor" >
-				<property name="isCheck" value="true"/>
+				<property name="isCheck" value="false"/>
 			</bean>
 		</mvc:interceptor>
 		

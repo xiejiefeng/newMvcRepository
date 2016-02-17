@@ -34,7 +34,7 @@ public interface RedisLockService {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	public boolean lock(String redisType);
+	public boolean lock(String redisType, String cxId);
 	
 	/**
 	 * 
@@ -80,4 +80,26 @@ public interface RedisLockService {
 	 * @since [产品/模块版本](可选)
 	 */
 	public void delete(String redisType);
+	
+	/**
+	 * 
+	 * 功能描述: 设置错误key<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param redisType
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public void setErrorMsg(String cxId);
+	
+	/**
+	 * 
+	 * 功能描述: 获得错误key<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param redisType
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public boolean getErrorMsg(String cxId);
 }

@@ -71,32 +71,30 @@ public class OpenTypeInterceptor extends BaseInterceptor {
 //        String url = requestUri.substring(contextPath.length());
         String query = request.getQueryString();
         String userAgent = request.getHeader(USER_AGENT);
-        
-        String xReqWith = request.getHeader("X-Requested-With");
         String userInfo = request.getParameter(USER_INFO);
         
         
         /*******************************获取所有传入参数START*************************************/
-        Map<String, String[]> map= (Map<String, String[]>) request.getParameterMap();
-    	
-		for (Map.Entry<String, String[]> entry : map.entrySet()) {
-			String [] param = (String []) entry.getValue();  
-			System.out.println("key= " + entry.getKey() + " and value= "
-					+ param[0]);
-			
+//        Map<String, String[]> map= (Map<String, String[]>) request.getParameterMap();
+//    	
+//		for (Map.Entry<String, String[]> entry : map.entrySet()) {
+//			String [] param = (String []) entry.getValue();  
+//			System.out.println("key= " + entry.getKey() + " and value= "
+//					+ param[0]);
 //			if (this.sqlValidate(param[0])) {
 //				response.sendRedirect(ERROR_HTM);
 //				return false;
 //			}
-		}
+//		}
 		/*******************************获取所有传入参数END*************************************/
 		
 		/*******************************AJAX请求头START*************************************/
-		if ("XMLHttpRequest".equals(xReqWith)) {
-			System.out.println("ajax");
-		} else {
-			System.out.println("not ajax");
-		}
+//        String xReqWith = request.getHeader("X-Requested-With");
+//		if ("XMLHttpRequest".equals(xReqWith)) {
+//			System.out.println("ajax");
+//		} else {
+//			System.out.println("not ajax");
+//		}
 		/*******************************AJAX请求头END*************************************/
 		
 		

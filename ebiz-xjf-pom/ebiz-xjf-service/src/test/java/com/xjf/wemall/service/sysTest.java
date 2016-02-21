@@ -9,7 +9,9 @@ import java.util.Map;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.alibaba.fastjson.JSON;
 import com.xjf.wemall.api.entity.SampleVo;
+import com.xjf.wemall.api.entity.carmodel.CarModelInfoVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.index.api.IndexService;
@@ -33,7 +35,16 @@ public class sysTest extends AllServiceTest {
 		System.out.println("你好".hashCode());
 		
 		System.out.println("你不好好".hashCode());
-	}
+		
+		CarModelInfoVo a = new CarModelInfoVo();
+		List<CarModelInfoVo> list = new ArrayList<CarModelInfoVo>();
+		Map<String, List<CarModelInfoVo>> mp = new HashMap<String, List<CarModelInfoVo>>();
+		a.setCarLevel("222");
+		list.add(a);
+		mp.put("b", list);
+		
+		System.out.println(JSON.toJSONString(mp));
+	};
 	
 	@Test
 	public void index2() {

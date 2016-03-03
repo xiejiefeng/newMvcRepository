@@ -316,6 +316,26 @@ public class BaseController {
 	}
 	
 	/**
+	 * 
+	 * 功能描述: 页面重定向<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param redirectUrl
+	 * @param response
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	protected String forward(String redirectUrl, HttpServletResponse response) {
+		HttpServletRequest request = this.getRequest();
+		try {
+			request.getRequestDispatcher(redirectUrl).forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
 	 * 获取当前函数名
 	 * 
 	 * @return

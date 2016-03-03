@@ -215,6 +215,8 @@ public abstract class AbstractRedisService extends AbstractService implements Re
 			for(Entry<String, T> entry : map.entrySet()) {
 				hashmap.put(entry.getKey(), JSON.toJSONString(entry.getValue()));
 			}
+			// 先删后创建
+			redisClient.del(key);
 			redisClient.hmset(key, hashmap);
 		}
 	}

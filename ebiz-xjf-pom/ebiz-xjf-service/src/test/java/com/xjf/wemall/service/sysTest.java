@@ -1,17 +1,21 @@
 package com.xjf.wemall.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
 import com.xjf.wemall.api.entity.SampleVo;
-import com.xjf.wemall.api.entity.carmodel.CarModelInfoVo;
+import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.index.api.IndexService;
@@ -35,16 +39,7 @@ public class sysTest extends AllServiceTest {
 		System.out.println("你好".hashCode());
 		
 		System.out.println("你不好好".hashCode());
-		
-		CarModelInfoVo a = new CarModelInfoVo();
-		List<CarModelInfoVo> list = new ArrayList<CarModelInfoVo>();
-		Map<String, List<CarModelInfoVo>> mp = new HashMap<String, List<CarModelInfoVo>>();
-		a.setCarLevel("222");
-		list.add(a);
-		mp.put("b", list);
-		
-		System.out.println(JSON.toJSONString(mp));
-	};
+	}
 	
 	@Test
 	public void index2() {
@@ -148,7 +143,68 @@ public class sysTest extends AllServiceTest {
 		Integer i3 = 127;
 		Integer i4 = 127;
 		System.out.println(i3==i4);//true 
+		
+		
+		//redis中的大类小类映射数据
+		Map<String, List<MailVo>> sysCodeMap = new HashMap<String, List<MailVo>>();
+		MailVo mail = new MailVo();
+		mail.setText("aaa");
+		
+		
+		List<MailVo> detailCodeSet =  new ArrayList<MailVo>();
+		detailCodeSet.add(mail);
+		
+		mail = new MailVo();
+		mail.setText("aaa");
+		detailCodeSet.add(mail);
+		sysCodeMap.put("aa", detailCodeSet);
+		
+		System.out.println(JSON.toJSONString(sysCodeMap.get("aa")));//true 
+		
 	}
 	
+	@Test
+	public void tt() {
+		Set<Integer> aa = getCanUseCheckFlag();
+		
+		System.out.println(aa);
+	}
 	
+	/**
+	 * 获得所有合法的checkFlag
+	 * 
+	 * @return Set<Integer>
+	 */
+	public Set<Integer> getCanUseCheckFlag() {
+		List<Integer> iL = new ArrayList<Integer>();
+		List<Integer> result = new ArrayList<Integer>();
+		for (int i = 1; i <= 4; i++) {
+			plzh(result, "0", iL, i);
+		}
+		Set<Integer> set = new HashSet<Integer>(result);
+		return set;
+	}
+
+	/**
+	 * 排列组合
+	 * 
+	 * @param result
+	 * @param s
+	 * @param iL
+	 * @param m
+	 */
+	private void plzh(List<Integer> result, String s, List<Integer> iL, int m) {
+		List<Integer> iL2;
+		String[] is = new String[]{"2","8","4","1"};
+		for (int i = 0; i < is.length; i++) {
+			iL2 = new ArrayList<Integer>();
+			iL2.addAll(iL);
+			if (!iL.contains(i)) {
+				int str = Integer.parseInt(s) + Integer.parseInt(is[i]);
+				iL2.add(i);
+//				result.add(str);
+				plzh(result, String.valueOf(str), iL2, m - 1);
+			}
+		}
+	}
 }

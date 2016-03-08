@@ -243,6 +243,8 @@
 	</bean>
 	
 	<!-- 当前时间 -->
+	<!-- 通过MethodInvokingFactoryBean工厂Bean，可以将指定方法返回值注入成为目标Bean的属性值，
+	MethodInvokingFactoryBean用来获得指定方法的返回值，该方法可以是静态方法  -->
 	<bean id="currentDatetime" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
 		<property name="targetClass" value="com.xjf.wemall.api.util.DateUtil" />
 		<property name="targetMethod" value="getCurrentDateTime" />

@@ -14,6 +14,8 @@ import java.lang.reflect.Method;
 
 import org.aopalliance.intercept.MethodInvocation;
 
+import com.xjf.wemall.annotation.LogTime;
+
 /**
  * 时间记录拦截器<br>
  * 
@@ -38,17 +40,17 @@ public class LogTimeInterceptor extends BaseMethodInterceptor {
 		String methodName = method.getName();
 		String className = method.getDeclaringClass().getName();
 
-//		if (method.isAnnotationPresent(LogTime.class)) {
+		if (method.isAnnotationPresent(LogTime.class)) {
 //			long startTime = logService.logStartTime();
 			
 			Object ret = invocation.proceed();
 			
 //			logService.logEndTime(startTime, className, methodName, invocation.getArguments());
-//			
+
 			return ret;
-//		} else {
-//			return invocation.proceed();
-//		}
+		} else {
+			return invocation.proceed();
+		}
 	}
 
 }

@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
   	
   	<!-- 加载配置文件 -->
 	<context:component-scan base-package="com.xjf.wemall" />
@@ -36,24 +38,38 @@
 	<bean id="logTimeInterceptor" class="com.xjf.wemall.interceptor.LogTimeInterceptor" />
 	
 	<!-- 定义bean自动代理容器 -->
-	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	<!-- *****AutoProxyCreator与AopConfig同时使用，会产生二次代理，而多个AopConfig则永远只有一个代理，故推荐使用AopConfig***** -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
     	<property name="interceptorNames" >
     		<list>
-    			<!-- 配置拦截器  -->
-    			<!-- 日志拦截器 -->
+    			配置拦截器 
+    			日志拦截器
      		    <value>logTimeInterceptor</value>
     		</list>
     	</property>
     	<property name="beanNames">
     		<list>
-    			<!-- 需要拦截serivce的beanName,支持通配-->
+    			需要拦截serivce的beanName,支持通配
     			<value>*Service</value>
     			<value>*ServiceImpl</value>
     		</list>
     	</property>
-    	<!-- 根据Target类型动态使用代理技术(proxy与cglib) -->
+    	根据Target类型动态使用代理技术(proxy与cglib)
     	<property name="proxyTargetClass" value="true"/>
-    	<!-- 暴露代理对象，可以使用AopContext --> 
+    	暴露代理对象，可以使用AopContext
     	<property name="exposeProxy" value="true"/>
-	</bean>
+	</bean> -->
+	
+	<!-- 根据自定义标签类，匹配代理方法 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.saic.wemall.service..*Service*.*(..))"/>
+		<aop:advisor advice-ref="logTimeInterceptor" pointcut-ref="transactionPointcut" order="1"/>
+		<!-- <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut" order="2"/> -->
+	</aop:config>
+	
+	<!-- 指定需代理的类和方法
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="demoPointcut" expression="execution(* com.saic.wemall.service.redis.api.RedisResetService.reset*(..))"/>
+		<aop:advisor advice-ref="demoInterceptor" pointcut-ref="demoPointcut"/>
+	</aop:config> -->
 </beans>

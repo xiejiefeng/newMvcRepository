@@ -161,10 +161,15 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-websocket</artifactId>
     </dependency>
+    <!-- 定时器 -->
     <dependency>
 	  <groupId>org.quartz-scheduler</groupId>
 	  <artifactId>quartz</artifactId>
 	</dependency>
+	<dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+    </dependency>
   </dependencies>
   
   <build>

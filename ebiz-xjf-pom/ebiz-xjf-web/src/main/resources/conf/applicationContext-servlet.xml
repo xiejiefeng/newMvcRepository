@@ -5,10 +5,12 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	
 	<!-- 扫描加载注解 -->
 	<context:component-scan base-package="com.xjf.wemall.web" />
@@ -309,4 +311,15 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     	<property name="defaultEncoding" value="UTF-8"></property>
     </bean> -->
+    
+    <!-- 登录校验 -->
+	<bean id="needLoginAspect" class="com.saic.wemall.web.aspect.NeedLoginAspect" />
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.saic.wemall.annotation.NeedLogin String com.saic.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
+		<aop:pointcut id="needLoginAjaxPointcut" expression="execution(@com.saic.wemall.annotation.NeedLogin com.saic.wemall.api.entity.common.AjaxObject com.saic.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
+		<aop:aspect id="needLoginAspect" ref="needLoginAspect">
+			<aop:around method="checkLoginUrl" pointcut-ref="needLoginUrlPointcut"/>
+			<aop:around method="checkLoginAjax" pointcut-ref="needLoginAjaxPointcut"/>
+		</aop:aspect>
+	</aop:config>
 </beans>

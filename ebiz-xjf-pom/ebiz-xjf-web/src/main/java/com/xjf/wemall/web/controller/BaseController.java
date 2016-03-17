@@ -203,7 +203,7 @@ public class BaseController {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	private String getOpenType(){
+	protected String getOpenType(){
 		String openType = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.OPEN_TYPE);
 		if(StringUtils.isNotEmpty(openType)){
 			return openType;
@@ -254,7 +254,7 @@ public class BaseController {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	private String getCxId(){
+	protected String getCxId(){
 		String cxId = CookieUtil.getCookieByName(this.getRequest(), CookieUtil.CXID);
 		if(StringUtils.isNotEmpty(cxId)){
 			return cxId;

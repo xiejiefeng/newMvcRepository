@@ -19,6 +19,10 @@ package com.xjf.wemall.api.entity.common;
  * @since [产品/模块版本] （可选）
  */
 public class AjaxObject {
+	/**
+     * 请求成功常量
+     */
+    public static final int NOLOGIN = -1;
     /**
      * 请求成功常量
      */

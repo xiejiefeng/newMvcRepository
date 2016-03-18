@@ -46,6 +46,7 @@ import com.xjf.wemall.api.util.StringUtil;
 import com.xjf.wemall.service.redis.api.RedisJobService;
 import com.xjf.wemall.service.redis.api.RedisLockService;
 import com.xjf.wemall.service.redis.api.RedisVerifyService;
+import com.xjf.wemall.service.redis.impl.RedisJobServiceImpl;
 import com.xjf.wemall.service.redis.impl.RedisLockServiceImpl;
 import com.xjf.wemall.web.controller.BaseController;
 import com.xjf.wemall.web.util.CookieUtil;

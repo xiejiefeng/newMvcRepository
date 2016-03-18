@@ -19,6 +19,8 @@ import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.index.api.IndexService;
+import com.xjf.wemall.service.redis.api.RedisJobService;
+import com.xjf.wemall.service.redis.impl.RedisJobServiceImpl;
 
 
 /**
@@ -28,9 +30,17 @@ public class sysTest extends AllServiceTest {
 	@Autowired
 	private IndexService indexService;
 	
+	@Autowired
+	private RedisJobService redisJobService;
+	
+	
 	@Test
 	public void index() {
-		System.out.println(JSONParser.toJSONString(indexService.mapInfo()));
+
+		((RedisJobServiceImpl) redisJobService).setInProgressMsg("hello 世界");
+		
+		System.out.println(redisJobService.getInProgressMsg());
+//		System.out.println(JSONParser.toJSONString(indexService.mapInfo()));
 		
 	}
 

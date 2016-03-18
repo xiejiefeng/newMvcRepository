@@ -313,10 +313,10 @@
     </bean> -->
     
     <!-- 登录校验 -->
-	<bean id="needLoginAspect" class="com.saic.wemall.web.aspect.NeedLoginAspect" />
+	<bean id="needLoginAspect" class="com.xjf.wemall.web.aspect.NeedLoginAspect" />
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.saic.wemall.annotation.NeedLogin String com.saic.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
-		<aop:pointcut id="needLoginAjaxPointcut" expression="execution(@com.saic.wemall.annotation.NeedLogin com.saic.wemall.api.entity.common.AjaxObject com.saic.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
+		<aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin String com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
+		<aop:pointcut id="needLoginAjaxPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin com.xjf.wemall.api.entity.common.AjaxObject com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
 		<aop:aspect id="needLoginAspect" ref="needLoginAspect">
 			<aop:around method="checkLoginUrl" pointcut-ref="needLoginUrlPointcut"/>
 			<aop:around method="checkLoginAjax" pointcut-ref="needLoginAjaxPointcut"/>

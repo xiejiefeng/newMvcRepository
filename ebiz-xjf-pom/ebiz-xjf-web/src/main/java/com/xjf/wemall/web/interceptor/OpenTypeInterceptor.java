@@ -73,6 +73,7 @@ public class OpenTypeInterceptor extends BaseInterceptor {
         String userAgent = request.getHeader(USER_AGENT);
         String userInfo = request.getParameter(USER_INFO);
         
+		String method = request.getMethod();
         
         /*******************************获取所有传入参数START*************************************/
 //        Map<String, String[]> map= (Map<String, String[]>) request.getParameterMap();

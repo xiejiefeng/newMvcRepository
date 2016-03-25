@@ -33,43 +33,13 @@ import com.xjf.wemall.web.controller.BaseController;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-public class NeedLoginAspect extends BaseController {
+public class NeedLoginAspect extends BaseAspect {
 
 	/** 跳转验证页面 */
 	private final String loginUrl = "/user/login-fast.htm";
 
 	/** native唤醒页面 */
 	private final String nativeUrl = "/cxb/initCxbNat.htm";
-
-	/**
-	 * 
-	 * 功能描述: <br>
-	 * 〈功能详细描述〉
-	 *
-	 * @param joinPoint
-	 * @return
-	 * @throws Throwable 
-	 * @see [相关类/方法](可选)
-	 * @since [产品/模块版本](可选)
-	 */
-	public String checkLoginUrl(ProceedingJoinPoint joinPoint, NeedLogin needLogin) throws Throwable {
-		return this.checkLogin(joinPoint, needLogin, String.class);
-	}
-	
-	/**
-	 * 
-	 * 功能描述: <br>
-	 * 〈功能详细描述〉
-	 *
-	 * @param joinPoint
-	 * @return
-	 * @throws Throwable 
-	 * @see [相关类/方法](可选)
-	 * @since [产品/模块版本](可选)
-	 */
-	public AjaxObject checkLoginAjax(ProceedingJoinPoint joinPoint, NeedLogin needLogin) throws Throwable {
-		return this.checkLogin(joinPoint, needLogin, AjaxObject.class);
-	}
 	
 	/**
 	 * 

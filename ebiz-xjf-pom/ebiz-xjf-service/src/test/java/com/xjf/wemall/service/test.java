@@ -3,6 +3,14 @@ package com.xjf.wemall.service;
 public class test {
 
 	public static void main(String[] args) {
+		
+		String badStr = "";
+		badStr = "'|and|exec|execute|insert|select|delete|update|count|drop|*|chr|mid|master|truncate|"
+				+ "char|declare|sitename|net user|xp_cmdshell|or |like'|create|"
+				+ "table|from|grant|use|group_concat|column_name|"
+				+ "information_schema.columns|table_schema|union|where|order|by|" + "--|+|like|#";// 过滤掉的sql关键字，可以手动添加
+		System.out.println(badStr);
+		
 		Animal a = new Cat();
 		Animal b = new Animal();
 		Cat c = new Cat();

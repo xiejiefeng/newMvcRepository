@@ -17,15 +17,19 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+
+
 //import com.xjf.wemall.api.constant.WemallConstants;
 //import com.saic.wemall.api.entity.sysreference.SysReferenceDetailRestFulVo;
 import com.xjf.wemall.event.SysRefEvent;
+import com.xjf.wemall.service.staticvalue.api.StaticValueService;
 //import com.saic.wemall.service.staticvalue.api.StaticValueService;
 //import com.saic.wemall.service.sysreference.api.SysReferenceService;
 
@@ -58,8 +62,8 @@ public class WemallListener implements ApplicationListener<ApplicationEvent> {
 //	private SysReferenceService sysReferenceService;
 
 	/** 内存信息 */
-//	@Autowired
-//	private StaticValueService staticValueService;
+	@Autowired
+	private StaticValueService staticValueService;
 
 	/**
 	 * {@inheritDoc}

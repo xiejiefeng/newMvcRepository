@@ -4,6 +4,10 @@ class Cat extends Animal {
 	
 	public static String age;
 	
+	static {
+		System.out.println("Cat 静态初始模块");
+	}
+	
 	{
 		System.out.println("Cat 初始模块");
 	}
@@ -14,6 +18,10 @@ class Cat extends Animal {
 	
 	public Cat() {
 		this.age = "10";
+	}
+	
+	public void setName(String age) {
+		this.age = age;
 	}
 	
 	@Override

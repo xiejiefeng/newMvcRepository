@@ -1,4 +1,4 @@
-package com.xjf.wemall.service.chapter6;
+package com.xjf.wemall.service.crazyjavachapter6;
 
 // 宏变量
 public class FinalHongBianLiang {

@@ -27,7 +27,8 @@ public class sampleComparator implements Comparator<SampleVo>{
 	// 倒序
     @Override
     public int compare(SampleVo card1, SampleVo card2) {
-    	if (card1.getI() < card2.getI()) {
+    	// card1 当前一个 card2非当前
+    	if (card1.getI() > card2.getI()) {
     		return -1;
     	} else {
     		return 1;

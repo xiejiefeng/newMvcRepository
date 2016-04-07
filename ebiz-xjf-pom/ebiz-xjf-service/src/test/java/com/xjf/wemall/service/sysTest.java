@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.xjf.wemall.api.entity.SampleVo;
 import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.util.JSONParser;
+import com.xjf.wemall.api.util.StringUtil;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.index.api.IndexService;
 import com.xjf.wemall.service.redis.api.RedisJobService;
@@ -54,10 +55,10 @@ public class sysTest extends AllServiceTest {
 	@Test
 	public void index2() {
 		List<SampleVo> list = new ArrayList<SampleVo>();
-		
+		SampleVo vo = null;
 		for (int i = 0; i <= 10; i++) {
-			SampleVo vo = new SampleVo();
-			vo.setI(i);
+			vo = new SampleVo();
+			vo.setI(Integer.valueOf(StringUtil.getRandomString(1, StringUtil.RANDOM_NUMBER)));
 			
 			list.add(vo);
 		}

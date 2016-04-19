@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.xjf.wemall.api.entity.SampleVo;
 import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.util.JSONParser;
@@ -60,5 +61,20 @@ public class allTest extends AllServiceTest {
 		xiaoStBSCat xsbc = new xiaoStBSCat();
 		xsbc.jiao();
 	}
+	
+	
+	@Test
+	public void index1() {
+		String strTemplateNo = "[\"123\",\"456\"]";
+		
+		List<String> templateNoList = null;
+
+        try {
+            templateNoList = JSONParser.toStringList(strTemplateNo, String.class);
+        } catch (Exception e) {
+        	System.out.println("error");
+        }
+	}
+	
 
 }

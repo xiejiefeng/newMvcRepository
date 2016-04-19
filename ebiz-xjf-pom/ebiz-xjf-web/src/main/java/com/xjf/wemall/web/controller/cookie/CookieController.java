@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xjf.wemall.annotation.CookieParam;
 import com.xjf.wemall.api.entity.common.AjaxObject;
 import com.xjf.wemall.api.entity.common.CookieObject;
 import com.xjf.wemall.api.entity.redis.RedisLockVo;
@@ -99,11 +100,11 @@ public class CookieController extends BaseController{
      * @since [产品/模块版本](可选)
      */
     @RequestMapping("/menu")
-    public String index(HttpServletRequest request, Model model, HttpServletResponse response,
+    public String index(@CookieParam CookieObject cookie, HttpServletRequest request, Model model, HttpServletResponse response,
     		@MatrixVariable(required = false) String q1, @MatrixVariable(required = false) String q2){
     	
     	// 获取Cookie对象
-    	CookieObject cookie = super.getCookie(response);
+//    	CookieObject cookie = super.getCookie(response);
     	
     	if (StringUtils.isEmpty(cookie.getCxId())) {
     		String cxId = StringUtil.getRandomString(8, StringUtil.RANDOM_NUMBER);

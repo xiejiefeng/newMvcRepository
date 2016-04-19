@@ -78,7 +78,10 @@
                 	</list>  
             	</property>
         	</bean> -->  
-    	</mvc:message-converters>  
+    	</mvc:message-converters>
+    	<mvc:argument-resolvers>
+			<bean class="com.saic.wemall.web.resolver.CookieMethodArgumentResolver"/>
+		</mvc:argument-resolvers>
    	</mvc:annotation-driven>
 	
 	<!-- 拦截对象1

@@ -17,6 +17,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.xjf.wemall.api.entity.common.CookieObject;
+
 /**
  * Cookie 工具类<br>
  * 〈功能详细描述〉
@@ -38,6 +42,9 @@ public class CookieUtil {
     
     /**车享ID*/
     public static final String CXID = "wemall_cxid";
+    
+    /** 设备ID */
+	public static final String EQUID = "wemall_equid";
     
     /**用户标识*/
     public static final String USER_KEY = "wemall_userkey";
@@ -228,4 +235,122 @@ public class CookieUtil {
         }
         return cookieMap;
     }
+    /***
+	 * 
+	 * 功能描述: 获取openId<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getOpenId(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.OPENID);
+		return StringUtils.trimToEmpty(value);
+	}
+
+	/***
+	 * 
+	 * 功能描述: 获取openType<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getOpenType(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.OPEN_TYPE);
+		return StringUtils.trimToEmpty(value);
+	}
+
+	/***
+	 * 
+	 * 功能描述: 获取经度<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getLongitude(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.LOCATION_LONGITUDE);
+		return StringUtils.trimToEmpty(value);
+	}
+
+	/***
+	 * 
+	 * 功能描述: 获取纬度<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getLatitude(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.LOCATION_LATITUDE);
+		return StringUtils.trimToEmpty(value);
+	}
+
+	/***
+	 * 
+	 * 功能描述: 获取车享ID<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getCxId(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.CXID);
+		return StringUtils.trimToEmpty(value);
+	}
+
+	/***
+	 * 
+	 * 功能描述: 获取用户标识<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getUserKey(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.USER_KEY);
+		return StringUtils.trimToEmpty(value);
+	}
+
+	/***
+	 * 
+	 * 功能描述: 获取设备ID<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static String getEquId(HttpServletRequest request) {
+		String value = CookieUtil.getCookieByName(request, CookieUtil.EQUID);
+		return StringUtils.trimToEmpty(value);
+	}
+	/***
+	 * 
+	 * 功能描述: 获取Cookie对象<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public static CookieObject getCookie(HttpServletRequest request) {
+		CookieObject cookie = new CookieObject();
+		cookie.setOpenId(getOpenId(request));
+		cookie.setOpenType(getOpenType(request));
+		cookie.setCxId(getCxId(request));
+		cookie.setLongitude(getLongitude(request));
+		cookie.setLatitude(getLatitude(request));
+		cookie.setKey(getUserKey(request));
+//		cookie.setEquId(getEquId(request));
+
+		return cookie;
+	}
 }

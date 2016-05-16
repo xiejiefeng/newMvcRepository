@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="userActiveResult">
+	<!-- 查询用户已参与 并有结果的次数-->
+	<sql id="queryActiveResultTimesCount">
+		<![CDATA[
+              select count(id)
+              from t_user_active_result
+              where 1=1 and is_deleted != 1
+              <#if ignoreActiveFlag=1 && activeCode!=null>
+              	and active_code = :activeCode
+              </#if>
+              <#if ignoreSourceFlag=1 && sourceType!=null>
+              	and source_type = :sourceType
+              </#if>
+              <#if cxId!=null>
+              	and cx_id = :cxId
+              </#if>
+              <#if ignoreDoType=1 && doType!=null>
+              	and do_type = :doType
+              </#if>
+              <#if targetType!=null>
+              	and target_type = :targetType
+              </#if>
+              <#if intervalTime != 0 && intervalTime!=null>
+              	and abs(TIMESTAMPDIFF(day, DATE_FORMAT(create_time, '%Y-%m-%d'),
+              			 DATE_FORMAT(now(), '%Y-%m-%d'))) < :intervalTime
+              </#if>
+              
+		]]>
+	</sql>
+	
+	<!-- 查询用户已参与的结果-->
+	<sql id="queryActiveResultList">
+		<![CDATA[
+              select *
+              from t_user_active_result
+              where is_deleted != 1
+              <#if activeCode!=null>
+              	and active_code like CONCAT('${activeCode}','%')
+              </#if>
+              <#if sourceType!=null>
+              	and source_type = :sourceType
+              </#if>
+              <#if cxId!=null>
+              	and cx_id = :cxId
+              </#if>
+              <#if doType!=null>
+              	and do_type = :doType
+              </#if>
+              <#if doValue1!=null>
+              	and do_value1 = :doValue1
+              </#if>
+              <#if targetType!=null>
+              	and target_type = :targetType
+              </#if>
+              order by id
+              
+		]]>
+	</sql>
+</sqlMap>

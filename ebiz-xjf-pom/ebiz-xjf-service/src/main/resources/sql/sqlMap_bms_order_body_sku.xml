@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="bms.order.body.sku">
+	<!-- 查询列表-->
+	<sql id="queryForList">
+		<![CDATA[
+			select * from t_bms_order_body_sku where 1=1
+            <#if orderNo!=null>
+            	and ORDERNO =:orderNo
+            </#if>
+		]]>
+	</sql>
+	
+    <sql id="getCount">
+        <![CDATA[
+            select count(1) from t_test where 1=1
+            <#if isDeleted!=null>
+                and is_deleted =:isDeleted
+            </#if>
+        ]]>
+    </sql>
+
+</sqlMap>

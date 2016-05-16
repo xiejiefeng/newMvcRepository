@@ -3,7 +3,7 @@ package com.xjf.wemall.service;
 public class test {
 
 	public static void main(String[] args) {
-		
+//		System.out.println(String.valueOf(null));
 		String badStr = "";
 		badStr = "'|and|exec|execute|insert|select|delete|update|count|drop|*|chr|mid|master|truncate|"
 				+ "char|declare|sitename|net user|xp_cmdshell|or |like'|create|"

@@ -1,6 +1,8 @@
 package com.xjf.wemall.service.crazyjavachapter6;
 
 import org.junit.Test;
+
+import com.xjf.wemall.api.constant.errorCode.AdapterErrorCode;
 import com.xjf.wemall.service.AllServiceTest;
 
 
@@ -43,11 +45,21 @@ public class enumTest extends AllServiceTest {
 	
 	@Test
 	public void test2() {
+		String mobile = "13818433718";
+        StringBuffer sBuffer = new StringBuffer();
+        sBuffer.append(mobile.substring(0, 3));
+        sBuffer.append("*****");
+        sBuffer.append(mobile.substring(8));
+        
+        System.out.println(sBuffer.toString());
 		// 通过Enum的valueOf获取指定枚举型的实例
 		Gender f = Enum.valueOf(Gender.class, "FAMALE");
 		Gender m = Gender.MALE;
 
 		System.out.println(f+"代表"+f.getName());
 		System.out.println(m+"代表"+m.getName());
+		System.out.println(Gender.MALE);
+		
+		System.out.println(AdapterErrorCode.TIMEOUT.code());
 	}
 }

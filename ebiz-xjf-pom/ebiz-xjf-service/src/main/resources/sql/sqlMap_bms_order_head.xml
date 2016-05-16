@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="bms.order.head">
+	<!-- 查询列表-->
+	<sql id="queryForList">
+		<![CDATA[
+			select 
+				 orderHead.id,
+				 DATE_FORMAT(orderHead.ORDERDATE,'%Y-%m-%d %H:%i:%s') ORDERDATE,
+				 DATE_FORMAT(orderHead.ORDERAUDITDATE,'%Y-%m-%d %H:%i:%s') as ORDERAUDITDATE,
+				 orderHead.ORDERTYPE,
+				 orderHead.ORDERTYPECODE,
+				 orderHead.ORDERNO,
+				 orderHead.CARDNO,
+				 orderHead.CARDNAME,
+				 orderHead.DEPTCODE,
+				 orderHead.DEPTNAME,
+				 orderHead.ORDERSTATUSCODE,
+				 orderHead.ORDERSTATUS,
+				 orderHead.ORDERCREATER,
+				 orderHead.CUSTID,
+				 orderHead.CUSTNAME,
+				 orderHead.MEMBERNAME,
+				 orderHead.CUSTTYPECODE,
+				 orderHead.CUSTTYPE,
+				 orderHead.CUSTPHONE,
+				 orderHead.CARCODE,
+				 orderHead.CARTYPE,
+				 orderHead.ORDERGZMONEY,
+				 orderHead.ORDERTOTALMONEY,
+				 round(orderHead.ORDERYPAIDMONEY,2) ORDERYPAIDMONEY,
+				 orderHead.ORDERZKMONEY,
+				 orderHead.ORDERPAIDMONEY,
+				 orderHead.ORDERQLMONEY,
+				 orderHead.ORDERDISMONEY,
+				 orderHead.REMARK,
+				 orderHead.ORDERSOURCECODE,
+				 orderHead.ORDERSOURCENAME,
+				 orderHead.ADVICE,
+				 orderHead.AREACODE,
+				 orderHead.CARDTYPECODE,
+				 orderHead.CARDTYPENAME
+			 from t_bms_order_head orderHead
+			 where 1=1
+			 and exists(select orderService.orderNo from t_bms_order_body_service orderService where orderHead.ORDERNO=orderService.ORDERNO)
+            <#if orderStatusCode!=null>
+            	and orderHead.ORDERSTATUSCODE =:orderStatusCode
+            </#if>
+            <#if orderStatus!=null>
+            	and orderHead.ORDERSTATUS =:orderStatus
+            </#if>
+            <#if orderType!=null>
+            	and orderHead.ORDERTYPE =:orderType
+            </#if>
+            <#if carCodes??>
+            	and orderHead.carcode in 
+            	(<#list carCodes as car><#if car_index == 0>'${car}'<#else>,'${car}'</#if></#list>)
+            </#if>
+            <#if orderNo!=null>
+            	and orderHead.ORDERNO =:orderNo
+            </#if>
+		     order by DATE_FORMAT(orderHead.ORDERAUDITDATE,'%Y%m%d%H%i%s') desc
+			<#if limitValue!=null>
+		 		 ${limitValue}  
+		    </#if> 
+		]]>
+	</sql>
+	
+    <sql id="getCount">
+        <![CDATA[
+            select count(1) from t_test where 1=1
+            <#if isDeleted!=null>
+                and is_deleted =:isDeleted
+            </#if>
+        ]]>
+    </sql>
+
+</sqlMap>

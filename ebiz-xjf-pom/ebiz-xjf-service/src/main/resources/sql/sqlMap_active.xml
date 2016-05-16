@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="active">
+	<!-- 查询列表-->
+	<sql id="queryForList">
+		<![CDATA[
+		  select * from t_active where 1=1 
+		   <#if isDeleted != null>
+		  	and is_deleted =:isDeleted
+		  </#if>
+		  order by id desc
+		 
+		]]>
+	</sql>
+	
+
+
+</sqlMap>

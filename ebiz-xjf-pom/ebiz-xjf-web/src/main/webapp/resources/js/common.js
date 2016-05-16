@@ -64,7 +64,7 @@
     	if (typeof(RSA_WEB_SIGN_RESULT) == "string") {
         	arg.headers["USER_RSA_KEY"] = RSA_WEB_SIGN_RESULT;
     	}
-    	var callBack = function() {
+    	var failCallBack = function() {
             if (arg.failCallBack) {
                 arg.failCallBack.call(this);
             }
@@ -85,8 +85,10 @@
             	}
                 if (textStatus === "timeout") {
                     comAlertObj("连接超时!请稍后再试");
+                    failCallBack();
                 } else if (textStatus == "error") {
                     comAlertObj("系统繁忙,请稍后再试");
+                    failCallBack();
                 }
             },
             success: function(data) {
@@ -97,10 +99,10 @@
                     window.location.href = $.loginUrl;
                 } else if (data.result == $.dataResult.INVAILD) {
                     comAlertObj("发送请求的参数中含有非法字符！");
-                    callBack();
+                    failCallBack();
                 } else if (data.result == $.dataResult.RSA_ERROR) {
                     comAlertObj("请求已失效，请返回重试！");
-                    callBack();
+                    failCallBack();
                 } else {
                     arg.successfn.call(this, data, arg.successarg);
                 }
@@ -127,24 +129,33 @@
 
         $.baseAjax(arg);
     }
-    $.logInfo = function(msg) {
+    $.logInfo = function(remark1,remark2,remark3,remark4) {
     	var arg = {
     		userName : "jsInfo",
-    		remark1 : msg
+    		remark1 : remark1,
+    		remark2 : remark2,
+    		remark3 : remark3,
+    		remark4 : remark4
     	}
     	$.logDb(arg);
     }
-    $.logWarn = function(msg) {
+    $.logWarn = function(remark1,remark2,remark3,remark4) {
     	var arg = {
     		userName : "jsWarn",
-    		remark1 : msg
+    		remark1 : remark1,
+    		remark2 : remark2,
+    		remark3 : remark3,
+    		remark4 : remark4
     	}
     	$.logDb(arg);
     }
-    $.logError = function(msg) {
+    $.logError = function(remark1,remark2,remark3,remark4) {
     	var arg = {
     		userName : "jsError",
-    		remark1 : msg
+    		remark1 : remark1,
+    		remark2 : remark2,
+    		remark3 : remark3,
+    		remark4 : remark4
     	}
     	$.logDb(arg);
     }
@@ -385,6 +396,8 @@ $(function() {;
     (function() {
         //添加蒙层
         creatSingleLayer.creatMaskLayer()
+        var load = $('<div id="loadImg" class="loadImg"><p><img src="http://s1.cximg.com/cms/wap/resource/chexiangjiaM/images/loading_84d37c6a7c899c48d4e8657b1a1ae70e.gif"/></p></div>'); // loading 效果
+       $("body").append(load); // 为每个页面插入load 的dom 结构
         // 返回头部
         var backToTop = (function() {
             var instance = null;
@@ -502,8 +515,7 @@ $(function() {;
 })();
 var backet = null;;
 (function() {
-    var load = $('<div id="loadImg" class="loadImg"><p><img src="http://s1.cximg.com/cms/wap/resource/chexiangjiaM/images/loading_84d37c6a7c899c48d4e8657b1a1ae70e.gif"/></p></div>'); // loading 效果
-    $("body").append(load); // 为每个页面插入load 的dom 结构
+    
 
     backet = (function() { // 添加购物车 和 loading图标                     
         var backetObj = null,

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="sysReference">
+	<!-- 查询列表 -->
+	<sql id="queryForList">
+		<![CDATA[
+	         select 
+	              id,
+	              ref_code,
+	              ref_name,
+	              create_by,
+	              create_time,
+	              update_by,
+	              update_time,
+	              is_deleted
+	                from t_sys_reference where 1=1
+	          <#if isDeleted!=null>
+              	   and is_deleted =:isDeleted
+              </#if>   
+              <#if refCode!=null>    
+	          	   and ref_code like concat('%',:refCode,'%')
+	          </#if>    
+		      <#if refName!=null>
+              	   or ref_name like concat('%',:refName,'%')
+              </#if>
+		]]>
+	</sql>
+
+	<!-- 动态sql查询 List<map> -->
+	<sql id="queryDynamicSql">
+		<![CDATA[
+	         ${viewString}
+	         limit ${startNums}, ${countNums}
+		]]>
+	</sql>
+
+	<!-- 动态sql查询 Long -->
+	<sql id="queryDynamicSqlCount">
+		<![CDATA[
+	         select count(*) from (
+	         	${viewString}
+	         ) vv
+		]]>
+	</sql>
+	
+	<!-- 动态sql查询 Long -->
+	<sql id="queryActiveCode">
+		<![CDATA[
+			select 1 flag, ref_code
+  			from (select ref_code
+          			from (select t1.ref_code,
+                       t2.id,
+                       TIMESTAMPDIFF(SECOND,
+                                     DATE_FORMAT(t2.ref_detail_value,
+                                                 '%Y-%m-%d %H:%i:%s'),
+                                     DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) as sec,
+                       case
+                         when TIMESTAMPDIFF(SECOND,
+                                            DATE_FORMAT(t2.ref_detail_value,
+                                                        '%Y-%m-%d %H:%i:%s'),
+                                            DATE_FORMAT(now(),
+                                                        '%Y-%m-%d %H:%i:%s')) >= 0 THEN
+                          'a'
+                         else
+                          'b'
+                       end fg
+                  from t_sys_reference t1
+                  join t_sys_reference_detail t2
+                    on t1.id = t2.ref_id
+                 where t1.is_deleted = 0
+                   and t2.is_deleted != 1
+                   and t2.ref_detail_code = 'PAGEPARAMAP_START_TIME'
+                   and t1.ref_code like '${preActiveCode}%'
+                   and NOT EXISTS
+                 (select a.ref_code
+                          from t_sys_reference a
+                          join t_sys_reference_detail b
+                            on a.id = b.ref_id
+                         where a.is_deleted = 0
+                           and b.is_deleted != 1
+                           and b.ref_detail_code = 'PAGEPARAMAP_END_TIME'
+                           and TIMESTAMPDIFF(SECOND,
+                                             DATE_FORMAT(b.ref_detail_value,
+                                                         '%Y-%m-%d %H:%i:%s'),
+                                             DATE_FORMAT(now(),
+                                                         '%Y-%m-%d %H:%i:%s')) > 0
+                           and a.ref_code like '${preActiveCode}%'
+                           and t1.ref_code = a.ref_code)) tv
+					         group by ref_code, fg
+					         order by fg, abs(sec), id limit 0, 1) v1
+			union all
+			SELECT 0 as flag, ref_code
+			  from (select a.ref_code
+			          from t_sys_reference a
+			          join t_sys_reference_detail b
+			            on a.id = b.ref_id
+			         where a.is_deleted = 0
+			           and b.is_deleted != 1
+			           and b.ref_detail_code = 'PAGEPARAMAP_END_TIME'
+			           and TIMESTAMPDIFF(SECOND,
+			                             DATE_FORMAT(b.ref_detail_value,
+			                                         '%Y-%m-%d %H:%i:%s'),
+			                             DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s')) > 0
+			           and a.ref_code like '${preActiveCode}%'
+			         group by a.ref_code
+			         order by abs(TIMESTAMPDIFF(SECOND,
+			                                    DATE_FORMAT(b.ref_detail_value,
+			                                                '%Y-%m-%d %H:%i:%s'),
+			                                    DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'))) asc,
+			                  b.id desc limit 0,
+			                  1) v2
+
+		]]>
+	</sql>
+</sqlMap>

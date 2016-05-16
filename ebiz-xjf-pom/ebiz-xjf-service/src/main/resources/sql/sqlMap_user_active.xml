@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="userActive">
+	<!-- 插入 -->
+	<sql id="insert">
+		<![CDATA[
+		  insert into ${tableName} (
+			  	active_code,
+			  	is_deleted
+			  	<#if openId != null && openId != "">
+			  		,open_id
+			  	</#if>
+			  	<#if cxId != null && cxId != "">
+			  		,cx_id
+			  	</#if>
+			  	<#if equId != null && equId != "">
+			  		,equ_id
+			  	</#if>
+			  	<#if ckeckId1 != null && ckeckId1 != "">
+			  		,ckeckId1
+			  	</#if>
+				<#if ckeckId2 != null && ckeckId2 != "">
+			  		,ckeckId2
+			  	</#if>
+			  	<#if ckeckId3 != null && ckeckId3 != "">
+			  		,ckeckId3
+			  	</#if>
+			  	<#if ckeckId4 != null && ckeckId4 != "">
+			  		,ckeckId4
+			  	</#if>
+			  	<#if ckeckId5 != null && ckeckId5 != "">
+			  		,ckeckId5
+			  	</#if>
+			  	<#if sourceType != null && sourceType != "">
+			  		,source_type
+			  	</#if>
+			 ) values (
+			 	:activeCode,
+			 	0
+				 <#if openId != null && openId != "">
+			  		,:openId
+			  	</#if>
+			  	<#if cxId != null && cxId != "">
+			  		,:cxId
+			  	</#if>
+			  	<#if equId != null && equId != "">
+			  		,:equId
+			  	</#if>
+			  	<#if ckeckId1 != null && ckeckId1 != "">
+			  		,:ckeckId1
+			  	</#if>
+				<#if ckeckId2 != null && ckeckId2 != "">
+			  		,:ckeckId2
+			  	</#if>
+			  	<#if ckeckId3 != null && ckeckId3 != "">
+			  		,:ckeckId3
+			  	</#if>
+			  	<#if ckeckId4 != null && ckeckId4 != "">
+			  		,:ckeckId4
+			  	</#if>
+			  	<#if ckeckId5 != null && ckeckId5 != "">
+			  		,:ckeckId5
+			  	</#if>
+			  	<#if sourceType != null && sourceType != "">
+			  		,:sourceType
+			  	</#if>
+  			)
+		]]>
+	</sql>
+
+	<!-- 查询分表 -->
+	<sql id="checkActiveIsGotONETable">
+		<![CDATA[
+              select sum(rnum) from (select count(id) rnum
+              from ${tableName} 
+              where is_deleted = 0 
+              ${queryCondition} 
+              union all select 0) tt
+              
+		]]>
+	</sql>
+	
+	<!-- 查询全表表 -->
+	<sql id="checkActiveIsGotALLTable">
+		<![CDATA[
+              select sum(rnum) from (
+	              select count(id) rnum from t_user_active_1 where is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_2 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_3 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_4 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_5 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_6 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_7 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_8 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_9 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select count(id) rnum from t_user_active_10 where 1=1 and is_deleted = 0 ${queryCondition} 
+	              union all 
+	              select 0
+              ) tt
+              
+		]]>
+	</sql>
+
+	<!-- 查询用户往届参与的活动编码（历届活动列表） -->
+	<sql id="queryPartInAllHisActiveCode">
+		<![CDATA[
+              select DISTINCT active_code from ${tableName} where cx_id = :cxId and is_deleted = 0
+              <#if prefixActiveCode!=null>
+              	and active_code like CONCAT(:prefixActiveCode,'%') 
+              </#if>
+		]]>
+	</sql>
+
+	<!-- 查询用户往届参与的活动（历届活动列表） -->
+	<sql id="queryPartInAllHisActiveInfo">
+		<![CDATA[
+              select active_code,
+					case when instr(active_code,'_') > 0 then substr(active_code,instr(active_code,'_') + 1) else '' end as active_sub_code,
+					cx_id
+					,SUBSTR(REPLACE(GROUP_CONCAT(DISTINCT create_time ORDER BY create_time DESC SEPARATOR ''),',',''),1,19) as create_time
+				<#list addInfoList as addInfo>
+					,REPLACE(GROUP_CONCAT(DISTINCT ${addInfo} ORDER BY ${addInfo} DESC SEPARATOR ''),',','') as ${addInfo}
+				</#list>
+					from (
+					select distinct a.active_code,a.cx_id,a.create_time
+				<#list addInfoList as addInfo>
+					,case when v.ref_detail_code = '${addInfo}' then v.ref_detail_value else '' end as ${addInfo}
+				</#list>
+					from ${tableName} a 
+					LEFT JOIN (
+					select b.ref_code,c.ref_detail_code,c.ref_detail_value 
+					from t_sys_reference b,t_sys_reference_detail c 
+					where b.id = c.ref_id and b.is_deleted != 1 and c.is_deleted != 1
+					
+					and b.ref_code in (<#list codeList as activeCode><#if activeCode_index == 0>'${activeCode}'<#else>,'${activeCode}'</#if></#list>)
+					) v
+					on CONCAT(a.active_code,'_','') like CONCAT(v.ref_code,'_','%') 
+					where a.cx_id = :cxId  and a.is_deleted != 1
+					
+					and a.active_code in (<#list codeList as activeCode><#if activeCode_index == 0>'${activeCode}'<#else>,'${activeCode}'</#if></#list>)
+					and
+					 ( 
+						 1 != 1 
+					 <#list codeList as activeCode>
+							or CONCAT(a.active_code,'_','') like CONCAT('${activeCode}','_','%')
+					 </#list>
+					 )
+					) vv
+					group by active_code,cx_id
+					order by 4 desc
+			<#if rowStart!=null && rowCount!=null>
+		 			limit ${rowStart}, ${rowCount}
+		    </#if>
+		]]>
+	</sql>
+</sqlMap>

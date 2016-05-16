@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="carTypeReference">
+	<!-- 根据最大版本号查询有用的数据 -->
+	<sql id="queryCarTypeByMaxBatchNo">
+		<![CDATA[
+		  select t.id
+		  ,t.batch_no
+		  ,t.type_code
+		  ,t.car_p_code
+		  ,t.car_code
+		  ,t.car_value
+		  ,t.is_deleted
+		  
+		   from t_cartype_reference t 
+		   where 
+			t.batch_no = (
+			select max(batch_no+0) from t_cartype_reference where 1=1
+				<#if isDeleted != null>
+		  			and is_deleted =:isDeleted
+		  		</#if>
+			)
+		  <#if isDeleted != null>
+		  	and t.is_deleted =:isDeleted
+		  </#if>
+		  <#if carPCode != null>
+		  	and t.car_p_code =:carPCode
+		  </#if>
+		  <#if typeCode != null>
+		  	and t.type_code =:typeCode
+		  </#if>
+		]]>
+	</sql>
+	
+	<!-- 删除最大三个版本号以外的数据-->
+	<sql id="deleteEnableCarTypeInfo" >
+		<![CDATA[
+		delete from t_cartype_reference where batch_no not in (
+			select * from (
+				select DISTINCT batch_no from t_cartype_reference where is_deleted = 0 order by batch_no+0 desc limit 0,3
+			) a
+		)
+		]]>
+	</sql>
+	
+	<!-- 批量插入信息 -->
+	<sql id="batchInsertCarTypeInfo" >
+		<![CDATA[
+		insert into t_cartype_reference (batch_no,type_code,car_p_code,car_code,car_value)
+		values
+		<#list carInfos as car>
+			<#if car_index == 0>
+				(${car})
+			<#else>
+				,(${car})
+			</#if>
+		</#list>
+		]]>
+	</sql>
+</sqlMap>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="assessInfo">
+
+	<!-- 查询未计算过权重得分的评价信息 -->
+	<sql id="queryCalcWeightScoreAssessInfo">
+		<![CDATA[
+		  select * from t_assess_info 
+		  	where is_deleted = 0 
+		  	and ruleFlag = 0 
+		  	and assess_type = 0 
+		  	order by id
+		  limit 0, 100
+		]]>
+	</sql>
+
+	<!-- 更新评价信息的权重得分 -->
+	<sql id="updateCalcWeightScoreAssessInfo">
+		<![CDATA[
+		  update t_assess_info 
+		  	set ruleFlag = :ruleFlag,
+		  		weight_score = :weightScore 
+		  	where id = :id
+		]]>
+	</sql>
+
+	<!-- 系统自动评价 -->
+	<sql id="systemAutoAssess">
+		<![CDATA[
+		  update t_assess_info set active_type = 1 
+		  	where create_time < DATE_ADD(now(),INTERVAL ${timeOut} day)
+		  	and active_type = 0 and is_deleted = 0 
+		]]>
+	</sql>
+
+	<!-- 根据门店ID和行为类型查询评价信息 -->
+	<sql id="queryAssessInfoCount">
+		<![CDATA[
+		  select count(*) from t_assess_info 
+		  	where is_deleted = 0 
+		  	<#if storeId != null && storeId != ''>
+		  	and store_id = :storeId 
+		  	</#if>
+		  	<#if activeType != null && activeType != ''>
+		  	and active_type = :activeType 
+		  	</#if>
+		  	<#if assessType != null && assessType != ''>
+		  	and assess_type = :assessType 
+		  	</#if>
+		  	and LENGTH(assess_info) > 15
+		  	and (LENGTH(filter_assess_info) = 0 or filter_assess_info is null)
+		  	and mobile is not null and TRIM(mobile) != '' and LENGTH(mobile) = 11
+		]]>
+	</sql>
+	
+	<!-- 根据门店ID和行为类型查询评价信息 -->
+	<sql id="queryAssessInfo">
+		<![CDATA[
+		  select * from t_assess_info 
+		  	where is_deleted = 0 
+		  	<#if storeId != null && storeId != ''>
+		  	and store_id = :storeId 
+		  	</#if>
+		  	<#if activeType != null && activeType != ''>
+		  	and active_type = :activeType 
+		  	</#if>
+		  	<#if assessType != null && assessType != ''>
+		  	and assess_type = :assessType 
+		  	</#if>
+		  	and LENGTH(assess_info) > 15
+		  	and (LENGTH(filter_assess_info) = 0 or filter_assess_info is null)
+		  	and mobile is not null and TRIM(mobile) != '' and LENGTH(mobile) = 11
+		  	order by assess_style desc,weight_score desc,id desc
+		  	<#if rowStart?? && rowStart != '' && rowCount?? && rowCount != ''>
+		    	limit ${rowStart}, ${rowCount}
+		    </#if>
+		]]>
+	</sql>
+	
+	
+	<!-- 更新评价信息-->
+	<sql id="updateAssessInfo">
+		<![CDATA[
+		  update t_assess_info 
+		  	set 
+		  	<#if orderNo != null && orderNo != ''>
+		  	order_no = :orderNo,
+		  	</#if>
+			<#if detailNo != null && detailNo != ''>
+		  	detail_no = :detailNo,
+		  	</#if>
+			<#if detailName != null && detailName != ''>
+		  	detail_name = :detailName,
+		  	</#if>
+		  	<#if storeId != null && storeId != ''>
+		  	store_id = :storeId,
+		  	</#if>
+			<#if storeName != null && storeName != ''>
+		  	store_name = :storeName,
+		  	</#if>
+			<#if userId != null && userId != ''>
+		  	user_id = :userId,
+		  	</#if>
+			<#if userName != null && userName != ''>
+		  	user_name = :userName,
+		  	</#if>
+			<#if mobile != null && mobile != ''>
+		  	mobile = :mobile,
+		  	</#if>
+			<#if activeType != null && activeType != ''>
+		  	active_type = :activeType,
+		  	</#if>
+			<#if assessScore != null && assessScore != ''>
+		  	assess_score = :assessScore,
+		  	</#if>
+			<#if assessInfo != null && assessInfo != ''>
+		  	assess_info = :assessInfo,
+		  	</#if>
+			<#if filterAssessInfo != null && filterAssessInfo != ''>
+		  	filter_assess_info = :filterAssessInfo,
+		  	</#if>
+			<#if ruleFlag != null && ruleFlag != ''>
+		  	ruleFlag = :ruleFlag,
+		  	</#if>
+			<#if weightScore != null && weightScore != ''>
+		  	weight_score = :weightScore,
+		  	</#if>
+			<#if assessStyle != null && assessStyle != ''>
+		  	assess_style = :assessStyle,
+		  	</#if>
+		  	<#if isDeleted != null && isDeleted != ''>
+		  	is_deleted = :isDeleted,
+		  	</#if>
+			update_time = now()
+		  	where id = :id
+		]]>
+	</sql>
+</sqlMap>

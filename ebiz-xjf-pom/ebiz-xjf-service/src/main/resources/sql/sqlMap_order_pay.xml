@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="orderPay">
+
+	<!-- 异步更新订单支付信息表信息 -->
+	<sql id="unsynUpdateByOrderNoAndPush">
+		<![CDATA[
+		update t_order_pay_info
+		set 	
+        	unsyn_payment_id = :unsynPaymentId,
+        	unsyn_txn_date = :unsynTxnDate,
+			unsyn_notify_type = :unsynNotifyType,
+			txn_ammount = :txnAmmount,
+			pay_channel = :payChannel,
+			txn_no = :txnNo,
+			pay_status = :payStatus,
+			push_status = :pushStatus,
+			update_time = now()
+            where order_no= :orderNo
+            	and push_status != 1
+            	and is_deleted = 0
+		]]>
+	</sql>
+
+	<!-- 车享家订单支付信息状态更新 -->
+	<sql id="pushCxjStatusByOrderNo">
+		<![CDATA[
+		update t_order_pay_info
+		set
+			push_status = 1
+        where order_no= :orderNo
+        and is_deleted = 0
+		]]>
+	</sql>
+
+
+	<!-- 根据支付和推送状态取得订单编号List -->
+	<sql id="queryOrderNoByPayPushStatus">
+		<![CDATA[
+		select 
+			id,
+			open_type openType,
+			money_type moneyType,
+			order_no orderNo,
+			pay_status payStatus,
+			push_status pushStatus,
+			ypay_amount ypayAmount,
+			syn_txn_date synTxnDate,
+			unsyn_txn_date unsynTxnDate,
+			syn_notify_type synNotifyType,
+			unsyn_notify_type unsynNotifyType,
+			syn_payment_id synPaymentId,
+			unsyn_payment_id unsynPaymentId,
+			pay_channel payChannel,
+			txn_ammount txnAmmount,
+			txn_no txnNo,
+			create_by createBy,
+			create_time createTime,
+			update_by updateBy,
+			update_time updateTime,
+			is_deleted isDeleted
+		from t_order_pay_info
+		where pay_status = 1
+		 and push_status = 0
+		 and is_deleted = 0
+		]]>
+	</sql>
+
+	<!-- 根据支付状态未支付和更新时间差取得订单编号List -->
+	<sql id="queryOrderNoByDiffSecond">
+		<![CDATA[
+		select order_no from t_order_pay_info
+		where pay_status = 0
+		 and TIMESTAMPDIFF(SECOND, update_time, now()) > :diffSecond
+		 and is_deleted = 0
+		 and money_type = :moneyType
+		]]>
+	</sql>
+
+	<!-- 根据订单No更新删除标志位 -->
+	<sql id="updateIsDetetedByOrderNo">
+		<![CDATA[
+		update t_order_pay_info
+		set 
+        	is_deleted = 1,
+			update_time = now()
+            where order_no= :orderNo
+            	and is_deleted = 0
+		]]>
+	</sql>
+
+	<!-- 根据订单No，以及pay_channel <> 'cxCoupon'查询订单信息 -->
+	<sql id="queryOrderPayByOrderNoPayChannel">
+		<![CDATA[
+		select *
+		from t_order_pay_info
+		where order_no = :orderNo
+		 and IFNULL(pay_channel,'') != 'cxCoupon'
+		 and is_deleted = 0
+		 and create_time >= DATE_ADD(now(),INTERVAL -2 MONTH)
+		]]>
+	</sql>
+
+	<!-- 删除两个月之前的支付信息 -->
+	<sql id="deleteTwoMonthAgoOrderPayInfo">
+		<![CDATA[
+		delete from t_order_pay_info
+			where create_time < DATE_ADD(now(),INTERVAL -2 MONTH)
+		]]>
+	</sql>
+
+	<!-- 查询订单支付信息 -->
+	<sql id="queryOrderPayInfoByOrderPayVo">
+		<![CDATA[
+		select * from t_order_pay_info
+		where 1=1
+		 <#if storeId != null && storeId != ''>
+		  	and store_id = :storeId
+		 </#if>
+		 <#if userId != null && userId != ''>
+		  	and user_id = :userId
+		 </#if>
+		 <#if openType != null && openType != ''>
+		  	and open_type = :openType
+		 </#if>
+		 <#if moneyType != null && moneyType != ''>
+		  	and money_type = :moneyType
+		 </#if>
+		 <#if orderNo != null && orderNo != ''>
+		  	and order_no = :orderNo
+		 </#if>
+		 <#if payStatus != null && payStatus != ''>
+		  	and pay_status = :payStatus
+		 </#if>
+		 <#if pushStatus != null && pushStatus != ''>
+		  	and push_status = :pushStatus
+		 </#if>
+		 <#if isDeleted != null && isDeleted != ''>
+		  	and is_deleted = :isDeleted
+		 </#if>
+		 order by id desc
+		 <#if rowStart?? && rowStart != '' && rowCount?? && rowCount != ''>
+		   	limit ${rowStart}, ${rowCount}
+		 </#if>
+		]]>
+	</sql>
+	
+	<!-- 到店付在创建之前先删除相同单号的历史订单 -->
+	<sql id="updateIsDetetedByOpenTypeOrderNo">
+		<![CDATA[
+		update t_order_pay_info
+		set 
+        	is_deleted = 1,
+			update_time = now()
+            where order_no= :orderNo
+            	and open_type = :openType
+            	and is_deleted = 0
+           	<#if isDeleted != null && isDeleted != ''>
+           		and pay_status != :payStatus
+           	</#if>
+		]]>
+	</sql>
+</sqlMap>

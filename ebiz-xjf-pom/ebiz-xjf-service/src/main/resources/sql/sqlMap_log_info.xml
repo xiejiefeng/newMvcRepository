@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="logInfo">
+	<!-- 查询列表 -->
+	<sql id="queryForList">
+		<![CDATA[
+		  select id,
+		  	remote_ip,
+			remote_computer,
+			user_id,
+			user_name,
+			remark1,
+			remark2,
+			remark3,
+			remark4,
+			create_time
+		   from ${logTableName} t where 1=1
+	  	   <#--is_deleted = 0-->
+		  <#if keyValue != null>
+		  	and (remote_ip like concat("%",:keyValue,"%") 
+		  		or remote_computer like concat("%",:keyValue,"%")
+		  		or user_id like concat("%",:keyValue,"%")
+		  		or user_name like concat("%",:keyValue,"%")
+		  		or remark1 like concat("%",:keyValue,"%")
+		  		or remark2 like concat("%",:keyValue,"%")
+		  		or remark3 like concat("%",:keyValue,"%")
+		  		or remark4 like concat("%",:keyValue,"%")
+		  	)
+		  </#if>
+		  <#if startDate != null>
+		  	and DATE_FORMAT(create_time, '%Y-%m-%d') >= :startDate
+		  </#if>
+		  <#if endDate != null>
+		  	and DATE_FORMAT(create_time, '%Y-%m-%d') <= :endDate
+		  </#if>
+		  
+		  order by id desc
+		]]>
+	</sql>
+
+	<sql id="insertLogInfo">
+		<![CDATA[
+		  insert into ${logTableName} ( remote_ip, remote_computer, user_id,
+  				user_name, remark1, remark2, remark3, remark4) values (
+  				:remoteIp, :remoteComputer, :userId, :userName, 
+  				:remark1, :remark2, :remark3, :remark4
+  			)
+		]]>
+	</sql>
+
+	<sql id="deleteLogInfo">
+		<![CDATA[
+		  delete from ${logTableName}
+		]]>
+	</sql>
+
+
+</sqlMap>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="sysReferenceDetail">
+	<!-- 查询列表-->
+	<sql id="queryForList">
+		<![CDATA[
+		  select id
+		  ,ref_id
+		  ,ref_detail_code
+		  ,ref_detail_name
+		  ,ref_detail_value
+		  ,ref_detail_remark
+		  ,ref_start_time
+		  ,ref_end_time
+		  ,create_time
+		  ,is_deleted
+		   from t_sys_reference_detail t where 1=1 
+		  <#if isDeleted != null>
+		  	and is_deleted =:isDeleted
+		  </#if>
+		  <#if refId != null>
+		  	and ref_id =:refId
+		  </#if>
+		  <#if refDetailCode != null>
+		  	and ref_detail_code =:refDetailCode
+		  </#if>
+		  <#if keyValue != null>
+		  	and (ref_detail_code like concat("%",:keyValue,"%") or ref_detail_name like concat("%",:keyValue,"%"))
+		  </#if>
+		  
+		  
+		  order by is_deleted,id
+		]]>
+	</sql>
+
+
+	<!-- 查询列表-->
+	<sql id="queryForRestFulList">
+		<![CDATA[
+		  select 
+		  tsr.ref_code pkReferenceRule
+		  ,tsr.ref_name pkReferenceRuleName
+		  ,tsd.ref_detail_code referenceCode
+		  ,tsd.ref_detail_name referenceDesName
+		  ,tsd.ref_detail_value referenceName
+		  ,tsd.ref_detail_remark referenceRemark
+		  ,case when tsd.ref_start_time is null and tsd.ref_end_time is null then -1
+			else TIMESTAMPDIFF(SECOND, now(), tsd.ref_end_time) end remainTime
+		  ,DATE_FORMAT(tsd.ref_start_time,'%Y-%m-%d %H:%i:%s') ref_start_time
+		  ,DATE_FORMAT(tsd.ref_end_time,'%Y-%m-%d %H:%i:%s') ref_end_time
+		   from t_sys_reference tsr
+		   left join t_sys_reference_detail tsd
+		   on tsr.id = tsd.ref_id
+		   <#if isDeleted != null>
+		   and tsd.is_deleted =:isDeleted
+		   <#else>
+		  	and tsd.is_deleted <> '1'
+		   </#if>
+		  where
+		  ((tsd.ref_start_time <= now() and tsd.ref_end_time >= now()) or (tsd.ref_start_time is null and tsd.ref_end_time is null))
+		  <#if isDeleted != null>
+		  	and tsr.is_deleted =:isDeleted
+		  <#else>
+		  	and tsr.is_deleted <> '1'
+		  </#if>
+		  <#if pkReferenceRule != null>
+		  	and tsr.ref_code =:pkReferenceRule
+		  </#if>
+		  <#if referenceCode != null>
+		  	and tsd.ref_detail_code =:referenceCode
+		  </#if>
+		  and tsd.ref_detail_code is not null
+		  order by tsr.id desc,tsd.ref_detail_code asc
+		]]>
+	</sql>
+	
+	<!-- 查询列表-->
+	<sql id="updateDetailInfoByRefCodeAndCode">
+		<![CDATA[
+		  update
+		  t_sys_reference_detail
+		  set 
+		  update_time = NOW()
+		  <#if refDetailName != null>
+		  	,ref_detail_name =:refDetailName
+		  </#if>
+		  <#if refDetailValue != null>
+		  	,ref_detail_value =:refDetailValue
+		  </#if>
+		  <#if refDetailRemark != null>
+		  	,ref_detail_remark =:refDetailRemark
+		  </#if>
+		  <#if refStartTime??>
+		  	,ref_start_time =:refStartTime
+		  </#if>
+		  <#if refEndTime??>
+		  	,ref_end_time =:refEndTime
+		  </#if>
+		  <#if isDeleted != null>
+		  	,is_deleted =:isDeleted
+		  </#if>
+		  where 
+		  	ref_id = (select id from t_sys_reference t where t.ref_code = :refCode)
+		  	and ref_detail_code = :refDetailCode
+		]]>
+	</sql>
+</sqlMap>

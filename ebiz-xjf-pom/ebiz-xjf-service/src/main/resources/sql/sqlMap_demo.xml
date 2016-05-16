@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap namespace="demo">
+	<!-- 查询列表-->
+	<sql id="queryForList">
+		<![CDATA[
+		  select id,demo_key,demo_value from t_demo where 1=1 
+		   <#if isDeleted != null>
+		  	and is_deleted =:isDeleted
+		  </#if>
+		  order by id desc
+		 
+		]]>
+	</sql>
+	
+    <sql id="getCount">
+        <![CDATA[
+            select count(1) from t_test where 1=1
+            <#if isDeleted!=null>
+                and is_deleted =:isDeleted
+            </#if>
+        ]]>
+    </sql>
+
+</sqlMap>

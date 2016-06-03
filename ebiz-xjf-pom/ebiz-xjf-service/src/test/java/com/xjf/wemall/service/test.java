@@ -1,5 +1,9 @@
 package com.xjf.wemall.service;
 
+import java.net.URLEncoder;
+
+import org.apache.commons.lang3.CharEncoding;
+
 public class test {
 
 	public static void main(String[] args) {
@@ -40,6 +44,14 @@ public class test {
 			System.out.println(bool);
 			System.out.println(boo2);
 		}
+		try {
+
+			System.out.println(URLEncoder.encode(" ", CharEncoding.UTF_8));
+		} catch (Exception e) {
+			
+			
+		}
+		
 	}
 
 }

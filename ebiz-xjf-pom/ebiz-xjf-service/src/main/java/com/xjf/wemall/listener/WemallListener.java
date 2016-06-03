@@ -44,7 +44,7 @@ import com.xjf.wemall.service.staticvalue.api.StaticValueService;
 @Component
 public class WemallListener implements ApplicationListener<ApplicationEvent> {
 
-	// 推送事件
+	// 容器监听器 推送事件
 	// ctx.publishEvent(new SysRefEvent(ctx, refCode, list));
 	
 	/** 日志类 */

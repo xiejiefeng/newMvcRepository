@@ -80,7 +80,7 @@
         	</bean> -->  
     	</mvc:message-converters>
     	<mvc:argument-resolvers>
-			<bean class="com.saic.wemall.web.resolver.CookieMethodArgumentResolver"/>
+			<bean class="com.xjf.wemall.web.resolver.CookieMethodArgumentResolver"/>
 		</mvc:argument-resolvers>
    	</mvc:annotation-driven>
 	

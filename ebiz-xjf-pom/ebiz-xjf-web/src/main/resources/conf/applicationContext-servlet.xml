@@ -147,7 +147,7 @@
 			<mvc:mapping path="/order/list.htm"/>
 			<mvc:mapping path="/card/list.htm"/>
 			<mvc:mapping path="/maintenance/index.htm"/>
-			<bean class="com.saic.wemall.web.interceptor.CxIdInterceptor">
+			<bean class="com.xjf.wemall.web.interceptor.CxIdInterceptor">
 				入口资源
 				<property name="entryUrls">
 					<map>

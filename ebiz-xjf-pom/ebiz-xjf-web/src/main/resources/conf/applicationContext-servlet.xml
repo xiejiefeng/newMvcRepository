@@ -246,6 +246,13 @@
 		</property>
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>
+
+     <!-- 当前时间 
+	<bean id="doMainTest"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="sysRefFieldService" />
+		<property name="targetMethod" value="getDMSDomainInfo" />
+	</bean>-->
 	
 	<!-- 当前时间 -->
 	<!-- 通过MethodInvokingFactoryBean工厂Bean，可以将指定方法返回值注入成为目标Bean的属性值，

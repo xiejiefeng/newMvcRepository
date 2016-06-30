@@ -183,18 +183,18 @@ under the License.
      | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
      | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
      |-->
-    <!-- <mirror>
+    <mirror>
 			<id>nexus</id>
 			<mirrorOf>central</mirrorOf>
 			<url>http://maven.dds.com/nexus/content/</url>
-		</mirror>-->
-    <mirror>  
+		</mirror>
+    <!-- <mirror>  
   
       <id>CN</id>  
       <name>OSChina Central</name>                                                                                                                         
       <url>http://maven.oschina.net/content/groups/public/</url>  
       <mirrorOf>central</mirrorOf>
-    </mirror>  
+    </mirror>-->
   </mirrors>
 
   <!-- profiles

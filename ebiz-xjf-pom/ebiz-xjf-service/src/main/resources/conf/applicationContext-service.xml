@@ -36,6 +36,8 @@
   	
 	<!-- 时间记录拦截器 -->
 	<bean id="logTimeInterceptor" class="com.xjf.wemall.interceptor.LogTimeInterceptor" />
+	<!-- 入出参记录拦截器 -->
+	<bean id="logInOutInterceptor" class="com.xjf.wemall.interceptor.LogInOutInterceptor" />
 	
 	<!-- 定义bean自动代理容器 -->
 	<!-- *****AutoProxyCreator与AopConfig同时使用，会产生二次代理，而多个AopConfig则永远只有一个代理，故推荐使用AopConfig***** -->
@@ -62,7 +64,12 @@
 	
 	<!-- 根据自定义标签类，匹配代理方法 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="transactionPointcut" expression="execution(* com.saic.wemall.service..*Service*.*(..))"/>
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.xjf.wemall.service..*Service*.*(..))"/>
+		<aop:pointcut id="logInOutPointcut" expression="execution(@com.xjf.wemall.annotation.LogInOut * *(..)) || execution(* (@com.xjf.wemall.annotation.LogInOut *).*(..))"/>
+		<aop:pointcut id="logTimePointcut" expression="execution(@com.xjf.wemall.annotation.LogTime * *(..)) || execution(* (@com.xjf.wemall.annotation.LogTime *).*(..))"/>
+		
+		<aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut" order="3"/>
+		<aop:advisor advice-ref="logInOutInterceptor" pointcut-ref="logInOutPointcut" order="4"/>
 		<aop:advisor advice-ref="logTimeInterceptor" pointcut-ref="transactionPointcut" order="1"/>
 		<!-- <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut" order="2"/> -->
 	</aop:config>

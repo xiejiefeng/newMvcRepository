@@ -38,6 +38,8 @@ import org.springframework.stereotype.Service;
 //import com.xjf.wemall.service.useractive.api.UserActiveService;
 //import com.xjf.wemall.service.useractiveresult.api.UserActiveResultService;
 
+import com.xjf.wemall.api.util.JSONParser;
+
 /**
  * 超级活动service
  * 
@@ -455,18 +457,21 @@ public class SuperActiveServiceImpl {
 //	 *            value 传入参数
 //	 * @return String
 //	 */
-//	@SuppressWarnings("unchecked")
-//	public String execJavaScriptEngine(String code, String value) {
-//		try {
-//			String jsHead = getJavaScriptRuleHead(code);
-//			if (StringUtils.isEmpty(jsHead) || StringUtils.isEmpty(jsHead.trim())) {
+	@SuppressWarnings("unchecked")
+	public String execJavaScriptEngine(String code, String value) {
+		try {
+			// 自定义的CODE
+			//String jsHead = getJavaScriptRuleHead(code);
+			// {"mainFuncName":"getRecommandInfo","mainParamName":"jsonParam"}
+			String jsHead = "JSHEAD";
+			if (StringUtils.isEmpty(jsHead) || StringUtils.isEmpty(jsHead.trim())) {
 //				logDBError(
 //						"SuperActiveServiceImpl -- execJavaScriptEngine -- javascript head is null",
 //						"javascript规则引擎执行失败", "", "");
-//				return null;
-//			}
-//			Map<String, String> jsHeadMap = JSONParser.toStringObject(jsHead, HashMap.class);
-//			if (jsHeadMap == null
+				return null;
+			}
+			Map<String, String> jsHeadMap = JSONParser.toStringObject(jsHead, HashMap.class);
+			if (jsHeadMap == null
 //					|| StringUtils
 //							.isEmpty(jsHeadMap.get(WemallConstants.SUPACT_JAVASCRIPT_MAINFUN_NAME))
 //					|| StringUtils.isEmpty(
@@ -474,46 +479,51 @@ public class SuperActiveServiceImpl {
 //					|| StringUtils.isEmpty(
 //							jsHeadMap.get(WemallConstants.SUPACT_JAVASCRIPT_MAINPARAM_NAME))
 //					|| StringUtils.isEmpty(jsHeadMap
-//							.get(WemallConstants.SUPACT_JAVASCRIPT_MAINPARAM_NAME).trim())) {
+//							.get(WemallConstants.SUPACT_JAVASCRIPT_MAINPARAM_NAME).trim())
+					) {
 //				logDBError(
 //						"SuperActiveServiceImpl -- execJavaScriptEngine -- javascript head mainFuncName or mainParamName is null",
 //						"javascript规则引擎执行失败", "", "");
-//				return null;
-//			}
+				return null;
+			}
+			// JSBODY
 //			String jsBody = getJavaScriptRuleBody(code);
-//			if (StringUtils.isEmpty(jsBody) || StringUtils.isEmpty(jsBody.trim())) {
+			String jsBody = "function getSclbTemplateNo(jsonParam){var data = JSON.parse(jsonParam);var areaCode = data.areaInfo.areaCode;var couponInfo = data.couponInfo;if (typeof couponInfo[areaCode] === 'undefined') {var code = couponInfo['*']; return JSON.stringify(couponInfo[code]);} else {var code = couponInfo[areaCode];return JSON.stringify(couponInfo[code]);}}";
+			if (StringUtils.isEmpty(jsBody) || StringUtils.isEmpty(jsBody.trim())) {
 //				logDBError(
 //						"SuperActiveServiceImpl -- execJavaScriptEngine -- javascript body is null",
 //						"javascript规则引擎执行失败", "", "");
-//				return null;
-//			}
-//			// 执行javascript引擎
-//			// 定义工具
-//			ScriptEngineManager sem = new ScriptEngineManager();
-//			ScriptEngine se = sem.getEngineByName("javascript");
-//			Invocable invocableEngine = (Invocable) se;
-//			Compilable compEngine = (Compilable) se;
-//			// 预编译javascript是否合法
-//			CompiledScript script = compEngine.compile(jsBody);
-//			try {
-//				script.eval();
-//			} catch (Exception e) {
+				return null;
+			}
+			// 执行javascript引擎
+			// 定义工具
+			ScriptEngineManager sem = new ScriptEngineManager();
+			ScriptEngine se = sem.getEngineByName("javascript");
+			Invocable invocableEngine = (Invocable) se;
+			Compilable compEngine = (Compilable) se;
+			// 预编译javascript是否合法
+			CompiledScript script = compEngine.compile(jsBody);
+			try {
+				script.eval();
+			} catch (Exception e) {
 //				logDBError(
 //						"SuperActiveServiceImpl -- execJavaScriptEngine -- PreCompiledScript -- Error !!!",
 //						"javascript规则引擎执行失败", "", super.getStackTrace(e));
-//				return null;
-//			}
-//			// 调用有参数JAVASCRIPT函数
-//			se.eval(jsBody);
+				return null;
+			}
+			// 调用有参数JAVASCRIPT函数
+			se.eval(jsBody);
+			// 方法名
 //			return (String) invocableEngine.invokeFunction(
 //					jsHeadMap.get(WemallConstants.SUPACT_JAVASCRIPT_MAINFUN_NAME),
 //					StringUtils.isEmpty(value) ? "" : value);
-//		} catch (Exception e) {
+			return "";
+		} catch (Exception e) {
 //			logDBError("SuperActiveServiceImpl -- execJavaScriptEngine -- Error !!!",
 //					"javascript规则引擎执行失败", "", super.getStackTrace(e));
-//			return null;
-//		}
-//	}
+			return null;
+		}
+	}
 //
 //	/****** main ******/
 //

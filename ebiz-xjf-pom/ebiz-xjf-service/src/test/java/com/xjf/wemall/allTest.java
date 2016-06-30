@@ -1,5 +1,6 @@
 package com.xjf.wemall;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.collections.iterators.LoopingIterator;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,6 +51,21 @@ public class allTest extends AllServiceTest {
 		OutInnerClass.pubStaticInnerClass i = new OutInnerClass.pubStaticInnerClass();
 		i.op();
 //		OutInnerClass.pubInnerClass pic = oc.new pubInnerClass();
+	}
+	
+	public static void main(String[] arg) {
+		loop : for (int j =0;j<10;j++) {
+			if (j == 5) {
+				continue loop;
+			}
+			System.out.println(j);
+		}
+	
+		
+		DecimalFormat df = new DecimalFormat("0.##");
+		double d = 123.12000000000000; 
+		System.out.println(df.format(d));
+		
 		
 	}
 

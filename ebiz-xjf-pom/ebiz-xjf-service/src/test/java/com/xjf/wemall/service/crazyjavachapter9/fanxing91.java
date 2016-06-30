@@ -8,14 +8,17 @@
  * <author>      <time>      <version>    <desc>
  * 修改人姓名             修改时间            版本号                  描述
  */
-package com.xjf.wemall.service.crazyjavachapter8;
+package com.xjf.wemall.service.crazyjavachapter9;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeSet;
+
 import com.xjf.wemall.comparator.treeSetComparator;
 import com.thoughtworks.xstream.converters.collections.TreeSetConverter;
 /**
@@ -26,18 +29,12 @@ import com.thoughtworks.xstream.converters.collections.TreeSetConverter;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-public class tttest implements Serializable{
+public class fanxing91 implements Serializable{
 
 	public static void main(String[] arg) {
-		int i  = 1;
-        //类似于 i++就是 i = i+1;的这结构
-       // i <<= 1;//i = i<<1  i等于i乘以2的1次方
-        i <<= 2;//i = i<<2  i等于i乘以2的2次方,>>就是相除了
-          System.out.println("结果是：" + i);
-          
-          
-          i <<= 2;//i = i<<2  i等于i乘以2的2次方,>>就是相除了
-          System.out.println("结果是：" + i);
+		// java7 泛型的菱形语法
+		List<String> array = new ArrayList<>();
+		array.add("1");
 	}
 
 }

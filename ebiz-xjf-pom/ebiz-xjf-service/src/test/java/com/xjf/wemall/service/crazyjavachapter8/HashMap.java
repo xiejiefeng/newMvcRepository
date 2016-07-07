@@ -181,7 +181,7 @@ public class HashMap<K, V> {
 	public int getCapacity() {
 		return this.capacity;
 	}
-
+	
 	static class Node<K, V> {
 		private final K key;
 		private V value;
@@ -214,8 +214,10 @@ public class HashMap<K, V> {
 	}
 
 	public static void main(String[] args) {
-		HashMap<String, String> map = new HashMap<String, String>();
 		
+		System.out.println((Math.pow(5, 0.5) - 1) / 2);
+				
+		HashMap<String, String> map = new HashMap<String, String>(1);
 		map.put("001", "James");
 		map.put("002", "Antony");
 		map.put("003", "Bosh");

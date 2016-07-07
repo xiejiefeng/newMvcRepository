@@ -10,7 +10,11 @@
  */
 package com.xjf.wemall.web.aspect;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.reflect.MethodSignature;
 
 import com.xjf.wemall.annotation.NeedLogin;
+import com.xjf.wemall.annotation.NeedLoginParam;
+import com.xjf.wemall.api.entity.annotation.AnnotationVo;
 //import com.xjf.wemall.api.constant.WemallConstants;
 import com.xjf.wemall.api.entity.common.AjaxObject;
 import com.xjf.wemall.api.util.JSONParser;
@@ -170,5 +177,145 @@ public class NeedLoginAspect extends BaseAspect {
 		}
 
 		return login.toString();
+	}
+	
+
+	/**
+	 * 
+	 * 功能描述: <br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param joinPoint
+	 * @return
+	 * @throws Throwable
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public String checkLoginUrl2(ProceedingJoinPoint joinPoint, NeedLogin needLogin)
+			throws Throwable {
+		return this.checkLogin2(joinPoint, needLogin, String.class);
+	}
+
+	/**
+	 * 
+	 * 功能描述: <br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param joinPoint
+	 * @return
+	 * @throws Throwable
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	public AjaxObject checkLoginAjax2(ProceedingJoinPoint joinPoint, NeedLogin needLogin)
+			throws Throwable {
+		return this.checkLogin2(joinPoint, needLogin, AjaxObject.class);
+	}
+
+	/**
+	 * 
+	 * 功能描述: <br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param joinPoint
+	 * @return
+	 * @throws Throwable
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@SuppressWarnings("unchecked")
+	private <T> T checkLogin2(ProceedingJoinPoint joinPoint, NeedLogin needLogin, Class<T> clazz)
+			throws Throwable {
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		Method method = methodSignature.getMethod();
+		Object[] args = joinPoint.getArgs();
+
+		// 判断是否含NeedLogin标签
+		if (needLogin == null) {
+			return (T) joinPoint.proceed(args);
+		}
+
+		// 获取链接信息
+		HttpServletRequest request = super.getRequest();
+
+		// 获取车享ID和当前渠道
+		String cxId = "";//CookieUtil.getCxId(request);
+		String openType = "";//CookieUtil.getOpenType(request);
+
+		// 判断是否含车享ID
+		if (StringUtils.isNotEmpty(cxId)) {
+			return (T) joinPoint.proceed(args);
+		}
+
+		String[] checkChannel = needLogin.checkChannel();
+		String[] ignoreChannel = needLogin.ignoreChannel();
+		boolean check = false;
+
+		// 全渠道校验
+		if (ArrayUtils.isEmpty(checkChannel) && ArrayUtils.isEmpty(ignoreChannel)) {
+			check = true;
+		} else {
+			// 订单来源Map(Key-Value反转)
+			Map<String, String> map = new HashMap<>();//sysRefFieldService.openTypeReverseMap();
+			String openTypeName = map.get(openType);
+
+			// 有必须登录渠道
+			if (ArrayUtils.isNotEmpty(checkChannel)) {
+				// 当前渠道在必须登录渠道中
+				if (ArrayUtils.contains(checkChannel, openTypeName)) {
+					check = true;
+				}
+			}
+			// 有忽略登录渠道
+			else if (ArrayUtils.isNotEmpty(ignoreChannel)) {
+				// 当前渠道不在忽略登录渠道
+				if (!ArrayUtils.contains(ignoreChannel, openTypeName)) {
+					check = true;
+				}
+			}
+		}
+
+		// 不校验
+		if (!check) {
+			return (T) joinPoint.proceed(args);
+		}
+
+		// 参数校验
+		Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+		List<AnnotationVo> annotationList = new ArrayList<AnnotationVo>();
+		AnnotationVo annotationVo = null;
+
+		for (int i = 0; i < parameterAnnotations.length; i++) {
+			if (args[i] instanceof String) {
+				for (Annotation annotation : parameterAnnotations[i]) {
+					if (annotation instanceof NeedLoginParam) {
+						annotationVo = new AnnotationVo();
+						annotationVo.setParamValue(args[i]);
+						annotationVo.setAnnotation(annotation);
+						annotationList.add(annotationVo);
+						break;
+					}
+				}
+			}
+		}
+
+		String longUrl = request.getRequestURL().toString();
+		String requestUri = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String shortUrl = requestUri.substring(contextPath.length());
+		String query = request.getQueryString();
+
+		logger.info("cxId is empty,openType:{},url:{}", openType, shortUrl);
+
+		if (clazz.equals(String.class)) {
+			String redirectUrl = this.getLoginUrl(longUrl, query, openType);
+			return (T) super.redirect(redirectUrl);
+		} else {
+			String redirectUrl = this.getLoginUrl(needLogin.callbackUrl(), "", openType);
+			AjaxObject ajaxObject = new AjaxObject();
+			ajaxObject.setResult(AjaxObject.NOLOGIN);
+			ajaxObject.setReturnUrl(redirectUrl);
+			return (T) ajaxObject;
+		}
 	}
 }

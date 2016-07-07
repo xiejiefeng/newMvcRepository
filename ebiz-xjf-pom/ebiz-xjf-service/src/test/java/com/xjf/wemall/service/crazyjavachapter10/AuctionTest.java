@@ -1,4 +1,15 @@
 package com.xjf.wemall.service.crazyjavachapter10;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.xjf.wemall.service.crazyjavachapter7.CarModelInfoVo2;
+import com.xjf.wemall.service.crazyjavachapter9.Apple;
+
 /**
  * Description:
  * <br/>网站: <a href="http://www.crazyit.org">疯狂Java联盟</a>
@@ -34,12 +45,39 @@ public class AuctionTest
 	}
 	public static void main(String[] args)
 	{
-		AuctionTest at = new AuctionTest();
-		try {
-			at.bid("1");
-		} catch (AuctionException ae) {
-			// 再次捕捉到bid方法中的异常。并对该异常进行处理
-			System.err.println(ae.getMessage());
-		}
+//		Set<String> a = new LinkedHashSet<>();
+//		a.add("12");
+//		a.add("1");
+//		a.add("2");
+//		System.out.println(a.contains("2"));
+//		System.out.println(a.remove("2"));
+//		System.out.println(a);
+		
+		
+//		List<String> a = new ArrayList<>();
+//		a.add("2");
+//		// 0
+//		System.out.println(Collections.binarySearch(a,"2"));
+		
+		List<CollectionsTestVo> a = new ArrayList<>();
+		CollectionsTestVo vo1 = new CollectionsTestVo("1");
+		vo1.setName("A");
+		a.add(vo1);
+		CollectionsTestVo vo2 = new CollectionsTestVo("1");
+		vo2.setName("B");
+		a.add(vo2);
+		CollectionsTestVo vo3 = new CollectionsTestVo("2");
+		vo3.setName("C");
+		a.add(vo3);
+		
+		System.out.println(Collections.binarySearch(a, vo2));
+		
+//		AuctionTest at = new AuctionTest();
+//		try {
+//			at.bid("1");
+//		} catch (AuctionException ae) {
+//			// 再次捕捉到bid方法中的异常。并对该异常进行处理
+//			System.err.println(ae.getMessage());
+//		}
 	}
 }

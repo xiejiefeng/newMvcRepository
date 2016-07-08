@@ -1,4 +1,4 @@
-package com.xjf.wemall.service.crazyjavachapter14;
+package com.xjf.wemall.service.crazyjavachapter16;
 
 
 import java.util.concurrent.*;
@@ -20,18 +20,22 @@ public class ThirdThread
 		// 创建Callable对象
 //		ThirdThread rt = new ThirdThread();
 		// 使用FutureTask来包装Callable对象
-		FutureTask<Integer> task = new FutureTask<>(
-				new Callable<Integer>() {
+		FutureTask<String> task = new FutureTask<>(
+				new Callable<String>() {
 					@Override
-					public Integer call() throws Exception {
+					public String call() throws Exception {
 						int i = 0;
 						for ( ; i < 100 ; i++ )
 						{
 							System.out.println(Thread.currentThread().getName()
 								+ " 的循环变量i的值：" + i);
+							if (i == 30)
+							{
+								throw new Exception();
+							}
 						}
 						// call()方法可以有返回值
-						return i;
+						return String.valueOf(i);
 					};
 				}
 		);
@@ -48,7 +52,7 @@ public class ThirdThread
 		try
 		{
 			// 获取线程返回值
-			System.out.println("子线程的返回值：" + task.get());
+			System.out.println("子线程的返回值：" + task.get() + "  " + task.get().getClass());
 		}
 		catch (Exception ex)
 		{

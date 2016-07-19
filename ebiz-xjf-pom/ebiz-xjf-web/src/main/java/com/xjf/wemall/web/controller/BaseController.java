@@ -51,6 +51,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -160,6 +161,12 @@ public class BaseController {
 	    return request;
 	}
 	
+	protected HttpServletResponse getResponse(){
+		HttpServletRequest request = this.getRequest();
+		ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+		HttpServletResponse response = servletWebRequest.getResponse();
+		return response;
+	}
 	/***
 	 * 初始化数据
 	 *
@@ -345,6 +352,61 @@ public class BaseController {
         StackTraceElement e = stacktrace[2];  
         String methodName = e.getMethodName();  
         return methodName; 
+	}
+	
+	/**
+	 * 
+	 * 功能描述: 获取跳转链接<br>
+	 * 〈功能详细描述〉
+	 *
+	 * @param longUrl
+	 * @param shortUrl
+	 * @param query
+	 * @param openType
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	protected String getLoginUrl(String url, String query, String openType) {
+
+		StringBuilder backUrl = new StringBuilder();
+		backUrl.append(url);
+		if (StringUtils.isNotEmpty(query)) {
+			backUrl.append("?");
+			backUrl.append(query);
+		}
+
+		StringBuilder login = new StringBuilder();
+//
+//		// 车享宝唤醒Native登录页面
+//		if (sysRefFieldService.openTypeCxb().equals(openType)) {
+//			Map<String, String> param = new HashMap<String, String>();
+//			param.put(WemallConstants.BACK_REDIRECT_URL, backUrl.toString());
+//
+//			login.append(CXB_NATIVE_HTM);
+//			login.append("?execType=");
+//			login.append(WemallConstants.NEED_LOGIN);
+//			login.append("&jsonPara=");
+//			login.append(URLUtil.encode(JSONParser.toJSONString(param)));
+//		}
+//		// PC跳转SSO登录页面
+//		else if (sysRefFieldService.openTypeCxjPC().equals(openType)) {
+//			login.append(sysRefFieldService.pcLoginPage());
+//			login.append(URLUtil.encode(backUrl.toString()));
+//		}
+//		// SSOMZ跳转SSO登录页面
+//		else if (sysRefFieldService.openTypeSSOMz().equals(openType)) {
+//			login.append(sysRefFieldService.ssoMobileLoginPage());
+//			login.append(URLUtil.encode(backUrl.toString()));
+//		}
+//		// 其他跳转H5登录页面
+//		else {
+//			login.append(LOGIN_FASE_HTM);
+//			login.append("?targetUrl=");
+//			login.append(URLUtil.encode(backUrl.toString()));
+//		}
+
+		return login.toString();
 	}
 	
 }

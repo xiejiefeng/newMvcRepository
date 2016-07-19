@@ -38,6 +38,7 @@ class Cat extends Animal {
 		this.age = age;
 	}
 	
+	
 	public Cat() {
 		this.age = "10";
 		System.out.println("猫 年龄10岁");
@@ -45,6 +46,11 @@ class Cat extends Animal {
 	
 	public void setName(String age) {
 		this.age = age;
+	}
+	
+	public String setName(Object age) {
+//		this.age = age;
+		return (String) "a";
 	}
 	
 	@Override
@@ -62,5 +68,10 @@ class Cat extends Animal {
 //		System.out.println(weight);
 //		setName();
 		
+	}
+	
+	public static void main(String[] arg) {
+		Animal amal = new Cat();
+		amal.shout();
 	}
 }

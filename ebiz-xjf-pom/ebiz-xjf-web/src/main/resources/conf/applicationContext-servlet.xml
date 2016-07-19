@@ -137,6 +137,10 @@
 			<mvc:mapping path="/maintenance/**"/>
 			<mvc:mapping path="/tyre/**"/> -->
 			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/error.htm" />
+			<mvc:exclude-mapping path="/errorPage404.htm" />
+			<mvc:exclude-mapping path="/cookie/**" />
+			<mvc:exclude-mapping path="/sysReference/**" />
 			<bean class="com.xjf.wemall.web.interceptor.OpenTypeInterceptor" />
 		</mvc:interceptor>
 		<!-- <mvc:interceptor>
@@ -172,8 +176,6 @@
 			<mvc:mapping path="/tyre/**"/>
 			<bean class="com.saic.wemall.web.interceptor.TyreInterceptor" />
 		</mvc:interceptor> -->
-		
-		<!--  -->
 		<mvc:interceptor>
 			<mvc:mapping path="/cookie/menu.htm"/>
 			<bean class="com.xjf.wemall.web.interceptor.CookieMenuInterceptor" >
@@ -325,12 +327,25 @@
     <!-- 登录校验 -->
 	<bean id="needLoginAspect" class="com.xjf.wemall.web.aspect.NeedLoginAspect" />
 	<aop:config proxy-target-class="true">
-	
-		<aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin String com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
-		<aop:pointcut id="needLoginAjaxPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin com.xjf.wemall.api.entity.common.AjaxObject com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/>
-		<aop:aspect id="needLoginAspect" ref="needLoginAspect">
-			<aop:around method="checkLoginUrl" pointcut-ref="needLoginUrlPointcut"/>
-			<aop:around method="checkLoginAjax" pointcut-ref="needLoginAjaxPointcut"/>
+		<!-- <aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin 
+			String com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/> -->
+		<!-- <aop:pointcut id="needLoginAjaxPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin 
+			com.xjf.wemall.api.entity.common.AjaxObject com.saic.wemall.web.controller..*.*(..)) 
+			and @annotation(needLogin)"/> -->
+		<aop:pointcut id="urlPointcut"
+			expression="execution(@org.springframework.web.bind.annotation.RequestMapping String com.xjf.wemall.web.controller..*.*(..))" />
+		<aop:pointcut id="ajaxPointcut"
+			expression="execution(@org.springframework.web.bind.annotation.RequestMapping com.xjf.wemall.api.entity.common.AjaxObject com.xjf.wemall.web.controller..*.*(..))" />
+		
+		<aop:aspect id="needLoginAspect" ref="needLoginAspect" order="1">
+			<aop:around method="checkUrl" pointcut-ref="urlPointcut"/>
+			<aop:around method="checkAjax" pointcut-ref="ajaxPointcut"/>
 		</aop:aspect>
+		<!-- 
+		<aop:aspect id="invailParamAspect" ref="invailParamAspect"
+			order="2">
+			<aop:around method="checkUrl" pointcut-ref="urlPointcut" />
+			<aop:around method="checkAjax" pointcut-ref="ajaxPointcut" />
+		</aop:aspect> -->
 	</aop:config>
 </beans>

@@ -37,6 +37,12 @@ public class fanxing932 implements Serializable{
 			System.out.println(list.get(i).getInfo());
 		}
 	}
+	
+	public void test1(List<? super A3> list) {
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(((A3) list.get(i)).getInfo());
+		}
+	}
 	public static void main(String[] arg) {
 		fanxing932 a = new fanxing932();
 		A2 a2 = new A2("22");
@@ -48,6 +54,8 @@ public class fanxing932 implements Serializable{
 		List<A3> abb = new ArrayList<A3>();
 		abb.add(a3);
 		a.test(abb);
+		
+		
 	}
 
 }

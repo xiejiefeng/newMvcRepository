@@ -33,6 +33,10 @@ public class A1 extends Apple {
 	}
 	
 	public static void main(String[] arg) {
+		Apple a = new A2("1111");
+		
+//		System.out.print(arg0);
+		
 		Collection<String> list = new ArrayList<String>();
 		
 		if (list instanceof ArrayList) {

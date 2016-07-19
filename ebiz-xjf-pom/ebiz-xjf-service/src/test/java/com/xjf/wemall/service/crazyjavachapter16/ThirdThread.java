@@ -1,6 +1,7 @@
 package com.xjf.wemall.service.crazyjavachapter16;
 
 
+import java.util.ArrayList;
 import java.util.concurrent.*;
 /**
  * Description:

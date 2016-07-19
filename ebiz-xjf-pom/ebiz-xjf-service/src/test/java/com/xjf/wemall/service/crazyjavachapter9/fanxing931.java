@@ -37,11 +37,19 @@ public class fanxing931 implements Serializable{
 			System.out.println(list.get(i));
 		}
 	}
+	
+	public <T> void test1(List<T> list) {
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+	}
 	public static void main(String[] arg) {
 		fanxing931 a = new fanxing931();
-		List<String> ab = new ArrayList<String>();
-		ab.add("aaaa");
-		a.test(ab);
+		List<String> list = new ArrayList<String>();
+		list.add("aaaa");
+		a.test(list);
+		
+		a.test1(list);
 	}
 
 }

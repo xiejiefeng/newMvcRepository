@@ -64,13 +64,12 @@
 	
 	<!-- 根据自定义标签类，匹配代理方法 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="transactionPointcut" expression="execution(* com.xjf.wemall.service..*Service*.*(..))"/>
+		<!-- <aop:pointcut id="transactionPointcut" expression="execution(* com.xjf.wemall.service..*Service*.*(..))"/> -->
 		<aop:pointcut id="logInOutPointcut" expression="execution(@com.xjf.wemall.annotation.LogInOut * *(..)) || execution(* (@com.xjf.wemall.annotation.LogInOut *).*(..))"/>
 		<aop:pointcut id="logTimePointcut" expression="execution(@com.xjf.wemall.annotation.LogTime * *(..)) || execution(* (@com.xjf.wemall.annotation.LogTime *).*(..))"/>
 		
-		<aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut" order="3"/>
+		<aop:advisor advice-ref="logTimeInterceptor" pointcut-ref="logTimePointcut" order="1"/>
 		<aop:advisor advice-ref="logInOutInterceptor" pointcut-ref="logInOutPointcut" order="4"/>
-		<aop:advisor advice-ref="logTimeInterceptor" pointcut-ref="transactionPointcut" order="1"/>
 		<!-- <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="transactionPointcut" order="2"/> -->
 	</aop:config>
 	

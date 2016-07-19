@@ -80,9 +80,16 @@ public class CookieMenuInterceptor extends BaseInterceptor {
 	/**
 	 * 处理Request方法之后但是还没有返回View之前执行，并允许处理ModelAndView对象
 	 */
+	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler, ModelAndView modelAndView) throws Exception {
+		System.out.println(11111);
 	}
+	
+	@Override
+    public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println(22222);
+    }
 
 	public boolean isCheck() {
 		return isCheck;

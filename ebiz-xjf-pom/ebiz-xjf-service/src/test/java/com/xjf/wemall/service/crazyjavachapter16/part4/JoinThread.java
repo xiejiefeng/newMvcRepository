@@ -21,13 +21,19 @@ public class JoinThread extends Thread
 	{
 		for (int i = 0; i < 100 ; i++ )
 		{
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println(getName() + "  " + i);
 		}
 	}
 	public static void main(String[] args)throws Exception
 	{
 		// 启动子线程
-		new JoinThread("新线程").start();
+//		new JoinThread("新线程").start();
 		for (int i = 0; i < 100 ; i++ )
 		{
 			if (i == 20)
@@ -36,8 +42,10 @@ public class JoinThread extends Thread
 				jt.start();
 				// main线程调用了jt线程的join()方法，main线程
 				// 必须等jt执行结束才会向下执行
-				// join 时间10毫秒
-				jt.join(10);
+				// join 时间10000毫秒
+//				jt.join(100000);
+//				jt.join(1000);
+				jt.join();
 			}
 			System.out.println(Thread.currentThread().getName()
 				+ "  " + i);

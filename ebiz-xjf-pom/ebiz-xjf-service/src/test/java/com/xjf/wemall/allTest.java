@@ -21,6 +21,8 @@ import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.util.JSONParser;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.AllServiceTest;
+import com.xjf.wemall.service.Animal;
+import com.xjf.wemall.service.Cat;
 import com.xjf.wemall.service.OutInnerClass;
 import com.xjf.wemall.service.index.api.IndexService;
 import com.xjf.wemall.service.redis.api.RedisJobService;
@@ -54,19 +56,25 @@ public class allTest extends AllServiceTest {
 	}
 	
 	public static void main(String[] arg) {
-		loop : for (int j =0;j<10;j++) {
-			if (j == 5) {
-				continue loop;
-			}
-			System.out.println(j);
+//		loop : for (int j =0;j<10;j++) {
+//			if (j == 5) {
+//				continue loop;
+//			}
+//			System.out.println(j);
+//		}
+//	
+//		
+//		DecimalFormat df = new DecimalFormat("0.##");
+//		double d = 123.12000000000000; 
+//		System.out.println(df.format(d));
+		Animal an = new Cat();
+		
+		if (an instanceof Cat) {
+			System.out.println("cat");
 		}
-	
-		
-		DecimalFormat df = new DecimalFormat("0.##");
-		double d = 123.12000000000000; 
-		System.out.println(df.format(d));
-		
-		
+		if (an instanceof Animal) {
+			System.out.println("Animal");
+		}
 	}
 
 }

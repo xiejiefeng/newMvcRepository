@@ -1,6 +1,6 @@
 package com.xjf.wemall.service;
 
-class Cat extends Animal {
+public class Cat extends Animal {
 	
 	public static String age;
 	

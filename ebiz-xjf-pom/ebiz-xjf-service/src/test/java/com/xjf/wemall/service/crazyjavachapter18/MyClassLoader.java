@@ -33,8 +33,8 @@ public class MyClassLoader extends ClassLoader {
         //编译源程序
         boolean result = task.call();  
         if (result)   
-        {  
-            return Class.forName("Sim");  
+        {	
+        	return Class.forName("Sim");  
         }  
         return null;  
     }  

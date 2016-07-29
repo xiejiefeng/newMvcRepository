@@ -17,7 +17,8 @@ public class Eval
 {  
     public static Object eval(String str) throws Exception  
     {  
-        StringBuffer sb = new StringBuffer();  
+        StringBuffer sb = new StringBuffer();
+        sb.append("package com.xjf.wemall.service.crazyjavachapter18;"); 
         sb.append("public class Sim");  
         sb.append("{");  
         sb.append("    public Object getObject()");  

@@ -25,14 +25,14 @@ public class DaemonThread extends Thread
 			}
 		}
 	}
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
 		DaemonThread t = new DaemonThread();
 		// 将此线程设置成后台线程
 		t.setDaemon(true);
 		// 启动后台线程
 		t.start();
-		for (int i = 0 ; i < 10 ; i++ )
+		for (int i = 0 ; i < 1000 ; i++ )
 		{
 			System.out.println(Thread.currentThread().getName()
 				+ "  " + i);

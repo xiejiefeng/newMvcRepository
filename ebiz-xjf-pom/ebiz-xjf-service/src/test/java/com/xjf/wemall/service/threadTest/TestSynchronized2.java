@@ -1,12 +1,12 @@
 package com.xjf.wemall.service.threadTest;
-public class TestSynchronized1
+public class TestSynchronized2
 {    
-	Object lock = new Object();
-    public void test1()   
+    public void test1(Object lock)   
     {    
-         synchronized(lock)   
+//         synchronized(lock)
+    	synchronized(this)
          {    
-              int i = 50;    
+              int i = 10;    
               while( i-- > 0)   
               {    
                    System.out.println(Thread.currentThread().getName() + " : " + i);    
@@ -23,7 +23,7 @@ public class TestSynchronized1
       
     public synchronized void test2()   
     {    
-         int i = 50;    
+         int i = 10;    
          while( i-- > 0)   
          {    
               System.out.println(Thread.currentThread().getName() + " : " + i);    
@@ -35,21 +35,40 @@ public class TestSynchronized1
               {    
               }    
          }    
+    }
+    public void test3(Object lock)   
+    {    
+    	synchronized(this)
+         {    
+              int i = 10;    
+              while( i-- > 0)   
+              {    
+                   System.out.println(Thread.currentThread().getName() + " : " + i);    
+                   try   
+                   {    
+                        Thread.sleep(500);    
+                   }   
+                   catch (InterruptedException ie)   
+                   {    
+                   }    
+              }    
+         }    
     }    
       
     public static void main(String[] args)   
     {    
-         final TestSynchronized1 myt2 = new TestSynchronized1();    
+         final TestSynchronized2 myt2 = new TestSynchronized2();
+         final Object lock = new Object();
          Thread test1 = new Thread(new Runnable() {
         	 public void run() {  
-        		 myt2.test1();  
+        		 myt2.test1(lock);  
         		 }  
         	 }, "test1"  );    
          Thread test2 = new Thread(new Runnable() {  
         	 public void run() { 
-        		 myt2.test1();   
+        		 myt2.test3(lock);   
         		 }  
-        	 }, "test2"  );    
+        	 }, "test3"  );    
          test1.start();;    
          test2.start();
     }   

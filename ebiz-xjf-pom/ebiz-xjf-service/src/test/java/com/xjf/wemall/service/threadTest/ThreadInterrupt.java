@@ -9,39 +9,39 @@ public class ThreadInterrupt {
 	// 另外，通过interrupt方法和isInterrupted()方法来停止正在运行的线程。
 	public static void main(String[] args) throws IOException {
 
-		 // interrupt1
+//		 // interrupt1
+//		 ThreadInterrupt test = new ThreadInterrupt();
+//		 MyThread1 thread = test.new MyThread1();
+//		 thread.start();
+//		 try {
+//			 Thread.currentThread().sleep(2000);
+//		 } catch (InterruptedException e) {
+//		
+//		 }
+//		 thread.interrupt();
+
+		 // interrupt2 中断运行中的线程
+		 // 运行该程序会发现，while循环会一直运行直到变量i的值超出Integer.MAX_VALUE。
+		 // 所以说直接调用interrupt方法不能中断正在运行中的线程。
+//		 ThreadInterrupt test = new ThreadInterrupt();
+//		 MyThread2 thread = test.new MyThread2();
+//		 thread.start();
+//		 try {
+//		 Thread.currentThread().sleep(2000);
+//		 } catch (InterruptedException e) {
+//		
+//		 }
+//		 thread.interrupt();
+
 		 ThreadInterrupt test = new ThreadInterrupt();
-		 MyThread1 thread = test.new MyThread1();
+		 MyThread3 thread = test.new MyThread3();
 		 thread.start();
 		 try {
-			 Thread.currentThread().sleep(2000);
+		 Thread.currentThread().sleep(2000);
 		 } catch (InterruptedException e) {
 		
 		 }
 		 thread.interrupt();
-
-		// // interrupt2 中断运行中的线程
-		// // 运行该程序会发现，while循环会一直运行直到变量i的值超出Integer.MAX_VALUE。
-		// // 所以说直接调用interrupt方法不能中断正在运行中的线程。
-		// ThreadInterrupt test = new ThreadInterrupt();
-		// MyThread2 thread = test.new MyThread2();
-		// thread.start();
-		// try {
-		// Thread.currentThread().sleep(2000);
-		// } catch (InterruptedException e) {
-		//
-		// }
-		// thread.interrupt();
-
-		// ThreadInterrupt test = new ThreadInterrupt();
-		// MyThread3 thread = test.new MyThread3();
-		// thread.start();
-		// try {
-		// Thread.currentThread().sleep(2000);
-		// } catch (InterruptedException e) {
-		//
-		// }
-		// thread.interrupt();
 
 //		ThreadInterrupt test = new ThreadInterrupt();
 //		MyThread4 thread = test.new MyThread4();

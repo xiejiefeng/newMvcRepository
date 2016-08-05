@@ -14,7 +14,7 @@ public class DaemonThread1 extends Thread
 	// 定义后台线程的线程执行体与普通线程没有任何区别
 	public void run()
 	{
-		for (int i = 0; i < 10 ; i++ )
+		for (int i = 0; i < 100 ; i++ )
 		{
 			System.out.println(getName() + "  " + i);
 			try {
@@ -25,18 +25,19 @@ public class DaemonThread1 extends Thread
 			}
 		}
 	}
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
 		
 		for (int i = 0 ; i < 10 ; i++ )
 		{
 			System.out.println(Thread.currentThread().getName()
 				+ "  " + i);
-			if (i == 2) {
+			if (i == 0) {
 				DaemonThread1 t = new DaemonThread1();
 				// 启动后台线程
 				t.start();
 			}
+			Thread.currentThread().sleep(1000);
 		}
 	}
 }

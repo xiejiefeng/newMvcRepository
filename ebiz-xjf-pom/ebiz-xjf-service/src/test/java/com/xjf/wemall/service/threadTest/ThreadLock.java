@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 // 有点问题的
 class ThreadTest {
 	private ArrayList<Integer> arrayList = new ArrayList<Integer>();
-	public boolean insert(Lock lock) {
+	public boolean insert(Lock lock) { 
         if(lock.tryLock()) {
             try {
                 System.out.println(Thread.currentThread().getName()+"得到了锁");

@@ -7,7 +7,7 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-// 有点问题的
+// 公平锁
 class ThreadTest2 {
 	private ReentrantLock lock = new ReentrantLock(true);
 	public void insert() throws InterruptedException {

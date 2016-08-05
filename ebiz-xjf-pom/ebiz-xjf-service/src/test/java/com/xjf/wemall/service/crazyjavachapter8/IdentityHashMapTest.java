@@ -26,8 +26,8 @@ public class IdentityHashMapTest {
 	
 	public static void main(String[] arg) {
 		IdentityHashMap<String, String> mp = new IdentityHashMap<String, String>();
-		
-		// 连个key，equals相等，hashCode不相等
+		// hashCode不相等 就可以放
+		// 两个key，equals相等，hashCode不相等
 		mp.put(new String("语文"), "语文");
 		mp.put(new String("语文"), "数学");
 		
@@ -35,6 +35,16 @@ public class IdentityHashMapTest {
 		mp.put("java", "94");
 		
 		System.out.println(mp);
+		
+		// equals不相等 才可以放
+		HashMap<String, String> mp1 = new HashMap<String, String>();
+		mp1.put(new String("语文"), "语文");
+		mp1.put(new String("语文"), "数学");
+		
+		mp1.put("java", "93");
+		mp1.put("java", "94");
+		
+		System.out.println(mp1);
 		
 	}
 	

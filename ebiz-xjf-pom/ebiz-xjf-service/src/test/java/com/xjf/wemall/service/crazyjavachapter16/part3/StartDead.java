@@ -44,7 +44,11 @@ public class StartDead extends Thread
 
 			{
 				// 试图再次启动该线程,报错
-				sd.start();
+				try {
+					sd.start();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -20,7 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
 // 根源就在这里，自增操作不是原子性操作，而且volatile也无法保证对变量的任何操作都是原子性的。
  * 
  */
-public class VolatileTest1 {
+public class VolatileTest2 {
 //    public volatile int inc = 0;
      
 //    public void increase() {
@@ -58,7 +58,7 @@ public class VolatileTest1 {
 	}
 	
     public static void main(String[] args) {
-        final VolatileTest1 test = new VolatileTest1();
+        final VolatileTest2 test = new VolatileTest2();
         for(int i=0;i<10;i++){
             new Thread(){
                 public void run() {

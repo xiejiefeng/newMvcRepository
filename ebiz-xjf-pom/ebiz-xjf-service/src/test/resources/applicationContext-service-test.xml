@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 	
 	<!-- Service -->
 	<import resource="classpath:conf/applicationContext-service.xml" />
@@ -21,7 +23,7 @@
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean> -->
-	<!-- 加载配置文件 -->
+	<!-- 加载配置文件1 -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>           
@@ -31,5 +33,18 @@
         <property name="fileEncoding" value="UTF-8"/>
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+    
+    <!-- 加载配置文件2 -->
+    <util:properties id="utilSetting" location="classpath:application-util.properties" />  
+    
+    <!-- 加载配置文件3 -->
+    <bean id="propertyBean" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:application-test.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
     </bean>
 </beans>

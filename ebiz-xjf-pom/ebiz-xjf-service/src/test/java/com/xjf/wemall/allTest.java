@@ -1,5 +1,7 @@
 package com.xjf.wemall;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,11 +16,13 @@ import java.util.Set;
 import org.apache.commons.collections.iterators.LoopingIterator;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.alibaba.fastjson.JSON;
 import com.xjf.wemall.api.entity.SampleVo;
 import com.xjf.wemall.api.entity.mail.MailVo;
 import com.xjf.wemall.api.util.JSONParser;
+import com.xjf.wemall.api.util.PropertyUtil;
 import com.xjf.wemall.comparator.sampleComparator;
 import com.xjf.wemall.service.AllServiceTest;
 import com.xjf.wemall.service.Animal;
@@ -75,6 +79,23 @@ public class allTest extends AllServiceTest {
 		if (an instanceof Animal) {
 			System.out.println("Animal");
 		}
+	}
+
+	@Value("${ebiz.wemall.web.jscssHost}")
+	String aaa;
+	
+	@Value("#{utilSetting['ebiz.wemall.web.jscssHost']}")
+	String bbb;
+	
+	@Value("#{propertyBean['ebiz.wemall.web.jscssHost']}")
+	String ccc;
+	
+	@Test
+	public void propertyTest() throws FileNotFoundException, IOException {
+		System.out.println(aaa);
+		System.out.println(bbb);
+		System.out.println(ccc);
+		System.out.println(PropertyUtil.getPrepayProperties().getProperty("ebiz.wemall.web.jscssHost"));
 	}
 
 }

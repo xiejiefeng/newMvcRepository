@@ -1,4 +1,4 @@
-package com.xjf.wemall;
+package com.xjf.wemall.service;
 
 import java.util.ArrayList;
 import java.util.Collections;

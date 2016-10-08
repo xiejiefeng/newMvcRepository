@@ -10,6 +10,8 @@
  */
 package com.xjf.wemall.web.aspect;
 
+import java.util.ArrayList;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 
 import com.xjf.wemall.api.entity.common.AjaxObject;
@@ -24,6 +26,7 @@ import com.xjf.wemall.web.controller.BaseController;
  */
 public abstract class BaseAspect extends BaseController {
 
+	protected ArrayList<String> excludeList = new ArrayList<String>();
 	/**
 	 * 
 	 * 功能描述: <br>
@@ -69,4 +72,10 @@ public abstract class BaseAspect extends BaseController {
 	protected <T> T check(ProceedingJoinPoint joinPoint, Class<T> clazz) throws Throwable {
 		return (T) joinPoint.proceed();
 	}
+
+	public void setExcludeList(ArrayList<String> excludeList) {
+		this.excludeList = excludeList;
+	}
+	
+	
 }

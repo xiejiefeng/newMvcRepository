@@ -61,7 +61,6 @@ public class NeedLoginAspect extends BaseAspect {
 		// 获取车享ID和当前渠道
 		String cxId = CookieUtil.getCxId(request);
 		String openType = CookieUtil.getOpenType(request);
-
 		// 判断是否含车享ID
 		if (StringUtils.isNotEmpty(cxId)) {
 			return (T) joinPoint.proceed();
@@ -72,7 +71,12 @@ public class NeedLoginAspect extends BaseAspect {
 		String contextPath = request.getContextPath();
 		String shortUrl = requestUri.substring(contextPath.length());
 		String query = request.getQueryString();
-
+		if (super.excludeList.size() > 0) {
+			if (excludeList.contains(shortUrl)) {
+				return (T) joinPoint.proceed();
+			}
+		}
+		
 		// String value = staticValueService.getSysReference(
 		// WemallConstants.REFERENCE_CODE_LOGIN_CHK_URL, url);
 
@@ -174,8 +178,8 @@ public class NeedLoginAspect extends BaseAspect {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	public String checkLoginUrl2(ProceedingJoinPoint joinPoint, NeedLogin needLogin)
-			throws Throwable {
+	public String checkLoginUrl2(ProceedingJoinPoint joinPoint,
+			NeedLogin needLogin) throws Throwable {
 		return this.checkLogin2(joinPoint, needLogin, String.class);
 	}
 
@@ -190,8 +194,8 @@ public class NeedLoginAspect extends BaseAspect {
 	 * @see [相关类/方法](可选)
 	 * @since [产品/模块版本](可选)
 	 */
-	public AjaxObject checkLoginAjax2(ProceedingJoinPoint joinPoint, NeedLogin needLogin)
-			throws Throwable {
+	public AjaxObject checkLoginAjax2(ProceedingJoinPoint joinPoint,
+			NeedLogin needLogin) throws Throwable {
 		return this.checkLogin2(joinPoint, needLogin, AjaxObject.class);
 	}
 
@@ -207,9 +211,10 @@ public class NeedLoginAspect extends BaseAspect {
 	 * @since [产品/模块版本](可选)
 	 */
 	@SuppressWarnings("unchecked")
-	private <T> T checkLogin2(ProceedingJoinPoint joinPoint, NeedLogin needLogin, Class<T> clazz)
-			throws Throwable {
-		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+	private <T> T checkLogin2(ProceedingJoinPoint joinPoint,
+			NeedLogin needLogin, Class<T> clazz) throws Throwable {
+		MethodSignature methodSignature = (MethodSignature) joinPoint
+				.getSignature();
 		Method method = methodSignature.getMethod();
 		Object[] args = joinPoint.getArgs();
 
@@ -235,27 +240,29 @@ public class NeedLoginAspect extends BaseAspect {
 		boolean check = false;
 
 		// 全渠道校验
-		if (ArrayUtils.isEmpty(checkChannel) && ArrayUtils.isEmpty(ignoreChannel)) {
+		if (ArrayUtils.isEmpty(checkChannel)
+				&& ArrayUtils.isEmpty(ignoreChannel)) {
 			check = true;
 		} else {
-//			// 订单来源Map(Key-Value反转)
-//			Map<String, String> map = sysRefFieldService.openTypeReverseMap();
-//			String openTypeName = map.get(openType);
-//
-//			// 有必须登录渠道
-//			if (ArrayUtils.isNotEmpty(checkChannel)) {
-//				// 当前渠道在必须登录渠道中
-//				if (ArrayUtils.contains(checkChannel, openTypeName)) {
-//					check = true;
-//				}
-//			}
-//			// 有忽略登录渠道
-//			else if (ArrayUtils.isNotEmpty(ignoreChannel)) {
-//				// 当前渠道不在忽略登录渠道
-//				if (!ArrayUtils.contains(ignoreChannel, openTypeName)) {
-//					check = true;
-//				}
-//			}
+			// // 订单来源Map(Key-Value反转)
+			// Map<String, String> map =
+			// sysRefFieldService.openTypeReverseMap();
+			// String openTypeName = map.get(openType);
+			//
+			// // 有必须登录渠道
+			// if (ArrayUtils.isNotEmpty(checkChannel)) {
+			// // 当前渠道在必须登录渠道中
+			// if (ArrayUtils.contains(checkChannel, openTypeName)) {
+			// check = true;
+			// }
+			// }
+			// // 有忽略登录渠道
+			// else if (ArrayUtils.isNotEmpty(ignoreChannel)) {
+			// // 当前渠道不在忽略登录渠道
+			// if (!ArrayUtils.contains(ignoreChannel, openTypeName)) {
+			// check = true;
+			// }
+			// }
 		}
 
 		// 不校验
@@ -294,7 +301,8 @@ public class NeedLoginAspect extends BaseAspect {
 			String redirectUrl = this.getLoginUrl(longUrl, query, openType);
 			return (T) super.redirect(redirectUrl);
 		} else {
-			String redirectUrl = this.getLoginUrl(needLogin.callbackUrl(), "", openType);
+			String redirectUrl = this.getLoginUrl(needLogin.callbackUrl(), "",
+					openType);
 			AjaxObject ajaxObject = new AjaxObject();
 			ajaxObject.setResult(AjaxObject.NOLOGIN);
 			ajaxObject.setReturnUrl(redirectUrl);

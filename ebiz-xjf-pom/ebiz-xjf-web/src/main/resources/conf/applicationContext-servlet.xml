@@ -141,6 +141,7 @@
 			<mvc:exclude-mapping path="/errorPage404.htm" />
 			<mvc:exclude-mapping path="/cookie/**" />
 			<mvc:exclude-mapping path="/sysReference/**" />
+			<mvc:exclude-mapping path="/test2/**" />
 			<bean class="com.xjf.wemall.web.interceptor.OpenTypeInterceptor" />
 		</mvc:interceptor>
 		<!-- <mvc:interceptor>
@@ -325,7 +326,14 @@
     </bean> -->
     
     <!-- 登录校验 -->
-	<bean id="needLoginAspect" class="com.xjf.wemall.web.aspect.NeedLoginAspect" />
+	<bean id="needLoginAspect" class="com.xjf.wemall.web.aspect.NeedLoginAspect">
+		<property name="excludeList">  
+           	<list>  
+               	<value>/test2/init.htm</value>
+               	<value>/test2/test.htm</value>
+           	</list>  
+       	</property>  
+	</bean>
 	<aop:config proxy-target-class="true">
 		<!-- <aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin 
 			String com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/> -->

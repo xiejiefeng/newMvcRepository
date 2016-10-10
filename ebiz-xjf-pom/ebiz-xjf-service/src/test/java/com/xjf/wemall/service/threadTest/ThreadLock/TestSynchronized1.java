@@ -1,4 +1,4 @@
-package com.xjf.wemall.service.threadTest;
+package com.xjf.wemall.service.threadTest.ThreadLock;
 public class TestSynchronized1
 {    
 	Object lock = new Object();

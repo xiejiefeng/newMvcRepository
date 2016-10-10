@@ -1,4 +1,4 @@
-package com.xjf.wemall.service.threadTest;
+package com.xjf.wemall.service.threadTest.ThreadLock;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 // 5.Lock和synchronized的选择

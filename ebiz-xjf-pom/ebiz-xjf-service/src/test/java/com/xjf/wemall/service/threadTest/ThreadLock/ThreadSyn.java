@@ -1,4 +1,4 @@
-package com.xjf.wemall.service.threadTest;
+package com.xjf.wemall.service.threadTest.ThreadLock;
 
 public class ThreadSyn {
 	// 另外，每个类也会有一个锁，它可以用来控制对static数据成员的并发访问。
@@ -17,7 +17,7 @@ public class ThreadSyn {
 		new Thread() {
 			@Override
 			public void run() {
-				insertData.insert1();
+				InsertData.insert1();
 			}
 		}.start();
 	}

@@ -1,4 +1,4 @@
-package com.xjf.wemall.service.threadTest;
+package com.xjf.wemall.service.threadTest.ThreadLock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

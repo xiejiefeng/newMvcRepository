@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	
+	<!-- 加载配置文件 -->
+	<context:component-scan base-package="com.xjf.wemall.AOPService" />
+    <!-- AOP切面 -->
+    <!-- helloWorld
+    <bean id="helloWorldService"  class="com.xjf.wemall.AOPService.helloWorld.Impl.HelloWorldService"/>  -->
+    <bean id="aspect" class="com.xjf.wemall.AOPService.helloWorld.aspectj.HelloWorldAspect"/>
+	<aop:config>
+		<!-- sayHello -->
+		<!-- 
+		<aop:pointcut id="pointcut" expression="execution(* com.xjf..*.*(..))"/>
+    	<aop:aspect id="aspect" ref="aspect">
+    		<aop:before pointcut-ref="pointcut" method="beforeAdvice" />
+        	<aop:before pointcut-ref="pointcut" method="beforeAdvice"/>
+	        <aop:after pointcut="execution(* com.xjf..*.*(..))" method="afterFinallyAdvice"/>
+	    </aop:aspect> -->
+	    <!-- __________________________我是一条分割线__________________________ -->
+	    <!-- <aop:before pointcut="切入点表达式"  pointcut-ref="切入点Bean引用"  
+				method="前置通知实现方法名" arg-names="前置通知实现方法参数列表参数名字"/>   
+				
+				pointcut和pointcut-ref：二者选一，指定切入点；
+         		method：指定前置通知实现方法名，如果是多态需要加上参数类型，多个用“，”隔开，如beforeAdvice(java.lang.String)；
+         		arg-names：指定通知实现方法的参数名字，多个用“，”分隔，可选，类似于【3.1.2 构造器注入】中的参数名注入限制：
+         			在class文件中没生成变量调试信息是获取不到方法参数名字的，
+         			因此只有在类没生成变量调试信息时才需要使用arg-names属性来指定参数名，
+         			如arg-names="param"表示通知实现方法的参数列表的第一个参数名字为“param”。
+         			
+			分析一下吧：
+			1）切入点匹配：在配置中使用“execution(* cn.javass..*.sayBefore(..)) ”匹配目标方法sayBefore，
+			且使用“args(param)”匹配目标方法只有一个参数且传入的参数类型为通知实现方法中同名的参数类型；
+			2）目标方法定义：使用method=" beforeAdvice(java.lang.String) "指定前置通知实现方法，
+			且该通知有一个参数类型为java.lang.String参数；
+			3）目标方法参数命名：其中使用arg-names=" param "指定通知实现方法参数名为“param”，
+			切入点中使用“args(param)”匹配的目标方法参数将自动传递给通知实现方法同名参数。
+			
+			第一个before：before advice
+			第二个before advice param:TParam1 TParam2
+			第三个before advice param:TParam2 TParam1
+		
+		<aop:aspect ref="aspect">  
+	        <aop:before pointcut="execution(* com.xjf..*.sayBefore(..)) and args(java.lang.String,java.lang.String)"   
+	                           method="beforeAdvice"/>
+            <aop:before pointcut="execution(* com.xjf..*.sayBefore(..)) and args(tt1,tt2)"   
+            method="beforeAdvice(java.lang.String,java.lang.String)" arg-names="tt1,tt2"/>
+            
+            <aop:before pointcut="execution(* com.xjf..*.sayBefore(..)) and args(tt1,tt2)"   
+            method="beforeAdvice(java.lang.String,java.lang.String)" arg-names="tt2,tt1"/> 
+    	</aop:aspect>-->
+	    
+	    <!-- ________________________________________我是一条分割线________________________________________ -->
+	    
+	    <!-- <aop:after-returning pointcut="切入点表达式"  pointcut-ref="切入点Bean引用"  
+    			method="后置返回通知实现方法名" arg-names="后置返回通知实现方法参数列表参数名字" returning="返回值对应的后置返回通知实现方法参数名" />
+    			
+    			pointcut和pointcut-ref：同前置通知同义；
+         		method：同前置通知同义；
+         		arg-names：同前置通知同义；
+         		returning：定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法执行正常返回后，将把目标方法返回值传给通知方法；
+         					returning限定了只有目标方法返回值匹配与通知方法相应参数类型时才能执行后置返回通知，否则不执行，
+         					对于returning对应的通知方法参数为Object类型将匹配任何目标返回值。
+            
+				分析一下吧：
+			1）切入点匹配：在配置中使用“execution(* cn.javass..*.sayAfterReturning(..)) ”匹配目标方法sayAfterReturning，该方法返回true；
+			2）目标方法定义：使用method="afterReturningAdvice"指定后置返回通知实现方法；
+			3）目标方法参数命名：其中使用arg-names="retVal"指定通知实现方法参数名为“retVal”；
+			4）返回值命名：returning="retVal"用于将目标返回值赋值给通知实现方法参数名为“retVal”的参数上。
+		<aop:aspect ref="aspect">  
+		    <aop:after-returning pointcut="execution(* com.xjf..*.sayAfterReturning(..))"  
+	                                method="afterReturningAdvice"  
+	                               arg-names="retVal2"    
+	                               returning="retVal2"/> 
+	    </aop:aspect>-->
+	    
+	    <!-- ________________________________________我是一条分割线________________________________________ -->
+	    <!-- <aop:after-throwing pointcut="切入点表达式"  pointcut-ref="切入点Bean引用"  
+                                method="后置异常通知实现方法名"  
+                                arg-names="后置异常通知实现方法参数列表参数名字"  
+                                throwing="将抛出的异常赋值给的通知实现方法参数名"/>  
+			pointcut和pointcut-ref：同前置通知同义；
+         	method：同前置通知同义；
+         	arg-names：同前置通知同义；
+         	throwing：定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法抛出异常返回后，将把目标方法抛出的异常传给通知方法；
+         			throwing限定了只有目标方法抛出的异常匹配与通知方法相应参数异常类型时才能执行后置异常通知，否则不执行，
+         			对于throwing对应的通知方法参数为Throwable类型将匹配任何异常。
+                                
+		 -->
+	    
+	</aop:config>
+</beans>

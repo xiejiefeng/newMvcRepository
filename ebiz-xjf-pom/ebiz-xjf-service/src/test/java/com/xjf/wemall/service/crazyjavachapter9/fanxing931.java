@@ -43,6 +43,12 @@ public class fanxing931 implements Serializable{
 			System.out.println(list.get(i));
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public <T> T test2(Class<T> cls) {
+		System.out.println(cls.getName());
+		return (T) "1";
+	}
 	public static void main(String[] arg) {
 		fanxing931 a = new fanxing931();
 		List<String> list = new ArrayList<String>();
@@ -50,6 +56,8 @@ public class fanxing931 implements Serializable{
 		a.test(list);
 		
 		a.test1(list);
+		
+		System.out.print(a.test2(Integer.class));
 	}
 
 }

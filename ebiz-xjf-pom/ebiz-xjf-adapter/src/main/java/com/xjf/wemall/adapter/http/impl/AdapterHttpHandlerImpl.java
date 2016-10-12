@@ -65,7 +65,7 @@ public class AdapterHttpHandlerImpl implements AdapterHttpHandler {
     private static PoolingHttpClientConnectionManager clientConnectionManager;
 
     /**默认构造函数*/
-    private AdapterHttpHandlerImpl() {
+    public AdapterHttpHandlerImpl() {
         clientConnectionManager = new PoolingHttpClientConnectionManager();
         clientConnectionManager.setMaxTotal(maxTotal);
         clientConnectionManager.setDefaultMaxPerRoute(maxRouteConnection);

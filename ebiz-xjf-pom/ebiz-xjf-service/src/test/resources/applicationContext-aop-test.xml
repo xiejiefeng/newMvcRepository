@@ -170,4 +170,7 @@
 	</aop:config>
 	
 	<bean id="beforeAdvice" class="com.xjf.wemall.AOPService.helloWorld.aspectj.BeforeAdviceImpl"/>
+	
+	<!-- 启用对@AspectJ的支持 -->
+	<aop:aspectj-autoproxy/>
 </beans>

@@ -334,6 +334,44 @@
            	</list>  
        	</property>  
 	</bean>
+	<!-- 
+	6.5.2        ；类型匹配语法
+首先让我们来了解下AspectJ类型匹配的通配符：
+* ：匹配任何数量字符；
+.. ：（两个点）匹配任何数量字符的重复，如在类型模式中匹配任何数量子包；而在方法参数模式中匹配任何数量参数。
++ ：匹配指定类型的子类型；仅能作为后缀放在类型模式后边。
+	java.lang.String    匹配String类型；
+	java.*.String         匹配java包下的任何“一级子包”下的String类型；
+	                              如匹配java.lang.String，但不匹配java.lang.ss.String
+	java..*                  匹配java包及任何子包下的任何类型;
+	                              如匹配java.lang.String、java.lang.annotation.Annotation
+	java.lang.*ing      匹配任何java.lang包下的以ing结尾的类型；
+	java.lang.Number+  匹配java.lang包下的任何Number的自类型；
+	                               如匹配java.lang.Integer，也匹配java.math.BigInteger
+ 
+接下来再看一下具体的匹配表达式类型吧：
+匹配类型：使用如下方式匹配
+注解？ 类的全限定名字
+
+	注解：可选，类型上持有的注解，如@Deprecated；
+	类的全限定名：必填，可以是任何类全限定名。
+
+匹配方法执行：使用如下方式匹配：
+注解？ 修饰符? 返回值类型 类型声明?方法名(参数列表) 异常列表？
+	注解：可选，方法上持有的注解，如@Deprecated；
+	修饰符：可选，如public、protected；
+	返回值类型：必填，可以是任何类型模式；“*”表示所有类型；
+	类型声明：可选，可以是任何类型模式；
+	方法名：必填，可以使用“*”进行模式匹配；
+	参数列表：“()”表示方法没有任何参数；“(..)”表示匹配接受任意个参数的方法，“(..,java.lang.String)”表示匹配接受java.lang.String类型的参数结束，
+		且其前边可以接受有任意个参数的方法；“(java.lang.String,..)” 表示匹配接受java.lang.String类型的参数开始，且其后边可以接受任意个参数的方法；“(*,java.lang.String)” 表示匹配接受java.lang.String类型的参数结束，且其前边接受有一个任意类型参数的方法；
+	异常列表：可选，以“throws 异常全限定名列表”声明，异常全限定名列表如有多个以“，”分割，
+		如throws java.lang.IllegalArgumentException, java.lang.ArrayIndexOutOfBoundsException。
+	 匹配Bean名称：可以使用Bean的id或name进行匹配，并且可使用通配符“*”；
+	 
+AspectJ使用 且（&&）、或（||）、非（！）来组合切入点表达式。
+ 在Schema风格下，由于在XML中使用“&&”需要使用转义字符“&amp;&amp;”来代替之，所以很不方便，因此Spring ASP 提供了and、or、not来代替&&、||、！。
+	 -->
 	<aop:config proxy-target-class="true">
 		<!-- <aop:pointcut id="needLoginUrlPointcut" expression="execution(@com.xjf.wemall.annotation.NeedLogin 
 			String com.xjf.wemall.web.controller..*.*(..)) and @annotation(needLogin)"/> -->
@@ -344,7 +382,6 @@
 			expression="execution(@org.springframework.web.bind.annotation.RequestMapping String com.xjf.wemall.web.controller..*.*(..))" />
 		<aop:pointcut id="ajaxPointcut"
 			expression="execution(@org.springframework.web.bind.annotation.RequestMapping com.xjf.wemall.api.entity.common.AjaxObject com.xjf.wemall.web.controller..*.*(..))" />
-		
 		<aop:aspect id="needLoginAspect" ref="needLoginAspect" order="1">
 			<aop:around method="checkUrl" pointcut-ref="urlPointcut"/>
 			<aop:around method="checkAjax" pointcut-ref="ajaxPointcut"/>

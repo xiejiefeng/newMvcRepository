@@ -62,4 +62,14 @@ public class AopTest extends AopTestBase {
        helloworldService.sayAdvisorBefore("haha");  
        System.out.println("======================================");  
     }
+    
+    /**
+     * 注解ASPECT
+     */
+    @Test  
+    public void testAnnotationBeforeAdvice() {  
+        System.out.println("======================================");
+        helloworldService.sayBefore("before1","before2");  
+        System.out.println("======================================");  
+    }
 }  

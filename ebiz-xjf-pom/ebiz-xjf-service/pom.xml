@@ -27,6 +27,11 @@
 		<artifactId>ebiz-xjf-redis</artifactId>
 		<version>${ebiz.xjf.version}</version>
 	</dependency>
+	<dependency>
+		<groupId>com.xjf.ebiz</groupId>
+		<artifactId>ebiz-xjf-rocketMq</artifactId>
+		<version>${ebiz.xjf.version}</version>
+	</dependency>
   	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>

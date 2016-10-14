@@ -14,6 +14,7 @@
     <module>ebiz-xjf-api</module>
     <module>ebiz-xjf-adapter</module>
     <module>ebiz-xjf-redis</module>
+    <module>ebiz-xjf-rocketMq</module>
   </modules>
   
   <properties>
@@ -556,6 +557,17 @@
 		      <version>1.6.2</version>
 		    </dependency>
 			<!-- axis -->
+			<dependency>
+		      <groupId>com.alibaba.rocketmq</groupId>
+		      <artifactId>rocketmq-client</artifactId>
+		      <version>3.2.6</version>
+		    </dependency>
+		    <dependency>
+		      <groupId>com.alibaba.rocketmq</groupId>
+		      <artifactId>rocketmq-all</artifactId>
+		      <version>3.2.6</version>
+		      <type>pom</type>
+		    </dependency>
 		</dependencies>
 	</dependencyManagement>
 

@@ -23,7 +23,6 @@ public class threadPool2 {
 		// 阻塞队列线程池监控
 		QueueTask queueTask = poolThread.new QueueTask();
 		queueTask.start();
-		
 		// 线程池执行
 		for (int i = 0; i < 10; i++) {
 			MyTask myTask = poolThread.new MyTask(i);

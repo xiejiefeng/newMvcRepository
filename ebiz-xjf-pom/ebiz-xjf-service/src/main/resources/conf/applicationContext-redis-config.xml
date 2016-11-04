@@ -23,21 +23,21 @@
 		<property name="timeOut" value="${ebiz.wemall.redis.serverOne.timeout}" />
 		<property name="dbIndex" value="${ebiz.wemall.redis.serverOne.dbIndex}" />
 	</bean>
-	<!-- 配置server信息 -->
+	<!-- 配置server信息
 	<bean id="server2" class="com.xjf.wemall.redis.shard.NodeInfo4Jedis">
 		<property name="ip" value="${ebiz.wemall.redis.serverTwo.ip}" />
 		<property name="port" value="${ebiz.wemall.redis.serverTwo.port}" />
 		<property name="password" value="" />
 		<property name="timeOut" value="${ebiz.wemall.redis.serverTwo.timeout}" />
 		<property name="dbIndex" value="${ebiz.wemall.redis.serverTwo.dbIndex}" />
-	</bean>
+	</bean> -->
 	<!-- 配置shard信息 -->
 	<bean id="shard1" class="com.xjf.wemall.redis.shard.ShardInfo4Jedis">
 		<property name="shardName" value="shard1" />
 		<property name="nodes">
 			<set>
 				<ref bean="server1" />
-				<ref bean="server2" />
+				<!-- <ref bean="server2" /> -->
 			</set>
 		</property>
 	</bean>

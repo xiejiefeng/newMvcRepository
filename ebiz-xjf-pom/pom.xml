@@ -15,6 +15,7 @@
     <module>ebiz-xjf-adapter</module>
     <module>ebiz-xjf-redis</module>
     <module>ebiz-xjf-rocketMq</module>
+    <module>ebiz-xjf-dao</module>
   </modules>
   
   <properties>
@@ -44,7 +45,7 @@
 	
 	<dom4j.version>1.6.1</dom4j.version>
 	<xstream.version>1.4.6</xstream.version>
-	<mybatis.version>3.2.6</mybatis.version>
+	<mybatis.version>1.3.0</mybatis.version>
 	<mysql.version>5.1.36</mysql.version>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<aspect-version>1.7.0</aspect-version>
@@ -556,7 +557,7 @@
 		      <artifactId>axis2-transport-http</artifactId>
 		      <version>1.6.2</version>
 		    </dependency>
-			<!-- axis -->
+			<!-- rocketmq -->
 			<dependency>
 		      <groupId>com.alibaba.rocketmq</groupId>
 		      <artifactId>rocketmq-client</artifactId>
@@ -568,6 +569,24 @@
 		      <version>3.2.6</version>
 		      <type>pom</type>
 		    </dependency>
+		    <!-- mybatis/spring包 -->  
+	        <dependency>  
+	            <groupId>org.mybatis</groupId>  
+	            <artifactId>mybatis-spring</artifactId>  
+	            <version>${mybatis.version}</version>  
+	        </dependency>  
+  
+	        <!-- mysql驱动包 -->  
+	        <dependency>  
+	            <groupId>mysql</groupId>  
+	            <artifactId>mysql-connector-java</artifactId>  
+	            <version>${mysql.version}</version>  
+	        </dependency>
+	        <dependency>
+				<groupId>org.mariadb.jdbc</groupId>
+				<artifactId>mariadb-java-client</artifactId>
+				<version>1.1.7</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

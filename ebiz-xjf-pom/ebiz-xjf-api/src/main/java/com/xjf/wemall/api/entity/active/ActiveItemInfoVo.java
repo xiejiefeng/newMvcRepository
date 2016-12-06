@@ -11,6 +11,7 @@
 package com.xjf.wemall.api.entity.active;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 活动元素实体 <br> 
@@ -29,6 +30,9 @@ public class ActiveItemInfoVo implements Serializable{
     
     /**路径URL*/
     private String url;
+    
+    /**路径URL*/
+    private Date date;
 
     public String getCode() {
         return code;
@@ -45,4 +49,14 @@ public class ActiveItemInfoVo implements Serializable{
     public void setUrl(String url) {
         this.url = url;
     }
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+    
+    
 }

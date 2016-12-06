@@ -178,5 +178,41 @@
   
   <build>
     <finalName>mvcWeb</finalName>
+    <resources>
+		<resource>
+			<filtering>true</filtering>
+			<directory>src/main/resources</directory>
+		</resource>
+	</resources>
+	<!-- <filters>
+		<filter>../filters/${file.name}.properties</filter>
+	</filters> -->
+    <plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+		</plugin>
+		<!-- <plugin>
+			<groupId>com.juvenxu.portable-config-maven-plugin</groupId>
+			<artifactId>portable-config-maven-plugin</artifactId>
+		</plugin> -->
+		<!-- js, css压缩生命周期映射 -->
+		<plugin>
+			<groupId>org.eclipse.m2e</groupId>
+			<artifactId>lifecycle-mapping</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>net.alchim31.maven</groupId>
+			<artifactId>yuicompressor-maven-plugin</artifactId>
+		</plugin>
+	</plugins>
   </build>
 </project>

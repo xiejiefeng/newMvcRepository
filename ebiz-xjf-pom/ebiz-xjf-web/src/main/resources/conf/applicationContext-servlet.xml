@@ -329,7 +329,7 @@
 	<bean id="needLoginAspect" class="com.xjf.wemall.web.aspect.NeedLoginAspect">
 		<property name="excludeList">  
            	<list>  
-               	<value>/test2/init.htm</value>
+               	<value>/cookie/menu.htm</value>
                	<value>/test2/test.htm</value>
            	</list>  
        	</property>  

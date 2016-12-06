@@ -3,7 +3,10 @@ package com.xjf.wemall.service.threadTest.testThreadPool;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
-
+/*自建线程池
+ * 
+ * 
+ */
 public final class BlockingQueueThreadPool {
     // 线程池中默认线程的个数为5
     private static int worker_num = 5;

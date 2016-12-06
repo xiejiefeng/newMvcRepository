@@ -15,7 +15,7 @@
 	<!-- 接口适配器 -->
 	<import resource="classpath:conf/applicationContext-adapter.xml"/>
 	<!-- dal -->
-	<import resource="classpath:conf/applicationContext-dal.xml"/>
+	<!-- <import resource="classpath:conf/applicationContext-dal.xml"/> -->
 	
   	<!-- i18n -->
     <bean id="messageSource"

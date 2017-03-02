@@ -71,6 +71,11 @@
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
+			  <groupId>com.cango</groupId>
+			  <artifactId>erp-sms-filter</artifactId>
+			  <version>0.0.1</version>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
 				<version>${springframework.version}</version>

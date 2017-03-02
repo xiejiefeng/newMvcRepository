@@ -158,6 +158,10 @@
 		<artifactId>javax.servlet-api</artifactId>
 	</dependency>
 	<dependency>
+	  <groupId>com.cango</groupId>
+	  <artifactId>erp-sms-filter</artifactId>
+	</dependency>
+	<dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-websocket</artifactId>
     </dependency>

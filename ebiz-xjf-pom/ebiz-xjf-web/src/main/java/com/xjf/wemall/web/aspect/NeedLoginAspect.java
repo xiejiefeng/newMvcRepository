@@ -54,7 +54,6 @@ public class NeedLoginAspect extends BaseAspect {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected <T> T check(ProceedingJoinPoint joinPoint, Class<T> clazz) throws Throwable {
-
 		// 获取链接信息
 		HttpServletRequest request = super.getRequest();
 

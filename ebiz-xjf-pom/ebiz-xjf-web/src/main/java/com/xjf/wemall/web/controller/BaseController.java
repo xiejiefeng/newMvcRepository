@@ -54,11 +54,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.cango.sms.annotation.UrlNeedFilter;
-import com.cango.sms.resultqo.WsResultQO;
+//import com.cango.sms.annotation.UrlNeedFilter;
+//import com.cango.sms.resultqo.WsResultQO;
 import com.xjf.wemall.adapter.service.entity.alibabamap.MapInfoResult;
 import com.xjf.wemall.api.entity.common.CookieObject;
+import com.xjf.wemall.api.util.URLUtil;
 import com.xjf.wemall.service.index.api.IndexService;
 import com.xjf.wemall.web.util.CookieUtil;
 
@@ -123,12 +123,12 @@ public class BaseController {
 //		return map;
 //	}
 	
-	@RequestMapping(value="/filter")
-	@ResponseBody
-	@UrlNeedFilter(ipList={"192.168.121.22"})
-	public WsResultQO ttest(){
-		return new WsResultQO();
-	}
+//	@RequestMapping(value="/filter")
+//	@ResponseBody
+//	@UrlNeedFilter(ipList={"192.168.121.22"})
+//	public WsResultQO ttest(){
+//		return new WsResultQO();
+//	}
 	
 //	// http://localhost:8080/base/1/2/3/?index4=11
 //	@RequestMapping(value="/{index1}/{index2}/{index3}")
@@ -260,7 +260,37 @@ public class BaseController {
 		}
 		return latitude;
 	}
-	
+	/**
+	 * 获取当页面链接(含参数)
+	 * 
+	 * @param redirectUrl
+	 * @return
+	 */
+	protected String getCurrentUrl() {
+		HttpServletRequest request = this.getRequest();
+		String requestUri = request.getRequestURI();
+		String query = request.getQueryString();
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(requestUri);
+		if (StringUtils.isNotEmpty(query)) {
+			sb.append("?");
+			sb.append(query);
+		}
+
+		return sb.toString();
+	}
+
+	/**
+	 * 获取当页面链接(含参数)
+	 * 
+	 * @param redirectUrl
+	 * @return
+	 */
+	protected String getCurrentUrlEncode() {
+		return URLUtil.encode(this.getCurrentUrl());
+	}
 	/***
 	 * 
 	 * 功能描述: 获取车享ID<br>

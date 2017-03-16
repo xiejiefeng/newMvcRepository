@@ -78,7 +78,7 @@ public class BaseController {
 	protected final Logger logger = LoggerFactory.getLogger(super.getClass());
 	
 	/** TEST页面 */
-	protected static final String SELECT_CAR_HTM = "/selectCar/toSelectCar.htm1";
+	protected static final String SELECT_CAR_HTM = "/selectCar/toSelectCar.htm44";
 	
     @Autowired
     protected IndexService indexService;
